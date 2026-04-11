@@ -715,3 +715,9 @@ async function submitForm(e){
           f.reset();
         }, 300);
 }, 1200);
+        } catch(e){
+    sendEl.style.display='none';
+    btn.style.display='block';
+    errEl.style.display='block';
+  }
+}
