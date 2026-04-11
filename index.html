@@ -20,6 +20,7 @@
       --dark:#2a1a08;
       --dark2:#3d2810;
       --grey:#7a6a58;
+      --grey-lt:#a89880;
       --sp:clamp(60px,9vw,120px);
     }
     html{scroll-behavior:smooth}
@@ -32,7 +33,7 @@
     .nav-links a{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--grey);text-decoration:none;transition:color .2s}
     .nav-links a:hover{color:var(--gold)}
     .nav-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
-    .nav-burger span{width:24px;height:1px;background:var(--gold);display:block}
+    .nav-burger span{width:24px;height:1px;background:var(--gold);display:block;transition:.3s}
     .nav-mobile{display:none;position:fixed;inset:0;background:var(--cream);z-index:190;flex-direction:column;align-items:center;justify-content:center;gap:36px}
     .nav-mobile.open{display:flex}
     .nav-mobile a{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:300;color:var(--dark);text-decoration:none}
@@ -45,12 +46,11 @@
     .hero-bg-img{position:absolute;inset:0}
     .hero-bg-img img{width:100%;height:100%;object-fit:cover}
     .hero-bg-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(248,244,237,.6) 0%,rgba(248,244,237,.78) 55%,var(--cream) 100%)}
-    .hero-inner{position:relative;z-index:1;max-width:800px;text-align:center;width:100%}
+    .hero-inner{position:relative;z-index:1;max-width:800px;text-align:center}
     .hero-eyebrow{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:28px;opacity:0;animation:fadeUp .8s .2s forwards}
-    /* FIX: hyphens+word-break prevents title overflow on mobile */
-    .hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(42px,9vw,94px);font-weight:300;line-height:1.05;color:var(--dark);opacity:0;animation:fadeUp .9s .4s forwards;word-break:break-word;hyphens:auto;overflow-wrap:break-word}
+    .hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(46px,9vw,94px);font-weight:300;line-height:1;color:var(--dark);opacity:0;animation:fadeUp .9s .4s forwards}
     .hero-title em{font-style:italic;color:var(--gold)}
-    .hero-sub{font-family:'Cormorant Garamond',serif;font-size:clamp(14px,2.2vw,21px);font-style:italic;color:var(--grey);margin:24px 0 38px;opacity:0;animation:fadeUp .9s .6s forwards}
+    .hero-sub{font-family:'Cormorant Garamond',serif;font-size:clamp(15px,2.2vw,21px);font-style:italic;color:var(--grey);margin:24px 0 38px;opacity:0;animation:fadeUp .9s .6s forwards}
     .hero-dots{display:flex;justify-content:center;align-items:center;gap:14px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-pale);margin-bottom:40px;flex-wrap:wrap;opacity:0;animation:fadeUp .9s .7s forwards}
     .dot-sep{font-size:18px;color:var(--gold-pale);line-height:1}
     .hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;opacity:0;animation:fadeUp .9s .88s forwards}
@@ -61,10 +61,11 @@
     .btn:hover{background:var(--dark);border-color:var(--dark);transform:translateY(-1px)}
     .btn-outline{background:transparent;color:var(--gold)}
     .btn-outline:hover{background:var(--gold);color:var(--cream)}
-    .btn-dark{background:transparent;color:rgba(248,244,237,.75);border-color:rgba(248,244,237,.35)}
+    .btn-dark{background:transparent;color:rgba(248,244,237,.7);border-color:rgba(248,244,237,.3)}
     .btn-dark:hover{background:var(--cream);color:var(--gold);border-color:var(--cream)}
 
-    /* NO DIVIDER between hero and concept — removed */
+    /* DIVIDER */
+    .divider{width:1px;height:70px;background:var(--gold-pale);margin:0 auto;opacity:.3}
 
     /* SECTIONS */
     section{padding:var(--sp) clamp(20px,6vw,80px)}
@@ -72,16 +73,13 @@
     h2{font-family:'Cormorant Garamond',serif;font-size:clamp(30px,5vw,58px);font-weight:300;line-height:1.1;color:var(--dark);margin-bottom:26px}
     h2 em{font-style:italic;color:var(--gold)}
     p{color:var(--grey);font-size:15px;max-width:580px;line-height:1.8}
-
-    /* FIX: .line stretches full width of the text block, aligned to section padding */
-    .line{height:1px;background:var(--gold);margin:26px 0;width:100%;max-width:580px}
+    .line{width:44px;height:1px;background:var(--gold);margin:26px 0}
 
     /* CONCEPT */
     #concept{background:var(--warm);display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
     #concept .img-wrap{height:520px;overflow:hidden;box-shadow:0 20px 60px rgba(42,26,8,.12)}
     #concept .img-wrap img{width:100%;height:100%;object-fit:cover}
     #concept .text p+p{margin-top:14px}
-    /* concept text block: line and p share the same max-width naturally */
     @media(max-width:900px){#concept{grid-template-columns:1fr}#concept .img-wrap{height:260px}}
 
     /* POUR QUI */
@@ -95,8 +93,6 @@
     #pratiques .section-label{color:var(--gold-pale)}
     #pratiques h2{color:var(--cream)}
     #pratiques>p{color:rgba(248,244,237,.5)}
-    /* line on dark bg */
-    #pratiques .line{background:var(--gold-pale)}
     .pratiques-photo{width:100%;height:340px;overflow:hidden;margin-top:52px}
     .pratiques-photo img{width:100%;height:100%;object-fit:cover;object-position:center 35%}
     .pratiques-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.05)}
@@ -131,31 +127,26 @@
     /* GALERIE SLIDER */
     #galerie{background:var(--warm2);padding:var(--sp) 0}
     .galerie-header{padding:0 clamp(20px,6vw,80px);margin-bottom:36px}
-    .slider-outer{position:relative;overflow:hidden;cursor:grab;user-select:none}
-    .slider-outer:active{cursor:grabbing}
-    .slider-track{display:flex;gap:14px;padding:0 clamp(20px,6vw,80px);transition:transform .45s cubic-bezier(.25,.46,.45,.94);will-change:transform}
-    /* FIX: no transition during drag for responsiveness */
-    .slider-track.dragging{transition:none}
-    .slide{flex:0 0 clamp(220px,30vw,360px);height:clamp(180px,25vw,300px);overflow:hidden;pointer-events:none}
-    .slide img{width:100%;height:100%;object-fit:cover;transition:transform .4s;pointer-events:none;-webkit-user-drag:none;user-select:none}
+    .slider-wrap{position:relative;overflow:hidden}
+    .slider-track{display:flex;gap:14px;padding:0 clamp(20px,6vw,80px);transition:transform .5s cubic-bezier(.25,.46,.45,.94);will-change:transform}
+    .slide{flex:0 0 clamp(220px,30vw,360px);height:clamp(180px,25vw,300px);overflow:hidden;cursor:pointer}
+    .slide img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+    .slide:hover img{transform:scale(1.05)}
     .slider-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(248,244,237,.92);border:1px solid rgba(111,62,20,.18);color:var(--gold);width:42px;height:42px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:17px;transition:.2s;z-index:2}
     .slider-btn:hover{background:var(--gold);color:var(--cream)}
     .slider-prev{left:10px}
     .slider-next{right:10px}
-    @media(max-width:600px){.slide{flex:0 0 80vw;height:55vw}}
+    @media(max-width:600px){.slide{flex:0 0 78vw;height:52vw}}
 
-    /* BAL — FIX: lighter text colors for readability over photo */
+    /* BAL */
     #bal{min-height:460px;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:clamp(36px,7vw,96px)}
     .bal-bg-img{position:absolute;inset:0}
     .bal-bg-img img{width:100%;height:100%;object-fit:cover;object-position:center 40%}
-    .bal-bg-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(20,10,2,.92) 0%,rgba(20,10,2,.5) 50%,rgba(20,10,2,.15) 100%)}
+    .bal-bg-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(42,26,8,.9) 0%,rgba(42,26,8,.35) 60%,transparent 100%)}
     #bal .content{position:relative;z-index:1;max-width:500px}
-    #bal .section-label{color:#e8c898;letter-spacing:.36em}
-    /* FIX: fully white title and subtitle for readability */
-    #bal h2{color:#ffffff;text-shadow:0 2px 12px rgba(0,0,0,.4)}
-    #bal h2 em{color:#f0c880;font-style:italic}
-    #bal p{color:rgba(255,255,255,.82);max-width:360px;text-shadow:0 1px 6px rgba(0,0,0,.3)}
-    #bal .line{background:#c49a6c;opacity:.7}
+    #bal .section-label{color:var(--gold-pale)}
+    #bal h2{color:var(--cream)}
+    #bal p{color:rgba(248,244,237,.58);max-width:360px}
 
     /* HÉBERGEMENT */
     #hebergement{background:var(--warm);display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:stretch;padding:0}
@@ -210,9 +201,6 @@
     .form-group textarea{resize:vertical;min-height:90px}
     .form-success{display:none;text-align:center;padding:20px 0}
     .form-success p{color:var(--gold);font-family:'Cormorant Garamond',serif;font-size:21px;max-width:none;line-height:1.6}
-    .form-sending{display:none;text-align:center;padding:10px 0 18px}
-    .form-sending p{color:var(--grey);font-size:13px;max-width:none}
-    .form-error{display:none;padding:10px 14px;background:#fdf0ed;border:1px solid #e0a090;font-size:13px;color:#8b3020;margin-bottom:14px}
     @media(max-width:480px){.form-row{grid-template-columns:1fr}}
 
     /* REVEAL */
@@ -271,11 +259,13 @@
     </div>
     <div class="hero-cta">
       <button class="btn" onclick="openModal()">Réserver ma place</button>
-      <a href="file.pdf" target="_blank" rel="noopener" class="btn btn-outline">Télécharger la présentation</a>
+      <a href="file.pdf" download class="btn btn-outline">Télécharger la présentation</a>
     </div>
     <p class="hero-date">10 — 19 Août 2026 &nbsp;·&nbsp; Château de Misy-sur-Yonne</p>
   </div>
 </section>
+
+<div class="divider"></div>
 
 <!-- CONCEPT -->
 <section id="concept">
@@ -304,7 +294,6 @@
 <section id="pratiques">
   <span class="section-label reveal">Programme</span>
   <h2 class="reveal">Pratiques <em>corporelles</em></h2>
-  <div class="line reveal"></div>
   <p class="reveal">2 à 3 cours par jour, adaptés à chaque participant après bilan individuel avec un kinésithérapeute.</p>
   <div class="pratiques-photo reveal">
     <img src="3.jpg" alt="Pratiques corporelles au château"/>
@@ -319,7 +308,7 @@
       <p>Inspiré du ballet classique — pour développer un maintien harmonieux et une présence corporelle raffinée.</p>
     </div>
     <div class="pratique-item">
-      <h3>Münz Floor<sup style="font-size:10px;vertical-align:super">®</sup></h3>
+      <h3>Münz Floor</h3>
       <p>Pratique douce au sol centrée sur les fascias pour libérer les tensions et retrouver fluidité et mobilité.</p>
     </div>
     <div class="pratique-item">
@@ -391,7 +380,7 @@
     <span class="section-label">Atmosphère</span>
     <h2>Le cadre <em>d'exception</em></h2>
   </div>
-  <div class="slider-outer" id="sliderOuter">
+  <div class="slider-wrap">
     <div class="slider-track" id="sliderTrack">
       <div class="slide"><img src="7.jpg" alt=""/></div>
       <div class="slide"><img src="8.jpg" alt=""/></div>
@@ -417,7 +406,7 @@
   <div class="content reveal">
     <span class="section-label">Soirée de clôture</span>
     <h2>Bal <em>Masqué</em></h2>
-    <div class="line"></div>
+    <div class="line" style="background:var(--gold-pale)"></div>
     <p>Dîner aux chandelles, performances artistiques et danses d'époque. Une soirée d'exception pour clore le séjour dans la magie du mouvement.</p>
   </div>
 </section>
@@ -467,11 +456,11 @@
   <span class="section-label reveal">Contact</span>
   <h2 class="reveal">Prendre <em>contact</em></h2>
   <p class="reveal">Pour toute question ou pour réserver votre place, contactez-nous directement.</p>
-  <a href="/cdn-cgi/l/email-protection#a9cac6c7ddc8cadde9c0c4c4ccdbdac0c6c784cdc8c7dacc87cfdb" class="contact-email reveal"><span class="__cf_email__" data-cfemail="ec8f8382988d8f98ac858181899e9f858382c1888d829f89c28a9e">[email&#160;protected]</span></a>
+  <a href="mailto:contact@immersion-danse.fr" class="contact-email reveal">contact@immersion-danse.fr</a>
   <a href="tel:+33625810694" class="contact-phone reveal">+33 6 25 81 06 94</a>
   <div class="contact-btns reveal">
     <button class="btn btn-dark" onclick="openModal()">Réserver ma place</button>
-    <a href="file.pdf" target="_blank" rel="noopener" class="btn btn-dark">Télécharger la présentation</a>
+    <a href="file.pdf" download class="btn btn-dark">Télécharger la présentation</a>
   </div>
   <p class="contact-meta reveal">10 — 19 Août 2026 &nbsp;·&nbsp; Château de Misy-sur-Yonne &nbsp;·&nbsp; <a href="https://immersion-danse.fr">immersion-danse.fr</a></p>
 </section>
@@ -489,14 +478,6 @@
     <div id="formWrap">
       <h3>Réserver ma place</h3>
       <p class="modal-sub">Complétez ce formulaire et nous vous recontacterons dans les 48h.</p>
-      <div class="form-error" id="formError">Une erreur est survenue. Veuillez réessayer ou nous écrire directement.</div>
-      <!--
-        FORMSPREE SETUP:
-        1. Go to https://formspree.io and create a free account
-        2. Create a new form → copy your form ID (looks like: xabcdefg)
-        3. Replace YOUR_FORMSPREE_ID below with your actual ID
-        The free plan allows 50 submissions/month — enough for your launch.
-      -->
       <form id="reservForm" onsubmit="submitForm(event)">
         <div class="form-row">
           <div class="form-group">
@@ -520,16 +501,15 @@
           <label for="chambre">Type de chambre</label>
           <select id="chambre" name="chambre">
             <option value="">— Choisir —</option>
-            <option value="Chambre individuelle — 3 000 €">Chambre individuelle — 3 000 €</option>
-            <option value="Chambre double — 2 650 € / pers.">Chambre double — 2 650 € / pers.</option>
+            <option value="individuelle">Chambre individuelle — 3 000 €</option>
+            <option value="double">Chambre double — 2 650 € / pers.</option>
           </select>
         </div>
         <div class="form-group">
           <label for="message">Message</label>
           <textarea id="message" name="message" placeholder="Questions, souhaits particuliers…"></textarea>
         </div>
-        <div class="form-sending" id="formSending"><p>Envoi en cours…</p></div>
-        <button type="submit" class="btn" id="submitBtn" style="width:100%">Envoyer ma demande</button>
+        <button type="submit" class="btn" style="width:100%;justify-content:center">Envoyer ma demande</button>
       </form>
     </div>
     <div class="form-success" id="formSuccess">
@@ -538,179 +518,67 @@
   </div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-/* ── MOBILE NAV ── */
-document.getElementById('burger').addEventListener('click',()=>{
-  document.getElementById('mobile-nav').classList.add('open');
-  document.body.style.overflow='hidden';
-});
-document.getElementById('nav-close').addEventListener('click',closeMob);
-document.querySelectorAll('.mobile-link').forEach(l=>l.addEventListener('click',closeMob));
-function closeMob(){document.getElementById('mobile-nav').classList.remove('open');document.body.style.overflow='';}
+<script>
+  /* MOBILE NAV */
+  const burger=document.getElementById('burger');
+  const mobileNav=document.getElementById('mobile-nav');
+  burger.addEventListener('click',()=>{mobileNav.classList.add('open');document.body.style.overflow='hidden'});
+  document.getElementById('nav-close').addEventListener('click',closeMob);
+  document.querySelectorAll('.mobile-link').forEach(l=>l.addEventListener('click',closeMob));
+  function closeMob(){mobileNav.classList.remove('open');document.body.style.overflow=''}
 
-/* ── NAV SHRINK ── */
-window.addEventListener('scroll',()=>{
-  document.getElementById('main-nav').style.padding=window.scrollY>60?'14px 48px':'22px 48px';
-});
-
-/* ── SCROLL REVEAL ── */
-const obsRev=new IntersectionObserver(entries=>{
-  entries.forEach((e,i)=>{
-    if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*65);obsRev.unobserve(e.target);}
-  });
-},{threshold:0.07});
-document.querySelectorAll('.reveal').forEach(el=>obsRev.observe(el));
-
-/* ── SLIDER — pointer events for mouse, trackpad and touch ── */
-(function(){
-  const outer=document.getElementById('sliderOuter');
-  const track=document.getElementById('sliderTrack');
-  let currentX=0;       // current translate px
-  let startX=0;         // pointer start x
-  let startTranslate=0; // translate at drag start
-  let isDragging=false;
-  let isPointer=false;
-
-  function getSlideWidth(){
-    const s=track.querySelector('.slide');
-    if(!s)return 0;
-    const gap=14;
-    return s.offsetWidth+gap;
-  }
-  function getMaxTranslate(){
-    const totalW=track.scrollWidth;
-    const visibleW=outer.offsetWidth;
-    return Math.max(0,totalW-visibleW);
-  }
-  function snapToNearest(){
-    const sw=getSlideWidth();
-    if(sw===0)return;
-    const nearest=Math.round(currentX/sw)*sw;
-    currentX=Math.max(0,Math.min(nearest,getMaxTranslate()));
-    track.classList.remove('dragging');
-    track.style.transform=`translateX(-${currentX}px)`;
-  }
-  function moveTo(x){
-    currentX=Math.max(0,Math.min(x,getMaxTranslate()));
-    track.style.transform=`translateX(-${currentX}px)`;
-  }
-
-  // Arrow buttons
-  document.getElementById('sliderPrev').addEventListener('click',()=>{
-    currentX=Math.max(0,currentX-getSlideWidth());
-    track.classList.remove('dragging');
-    track.style.transform=`translateX(-${currentX}px)`;
-  });
-  document.getElementById('sliderNext').addEventListener('click',()=>{
-    currentX=Math.min(getMaxTranslate(),currentX+getSlideWidth());
-    track.classList.remove('dragging');
-    track.style.transform=`translateX(-${currentX}px)`;
+  /* NAV SHRINK */
+  window.addEventListener('scroll',()=>{
+    document.getElementById('main-nav').style.padding=window.scrollY>60?'14px 48px':'22px 48px';
   });
 
-  // Pointer (mouse + stylus) — covers trackpad drag too
-  outer.addEventListener('pointerdown',e=>{
-    if(e.pointerType==='touch')return; // let touch handle it
-    isPointer=true;
-    isDragging=true;
-    startX=e.clientX;
-    startTranslate=currentX;
-    track.classList.add('dragging');
-    outer.setPointerCapture(e.pointerId);
-    e.preventDefault();
-  },{passive:false});
-
-  outer.addEventListener('pointermove',e=>{
-    if(!isDragging||!isPointer)return;
-    const dx=startX-e.clientX;
-    moveTo(startTranslate+dx);
-  });
-
-  outer.addEventListener('pointerup',e=>{
-    if(!isPointer)return;
-    isDragging=false;
-    isPointer=false;
-    snapToNearest();
-  });
-  outer.addEventListener('pointercancel',()=>{
-    isDragging=false;isPointer=false;snapToNearest();
-  });
-
-  // Touch (mobile)
-  let touchStartX=0;
-  outer.addEventListener('touchstart',e=>{
-    touchStartX=e.touches[0].clientX;
-    startTranslate=currentX;
-    track.classList.add('dragging');
-  },{passive:true});
-  outer.addEventListener('touchmove',e=>{
-    const dx=touchStartX-e.touches[0].clientX;
-    moveTo(startTranslate+dx);
-  },{passive:true});
-  outer.addEventListener('touchend',e=>{
-    snapToNearest();
-  });
-
-  // Wheel (trackpad horizontal scroll)
-  outer.addEventListener('wheel',e=>{
-    if(Math.abs(e.deltaX)>Math.abs(e.deltaY)){
-      e.preventDefault();
-      track.classList.add('dragging');
-      moveTo(currentX+e.deltaX);
-      clearTimeout(outer._wt);
-      outer._wt=setTimeout(()=>snapToNearest(),120);
-    }
-  },{passive:false});
-
-  window.addEventListener('resize',()=>{currentX=0;track.classList.remove('dragging');track.style.transform='translateX(0)';});
-})();
-
-/* ── MODAL ── */
-function openModal(){document.getElementById('modalOverlay').classList.add('open');document.body.style.overflow='hidden';}
-function closeModal(){document.getElementById('modalOverlay').classList.remove('open');document.body.style.overflow='';}
-document.getElementById('modalOverlay').addEventListener('click',function(e){if(e.target===this)closeModal();});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
-
-/* ── FORM — Formspree direct submission ── */
-async function submitForm(e){
-  e.preventDefault();
-  const f=e.target;
-  const btn=document.getElementById('submitBtn');
-  const errEl=document.getElementById('formError');
-  const sendEl=document.getElementById('formSending');
-
-  errEl.style.display='none';
-  btn.style.display='none';
-  sendEl.style.display='block';
-
-  const data={
-    prenom: f.prenom.value,
-    nom: f.nom.value,
-    email: f.email.value,
-    telephone: f.tel.value,
-    chambre: f.chambre.value,
-    message: f.message.value,
-    _subject: 'Demande de réservation — '+f.prenom.value+' '+f.nom.value,
-    _replyto: f.email.value
-  };
-
-  try{
-    // Replace YOUR_FORMSPREE_ID with your actual Formspree form ID
-    // Example: https://formspree.io/f/xabcdefg
-    const FORMSPREE_ID='xqegrodq';
-    const res=await fetch(`https://formspree.io/f/${FORMSPREE_ID}`,{
-      method:'POST',
-      headers:{'Content-Type':'application/json','Accept':'application/json'},
-      body:JSON.stringify(data)
+  /* SCROLL REVEAL */
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach((e,i)=>{
+      if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*65);obs.unobserve(e.target)}
     });
-    sendEl.style.display='none';
-    if(res.ok){
-      document.getElementById('formWrap').style.display='none';
-      document.getElementById('formSuccess').style.display='block';
-      setTimeout(()=>{
-        closeModal();
-        setTimeout(()=>{
-          document.getElementById('formWrap').style.display='block';
-          document.getElementById('formSuccess').style.display='none';
-          btn.style.display='block';
-          f.reset();
-      
+  },{threshold:0.07});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+  /* SLIDER */
+  const track=document.getElementById('sliderTrack');
+  let idx=0;
+  function slideW(){const s=track.querySelector('.slide');return s?s.offsetWidth+14:0}
+  function maxIdx(){return Math.max(0,track.children.length-Math.floor(track.parentElement.offsetWidth/slideW()))}
+  function goTo(n){idx=Math.max(0,Math.min(n,maxIdx()));track.style.transform=`translateX(-${idx*slideW()}px)`}
+  document.getElementById('sliderPrev').addEventListener('click',()=>goTo(idx-1));
+  document.getElementById('sliderNext').addEventListener('click',()=>goTo(idx+1));
+  let ts=0;
+  track.addEventListener('touchstart',e=>{ts=e.touches[0].clientX},{passive:true});
+  track.addEventListener('touchend',e=>{const d=ts-e.changedTouches[0].clientX;if(Math.abs(d)>48)goTo(d>0?idx+1:idx-1)});
+  window.addEventListener('resize',()=>goTo(0));
+
+  /* MODAL */
+  function openModal(){document.getElementById('modalOverlay').classList.add('open');document.body.style.overflow='hidden'}
+  function closeModal(){document.getElementById('modalOverlay').classList.remove('open');document.body.style.overflow=''}
+  document.getElementById('modalOverlay').addEventListener('click',function(e){if(e.target===this)closeModal()});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+
+  /* FORM */
+  function submitForm(e){
+    e.preventDefault();
+    const f=e.target;
+    const body=[
+      'Prénom: '+f.prenom.value,
+      'Nom: '+f.nom.value,
+      'E-mail: '+f.email.value,
+      'Téléphone: '+f.tel.value,
+      'Chambre: '+f.chambre.value,
+      '',
+      'Message:',
+      f.message.value
+    ].join('\n');
+    const subject='Demande de réservation — '+f.prenom.value+' '+f.nom.value;
+    window.location.href='mailto:contact@immersion-danse.fr?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+    document.getElementById('formWrap').style.display='none';
+    document.getElementById('formSuccess').style.display='block';
+    setTimeout(()=>{closeModal();document.getElementById('formWrap').style.display='block';document.getElementById('formSuccess').style.display='none';f.reset()},3200);
+  }
+</script>
+</body>
+</html>
