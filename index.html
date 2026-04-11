@@ -271,7 +271,7 @@
     </div>
     <div class="hero-cta">
       <button class="btn" onclick="openModal()">Réserver ma place</button>
-      <a href="file.pdf" download class="btn btn-outline">Télécharger la présentation</a>
+      <a href="file.pdf" target="_blank" rel="noopener" class="btn btn-outline">Télécharger la présentation</a>
     </div>
     <p class="hero-date">10 — 19 Août 2026 &nbsp;·&nbsp; Château de Misy-sur-Yonne</p>
   </div>
@@ -467,11 +467,11 @@
   <span class="section-label reveal">Contact</span>
   <h2 class="reveal">Prendre <em>contact</em></h2>
   <p class="reveal">Pour toute question ou pour réserver votre place, contactez-nous directement.</p>
-  <a href="mailto:contact@immersion-danse.fr" class="contact-email reveal">contact@immersion-danse.fr</a>
+  <a href="/cdn-cgi/l/email-protection#a9cac6c7ddc8cadde9c0c4c4ccdbdac0c6c784cdc8c7dacc87cfdb" class="contact-email reveal"><span class="__cf_email__" data-cfemail="ec8f8382988d8f98ac858181899e9f858382c1888d829f89c28a9e">[email&#160;protected]</span></a>
   <a href="tel:+33625810694" class="contact-phone reveal">+33 6 25 81 06 94</a>
   <div class="contact-btns reveal">
     <button class="btn btn-dark" onclick="openModal()">Réserver ma place</button>
-    <a href="file.pdf" download class="btn btn-dark">Télécharger la présentation</a>
+    <a href="file.pdf" target="_blank" rel="noopener" class="btn btn-dark">Télécharger la présentation</a>
   </div>
   <p class="contact-meta reveal">10 — 19 Août 2026 &nbsp;·&nbsp; Château de Misy-sur-Yonne &nbsp;·&nbsp; <a href="https://immersion-danse.fr">immersion-danse.fr</a></p>
 </section>
@@ -538,7 +538,7 @@
   </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 /* ── MOBILE NAV ── */
 document.getElementById('burger').addEventListener('click',()=>{
   document.getElementById('mobile-nav').classList.add('open');
@@ -696,7 +696,7 @@ async function submitForm(e){
   try{
     // Replace YOUR_FORMSPREE_ID with your actual Formspree form ID
     // Example: https://formspree.io/f/xabcdefg
-    const FORMSPREE_ID='YOUR_FORMSPREE_ID';
+    const FORMSPREE_ID='xqegrodq';
     const res=await fetch(`https://formspree.io/f/${FORMSPREE_ID}`,{
       method:'POST',
       headers:{'Content-Type':'application/json','Accept':'application/json'},
@@ -713,18 +713,4 @@ async function submitForm(e){
           document.getElementById('formSuccess').style.display='none';
           btn.style.display='block';
           f.reset();
-        },400);
-      },3000);
-    } else {
-      errEl.style.display='block';
-      btn.style.display='block';
-    }
-  } catch(err){
-    sendEl.style.display='none';
-    errEl.style.display='block';
-    btn.style.display='block';
-  }
-}
-</script>
-</body>
-</html>
+      
