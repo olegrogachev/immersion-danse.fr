@@ -705,7 +705,7 @@ function closeModal(){document.getElementById('modalOverlay').classList.remove('
 document.getElementById('modalOverlay').addEventListener('click',function(e){if(e.target===this)closeModal();});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
 
-/* ── FORM — Formspree direct submission ── */
+/* ── FORM — Web3Forms (free autoresponse) ── */
 async function submitForm(e){
   e.preventDefault();
   const f=e.target;
@@ -717,30 +717,32 @@ async function submitForm(e){
   btn.style.display='none';
   sendEl.style.display='block';
 
+  const k=['b0b564ca-d6ed','4a65-8d54','6d24473aa692'].join('-');
+
   const data={
+    access_key: k,
+    subject: 'Demande de reservation - '+f.prenom.value+' '+f.nom.value,
+    from_name: 'Choregraphie de Bien-Etre',
+    replyto: f.email.value,
+    autoresponse: 'Bonjour '+f.prenom.value+',\n\nNous avons bien recu votre demande de reservation pour le sejour Choregraphie de Bien-Etre du 10 au 19 aout 2026 au Chateau de Misy-sur-Yonne.\n\nNous vous recontacterons dans les 48 heures pour confirmer votre place.\n\nA tres bientot,\nMarina & Oleg\nChoregraphie de Bien-Etre',
     prenom: f.prenom.value,
     nom: f.nom.value,
     email: f.email.value,
     telephone: f.tel.value,
     chambre: f.chambre.value,
-    message: f.message.value,
-    _subject: 'Demande de reservation - '+f.prenom.value+' '+f.nom.value,
-    _replyto: f.email.value,
-    _autoresponse: 'Merci pour votre demande, '+f.prenom.value+' ! Nous avons bien reçu votre message et vous recontacterons dans les 48 heures. À très bientôt — Marina & Oleg, Chorégraphie de Bien-Être.'
+    message: f.message.value
   };
 
   try{
-    // Replace YOUR_FORMSPREE_ID with your actual Formspree form ID
-    // Example: https://formspree.io/f/xabcdefg
-    const FORMSPREE_ID=window._fsid||'xqegrodq';
-    const ep=['https://formspree','.io/f/',FORMSPREE_ID].join('');
+    const ep='https://api.web3forms.com/submit';
     const res=await fetch(ep,{
       method:'POST',
       headers:{'Content-Type':'application/json','Accept':'application/json'},
       body:JSON.stringify(data)
     });
+    const json=await res.json();
     sendEl.style.display='none';
-    if(res.ok){
+    if(json.success){
       document.getElementById('formWrap').style.display='none';
       document.getElementById('formSuccess').style.display='block';
       setTimeout(()=>{
