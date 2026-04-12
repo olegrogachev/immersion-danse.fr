@@ -20,7 +20,7 @@
       --dark:#2a1a08;
       --dark2:#3d2810;
       --grey:#7a6a58;
-      --sp:clamp(48px,6vw,80px);
+      --sp:clamp(60px,9vw,120px);
     }
     html{scroll-behavior:smooth}
     body{background:var(--cream);color:var(--dark);font-family:'Jost',sans-serif;font-weight:300;line-height:1.75;overflow-x:hidden}
@@ -41,7 +41,7 @@
     @media(max-width:768px){nav{padding:18px 20px}.nav-links{display:none}.nav-burger{display:flex}}
 
     /* HERO */
-    #hero{min-height:100vh;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;padding:80px 20px 60px}
+    #hero{min-height:100vh;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;padding:100px 20px 60px}
     .hero-bg-img{position:absolute;inset:0}
     .hero-bg-img img{width:100%;height:100%;object-fit:cover}
     .hero-bg-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(248,244,237,.6) 0%,rgba(248,244,237,.78) 55%,var(--cream) 100%)}
@@ -104,8 +104,8 @@
     #pratiques>p{color:rgba(248,244,237,.5)}
     /* line on dark bg */
     #pratiques .line{background:var(--gold-pale)}
-    .pratiques-photo{width:100%;height:280px;overflow:hidden;margin-top:40px}
-    .pratiques-photo img{width:100%;height:100%;object-fit:cover;object-position:center 20%}
+    .pratiques-photo{width:100%;height:340px;overflow:hidden;margin-top:52px}
+    .pratiques-photo img{width:100%;height:100%;object-fit:cover;object-position:center 35%}
     .pratiques-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.05)}
     .pratique-item{padding:30px 26px;background:var(--dark2);transition:background .25s}
     .pratique-item:hover{background:#4a3018}
@@ -185,10 +185,10 @@
     .tarif-early p{color:rgba(248,244,237,.62);font-size:12px;max-width:none;text-align:center;margin:0;line-height:1.8}
     .tarif-early strong{color:var(--gold-pale);font-weight:400;font-family:'Cormorant Garamond',serif;font-size:15px}
     .tarif-early .nodates{white-space:nowrap}
-    .note{font-size:12px;color:var(--grey);font-style:italic;margin-top:10px;text-align:center;display:block}
+    .note{font-size:12px;color:var(--grey);font-style:italic;margin-top:10px}
 
     /* CONTACT */
-    #contact{background:#2a1a08;text-align:center}
+    #contact{background:var(--dark2);text-align:center}
     #contact .section-label{color:var(--gold-pale)}
     #contact h2{color:var(--cream);margin:0 auto 14px}
     #contact>p{color:rgba(248,244,237,.48);margin:0 auto 36px;text-align:center}
@@ -705,22 +705,7 @@ function closeModal(){document.getElementById('modalOverlay').classList.remove('
 document.getElementById('modalOverlay').addEventListener('click',function(e){if(e.target===this)closeModal();});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
 
-/* ── FORM — EmailJS (free autoresponse, 200/month) ── */
-/*
-  SETUP EmailJS (one-time, 5 minutes):
-  1. Go to https://emailjs.com → create free account
-  2. Add Email Service → connect Gmail or SMTP → copy SERVICE_ID
-  3. Create Email Template "contact_form":
-     To: {{to_email}} (your email)
-     Subject: Demande de réservation — {{prenom}} {{nom}}
-     Body: Prénom: {{prenom}}, Nom: {{nom}}, Email: {{email}}, Tel: {{telephone}}, Chambre: {{chambre}}, Message: {{message}}
-  4. Create second template "autoresponse":
-     To: {{reply_to}}
-     Subject: Confirmation de votre demande — Chorégraphie de Bien-Être
-     Body: Bonjour {{prenom}}, Nous avons bien reçu votre demande... etc.
-  5. Go to Account → copy PUBLIC_KEY
-  6. Replace SERVICE_ID, TEMPLATE_ID, AUTO_TEMPLATE_ID, PUBLIC_KEY below
-*/
+/* ── FORM — Web3Forms (free autoresponse) ── */
 async function submitForm(e){
   e.preventDefault();
   const f=e.target;
@@ -732,52 +717,47 @@ async function submitForm(e){
   btn.style.display='none';
   sendEl.style.display='block';
 
-  // ── Replace these 4 values with yours from emailjs.com ──
-  const SERVICE_ID    = 'YOUR_SERVICE_ID';
-  const TEMPLATE_ID   = 'YOUR_TEMPLATE_ID';
-  const AUTO_TMPL_ID  = 'YOUR_AUTORESPONSE_TEMPLATE_ID';
-  const PUBLIC_KEY    = 'YOUR_PUBLIC_KEY';
+  const k=['b0b564ca-d6ed','4a65-8d54','6d24473aa692'].join('-');
 
-  const params = {
-    prenom:    f.prenom.value,
-    nom:       f.nom.value,
-    email:     f.email.value,
+  const data={
+    access_key: k,
+    subject: 'Demande de reservation - '+f.prenom.value+' '+f.nom.value,
+    from_name: 'Choregraphie de Bien-Etre',
+    replyto: f.email.value,
+    autoresponse: 'Bonjour '+f.prenom.value+',\n\nNous avons bien recu votre demande de reservation pour le sejour Choregraphie de Bien-Etre du 10 au 19 aout 2026 au Chateau de Misy-sur-Yonne.\n\nNous vous recontacterons dans les 48 heures pour confirmer votre place.\n\nA tres bientot,\nMarina & Oleg\nChoregraphie de Bien-Etre',
+    prenom: f.prenom.value,
+    nom: f.nom.value,
+    email: f.email.value,
     telephone: f.tel.value,
-    chambre:   f.chambre.value,
-    message:   f.message.value,
-    to_email:  ['contact','@','immersion-danse.fr'].join(''),
-    reply_to:  f.email.value
+    chambre: f.chambre.value,
+    message: f.message.value
   };
 
   try{
-    // Load EmailJS SDK dynamically
-    if(!window.emailjs){
-      await new Promise((res,rej)=>{
-        const s=document.createElement('script');
-        s.src='https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
-        s.onload=res; s.onerror=rej;
-        document.head.appendChild(s);
-      });
-      window.emailjs.init({publicKey: PUBLIC_KEY});
-    }
-
-    // Send notification to you
-    await window.emailjs.send(SERVICE_ID, TEMPLATE_ID, params);
-    // Send autoresponse to client
-    await window.emailjs.send(SERVICE_ID, AUTO_TMPL_ID, params);
-
+    const ep='https://api.web3forms.com/submit';
+    const res=await fetch(ep,{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify(data)
+    });
+    const json=await res.json();
     sendEl.style.display='none';
-    document.getElementById('formWrap').style.display='none';
-    document.getElementById('formSuccess').style.display='block';
-    setTimeout(()=>{
-      closeModal();
+    if(json.success){
+      document.getElementById('formWrap').style.display='none';
+      document.getElementById('formSuccess').style.display='block';
       setTimeout(()=>{
-        document.getElementById('formWrap').style.display='block';
-        document.getElementById('formSuccess').style.display='none';
-        btn.style.display='block';
-        f.reset();
-      },400);
-    },3000);
+        closeModal();
+        setTimeout(()=>{
+          document.getElementById('formWrap').style.display='block';
+          document.getElementById('formSuccess').style.display='none';
+          btn.style.display='block';
+          f.reset();
+        },400);
+      },3000);
+    } else {
+      errEl.style.display='block';
+      btn.style.display='block';
+    }
   } catch(err){
     sendEl.style.display='none';
     errEl.style.display='block';
