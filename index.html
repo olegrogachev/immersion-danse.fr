@@ -47,14 +47,21 @@
     .hero-bg-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(248,244,237,.6) 0%,rgba(248,244,237,.78) 55%,var(--cream) 100%)}
     .hero-inner{position:relative;z-index:1;max-width:800px;text-align:center;width:100%}
     .hero-eyebrow{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:28px;opacity:0;animation:fadeUp .8s .2s forwards}
-    /* FIX: hyphens+word-break prevents title overflow on mobile */
-    .hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(42px,9vw,94px);font-weight:300;line-height:1.05;color:var(--dark);opacity:0;animation:fadeUp .9s .4s forwards;word-break:break-word;hyphens:auto;overflow-wrap:break-word}
+    .hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(38px,9vw,94px);font-weight:300;line-height:1.05;color:var(--dark);opacity:0;animation:fadeUp .9s .4s forwards;white-space:nowrap}
     .hero-title em{font-style:italic;color:var(--gold)}
+    @media(max-width:500px){.hero-title{font-size:clamp(28px,8vw,42px);white-space:normal}}
     .hero-sub{font-family:'Cormorant Garamond',serif;font-size:clamp(14px,2.2vw,21px);font-style:italic;color:var(--grey);margin:24px 0 38px;opacity:0;animation:fadeUp .9s .6s forwards}
     .hero-dots{display:flex;justify-content:center;align-items:center;gap:14px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-pale);margin-bottom:40px;flex-wrap:wrap;opacity:0;animation:fadeUp .9s .7s forwards}
     .dot-sep{font-size:18px;color:var(--gold-pale);line-height:1}
     .hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;opacity:0;animation:fadeUp .9s .88s forwards}
-    .hero-date{margin-top:32px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--grey);opacity:0;animation:fadeUp .9s 1s forwards}
+    .hero-date{margin-top:32px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--grey);opacity:0;animation:fadeUp .9s 1s forwards;white-space:nowrap}
+    .date-sep{display:inline}
+    @media(max-width:500px){
+      .hero-date{font-size:9px;letter-spacing:.1em;white-space:normal;text-align:center;line-height:1.8}
+      .hero-date .date-sep{display:block}
+      .hero-cta .btn{width:100%;max-width:340px;text-align:center;padding:15px 20px;display:block}
+      .hero-dots{gap:8px;font-size:10px;letter-spacing:.14em}
+    }
 
     /* BUTTONS */
     .btn{display:inline-block;padding:15px 38px;background:var(--gold);color:var(--cream);font-size:11px;letter-spacing:.22em;text-transform:uppercase;text-decoration:none;border:1px solid var(--gold);cursor:pointer;transition:background .2s,color .2s,transform .15s;font-family:'Jost',sans-serif;font-weight:300;line-height:1}
@@ -175,8 +182,9 @@
     .tarif-price sup{font-size:22px;vertical-align:super}
     .tarif-per{font-size:12px;color:var(--grey);margin-top:8px;display:block}
     .tarif-early{background:var(--dark);padding:24px 28px;max-width:460px;margin:0 auto 36px}
-    .tarif-early p{color:rgba(248,244,237,.62);font-size:13px;max-width:none;text-align:center;margin:0}
-    .tarif-early strong{color:var(--gold-pale);font-weight:400;font-family:'Cormorant Garamond',serif;font-size:16px}
+    .tarif-early p{color:rgba(248,244,237,.62);font-size:12px;max-width:none;text-align:center;margin:0;line-height:1.8}
+    .tarif-early strong{color:var(--gold-pale);font-weight:400;font-family:'Cormorant Garamond',serif;font-size:15px}
+    .tarif-early .nodates{white-space:nowrap}
     .note{font-size:12px;color:var(--grey);font-style:italic;margin-top:10px}
 
     /* CONTACT */
@@ -273,7 +281,7 @@
       <button class="btn" onclick="openModal()">Réserver ma place</button>
       <a href="file.pdf" target="_blank" rel="noopener" class="btn btn-outline">Télécharger la présentation</a>
     </div>
-    <p class="hero-date">10 — 19 Août 2026 &nbsp;·&nbsp; Château de Misy-sur-Yonne</p>
+    <p class="hero-date">10 — 19 Août 2026<span class="date-sep"> &nbsp;·&nbsp; </span>Château&nbsp;de&nbsp;Misy&#8209;sur&#8209;Yonne</p>
   </div>
 </section>
 
@@ -284,7 +292,7 @@
   </div>
   <div class="text reveal">
     <span class="section-label">Le lieu</span>
-    <h2>Château de<br><em>Misy-sur-Yonne</em></h2>
+    <h2>Château de<br><em style="white-space:nowrap">Misy-sur-Yonne</em></h2>
     <div class="line"></div>
     <p>Un lieu chargé d'histoire, entouré de paysages naturels préservés. Son architecture élégante et son atmosphère paisible offrent un cadre rare pour se ressourcer, loin du quotidien.</p>
     <p style="margin-top:14px">Pendant dix jours, le château devient votre espace de vie, de pratique et de rencontre — un environnement où chaque détail contribue à l'expérience.</p>
@@ -444,18 +452,18 @@
   <h2 class="reveal">Rejoindre <em>l'expérience</em></h2>
   <div class="tarifs-grid reveal">
     <div class="tarif-card">
-      <span class="tarif-type">Chambre individuelle</span>
+      <span class="tarif-type">En Solo</span>
       <div class="tarif-price"><sup>€</sup>3 000</div>
       <span class="tarif-per">par personne · pension complète</span>
     </div>
     <div class="tarif-card">
-      <span class="tarif-type">Chambre double</span>
+      <span class="tarif-type">En Duo</span>
       <div class="tarif-price"><sup>€</sup>2 650</div>
       <span class="tarif-per">par personne · pension complète</span>
     </div>
   </div>
   <div class="tarif-early reveal">
-    <p><strong>Tarif préférentiel</strong> — réservation avant le 17 mai 2026<br>2 700 € chambre individuelle &nbsp;·&nbsp; 2 400 € chambre double</p>
+    <p><strong>Tarif préférentiel</strong> — <span class="nodates">réservation avant le 17 mai 2026</span><br><span class="nodates">2 700 € en solo</span> &nbsp;·&nbsp; <span class="nodates">2 400 € en duo</span></p>
   </div>
   <p class="note reveal">Pour préserver la qualité de l'expérience, les places sont limitées.</p>
   <br><br>
@@ -520,8 +528,8 @@
           <label for="chambre">Type de chambre</label>
           <select id="chambre" name="chambre">
             <option value="">— Choisir —</option>
-            <option value="Chambre individuelle — 3 000 €">Chambre individuelle — 3 000 €</option>
-            <option value="Chambre double — 2 650 € / pers.">Chambre double — 2 650 € / pers.</option>
+            <option value="En Solo — 3 000 €">En Solo — 3 000 €</option>
+            <option value="En Duo — 2 650 € / pers.">En Duo — 2 650 € / pers.</option>
           </select>
         </div>
         <div class="form-group">
@@ -552,8 +560,9 @@
 
 /* ── MOBILE NAV ── */
 document.getElementById('burger').addEventListener('click',()=>{
-  document.getElementById('mobile-nav').classList.add('open');
-  document.body.style.overflow='hidden';
+  const nav=document.getElementById('mobile-nav');
+  if(nav.classList.contains('open')){closeMob();}
+  else{nav.classList.add('open');document.body.style.overflow='hidden';}
 });
 document.getElementById('nav-close').addEventListener('click',closeMob);
 document.querySelectorAll('.mobile-link').forEach(l=>l.addEventListener('click',closeMob));
@@ -596,8 +605,21 @@ document.querySelectorAll('.reveal').forEach(el=>obsRev.observe(el));
   function snapToNearest(){
     const sw=getSlideWidth();
     if(sw===0)return;
+    // snap to nearest slide based on current position
     const nearest=Math.round(currentX/sw)*sw;
     currentX=Math.max(0,Math.min(nearest,getMaxTranslate()));
+    track.classList.remove('dragging');
+    track.style.transform=`translateX(-${currentX}px)`;
+  }
+  // snap with direction hint for small drags
+  function snapWithDelta(delta){
+    const sw=getSlideWidth();
+    if(sw===0)return;
+    // advance slide if dragged more than 60px OR more than 15% of slide width
+    const threshold=Math.min(60, sw*0.15);
+    if(delta>threshold) currentX=Math.min(getMaxTranslate(),currentX+sw);
+    else if(delta<-threshold) currentX=Math.max(0,currentX-sw);
+    else snapToNearest();
     track.classList.remove('dragging');
     track.style.transform=`translateX(-${currentX}px)`;
   }
@@ -638,9 +660,10 @@ document.querySelectorAll('.reveal').forEach(el=>obsRev.observe(el));
 
   outer.addEventListener('pointerup',e=>{
     if(!isPointer)return;
+    const delta=e.clientX-startX;
     isDragging=false;
     isPointer=false;
-    snapToNearest();
+    snapWithDelta(-delta);
   });
   outer.addEventListener('pointercancel',()=>{
     isDragging=false;isPointer=false;snapToNearest();
@@ -658,7 +681,8 @@ document.querySelectorAll('.reveal').forEach(el=>obsRev.observe(el));
     moveTo(startTranslate+dx);
   },{passive:true});
   outer.addEventListener('touchend',e=>{
-    snapToNearest();
+    const delta=e.changedTouches[0].clientX-touchStartX;
+    snapWithDelta(-delta);
   });
 
   // Wheel (trackpad horizontal scroll)
@@ -701,7 +725,8 @@ async function submitForm(e){
     chambre: f.chambre.value,
     message: f.message.value,
     _subject: 'Demande de reservation - '+f.prenom.value+' '+f.nom.value,
-    _replyto: f.email.value
+    _replyto: f.email.value,
+    _autoresponse: 'Merci pour votre demande, '+f.prenom.value+' ! Nous avons bien reçu votre message et vous recontacterons dans les 48 heures. À très bientôt — Marina & Oleg, Chorégraphie de Bien-Être.'
   };
 
   try{
