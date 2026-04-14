@@ -50,8 +50,8 @@
     .hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(42px,8vw,96px);font-weight:300;line-height:1.0;color:#ffffff;opacity:0;animation:fadeUp .9s .4s forwards;text-shadow:0 2px 24px rgba(0,0,0,.3)}
     .hero-title em{font-style:italic;color:#f0c880}
     .hero-sub{font-family:'Cormorant Garamond',serif;font-size:clamp(15px,2vw,20px);font-style:italic;color:rgba(255,255,255,.72);margin:14px 0 28px;opacity:0;animation:fadeUp .9s .6s forwards;max-width:560px}
-    .hero-dots{display:flex;align-items:center;gap:14px;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(196,154,108,.65);margin-bottom:32px;flex-wrap:wrap;opacity:0;animation:fadeUp .9s .7s forwards}
-    .dot-sep{font-size:16px;line-height:1}
+    .hero-dots{display:flex;align-items:center;gap:14px;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.75);margin-bottom:32px;flex-wrap:wrap;opacity:0;animation:fadeUp .9s .7s forwards}
+    .dot-sep{font-size:16px;line-height:1;color:rgba(196,154,108,.8)}
     .hero-cta{display:flex;gap:14px;flex-wrap:wrap;opacity:0;animation:fadeUp .9s .88s forwards}
     .hero-date{margin-top:20px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.35);opacity:0;animation:fadeUp .9s 1s forwards;display:block}
     .date-sep{display:inline}
@@ -67,9 +67,9 @@
     }
 
     /* BUTTONS */
-    .btn{display:inline-block;padding:15px 38px;background:var(--gold);color:var(--cream);font-size:11px;letter-spacing:.22em;text-transform:uppercase;text-decoration:none;border:1px solid var(--gold);cursor:pointer;transition:background .2s,color .2s,transform .15s;font-family:'Jost',sans-serif;font-weight:300;line-height:1}
+    .btn{display:inline-block;padding:15px 38px;background:var(--gold);color:var(--cream);font-size:11px;letter-spacing:.22em;text-transform:uppercase;text-decoration:none;border:1px solid var(--gold);cursor:pointer;transition:background .2s,color .2s,transform .15s;font-family:'Jost',sans-serif;font-weight:300;line-height:1;white-space:nowrap}
     .btn:hover{background:var(--dark);border-color:var(--dark);transform:translateY(-1px)}
-    .btn-outline{background:transparent;color:var(--gold)}
+    .btn-reserve{min-width:240px;text-align:center}
     .btn-outline:hover{background:var(--gold);color:var(--cream)}
     .btn-dark{background:transparent;color:rgba(248,244,237,.75);border-color:rgba(248,244,237,.35)}
     .btn-dark:hover{background:var(--cream);color:var(--gold);border-color:var(--cream)}
@@ -83,11 +83,16 @@
     .line{height:1px;background:var(--gold);margin:26px 0;width:100%;max-width:580px}
 
     /* CONCEPT */
-    #concept{background:var(--warm);display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
-    #concept .img-wrap{height:520px;overflow:hidden;box-shadow:0 20px 60px rgba(42,26,8,.12)}
-    #concept .img-wrap img{width:100%;height:100%;object-fit:cover}
+    #concept{background:var(--warm);display:flex;flex-direction:column;padding:0 !important}
+    #concept .img-wrap{width:100%;aspect-ratio:16/9;overflow:hidden}
+    #concept .img-wrap img{width:100%;height:100%;object-fit:cover;display:block}
+    #concept .text{padding:var(--sp) clamp(20px,6vw,80px)}
     #concept .text p+p{margin-top:14px}
-    @media(max-width:900px){#concept{grid-template-columns:1fr}#concept .img-wrap{height:260px}}
+    @media(min-width:900px){
+      #concept{flex-direction:row;align-items:center}
+      #concept .img-wrap{width:52%;aspect-ratio:unset;height:560px;flex-shrink:0}
+      #concept .text{padding:clamp(40px,6vw,80px)}
+    }
 
     /* POUR QUI */
     #pour-qui{text-align:center;background:var(--cream)}
@@ -96,19 +101,37 @@
     #pour-qui p em{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;color:var(--gold)}
 
     /* PRATIQUES */
-    #pratiques{background:var(--dark2);padding-bottom:0}
-    #pratiques .section-label{color:var(--gold-pale)}
-    #pratiques h2{color:var(--cream)}
-    #pratiques>p{color:rgba(248,244,237,.5)}
-    #pratiques .line{background:var(--gold-pale)}
-    .pratiques-photo{width:100%;height:340px;overflow:hidden;margin-top:52px}
-    .pratiques-photo img{width:100%;height:100%;object-fit:cover;object-position:center 35%}
+    #pratiques{background:var(--dark2);padding-bottom:0;padding-left:0 !important;padding-right:0 !important}
+    #pratiques .section-label{color:var(--gold-pale);padding:0 clamp(20px,6vw,80px);display:block}
+    #pratiques h2{color:var(--cream);padding:0 clamp(20px,6vw,80px)}
+    #pratiques>p{color:rgba(248,244,237,.5);padding:0 clamp(20px,6vw,80px)}
+    #pratiques .line{background:var(--gold-pale);margin-left:clamp(20px,6vw,80px);margin-right:clamp(20px,6vw,80px);width:auto;max-width:none}
+    .pratiques-photo{width:100%;aspect-ratio:16/9;overflow:hidden;margin-top:var(--sp)}
+    .pratiques-photo img{width:100%;height:100%;object-fit:cover;object-position:center 35%;display:block}
     .pratiques-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.05)}
-    .pratique-item{padding:30px 26px;background:var(--dark2);transition:background .25s}
+    .pratique-item{padding:30px 26px;background:var(--dark2);transition:background .25s;cursor:pointer}
     .pratique-item:hover{background:#4a3018}
     .pratique-item h3{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:400;color:var(--gold-pale);margin-bottom:10px}
     .pratique-item p{font-size:13px;color:rgba(248,244,237,.42);max-width:none;line-height:1.7}
-    @media(max-width:768px){.pratiques-grid{grid-template-columns:1fr}.pratiques-photo{height:200px}}
+    .pratique-item .more-hint{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(196,154,108,.4);margin-top:12px;display:block}
+
+    /* PRATIQUE LIGHTBOX */
+    .pratique-lb{display:none;position:fixed;inset:0;background:rgba(20,10,4,.92);z-index:600;align-items:center;justify-content:center;padding:20px}
+    .pratique-lb.open{display:flex}
+    .pratique-lb-box{background:var(--dark2);max-width:560px;width:100%;max-height:88vh;overflow-y:auto;position:relative;padding:48px 44px 44px}
+    .pratique-lb-close{position:absolute;top:18px;right:22px;background:none;border:none;color:rgba(248,244,237,.5);font-size:24px;cursor:pointer;line-height:1}
+    .pratique-lb-close:hover{color:var(--cream)}
+    .pratique-lb-tag{font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-pale);display:block;margin-bottom:14px}
+    .pratique-lb-title{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:var(--cream);margin-bottom:6px}
+    .pratique-lb-line{height:1px;background:rgba(196,154,108,.3);margin:16px 0}
+    .pratique-lb-desc{font-size:14px;color:rgba(248,244,237,.65);line-height:1.85;margin-bottom:20px;max-width:none}
+    .pratique-lb-pedagogue{display:flex;gap:16px;align-items:flex-start;padding-top:16px;border-top:1px solid rgba(255,255,255,.06)}
+    .pratique-lb-ped-info{}
+    .pratique-lb-ped-name{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--cream);display:block;margin-bottom:3px}
+    .pratique-lb-ped-role{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-pale);display:block;margin-bottom:8px}
+    .pratique-lb-ped-bio{font-size:13px;color:rgba(248,244,237,.5);line-height:1.75;max-width:none}
+    @media(max-width:500px){.pratique-lb-box{padding:36px 24px 32px}}
+    @media(max-width:768px){.pratiques-grid{grid-template-columns:1fr}}
     @media(min-width:769px) and (max-width:1024px){.pratiques-grid{grid-template-columns:repeat(2,1fr)}}
 
     /* JOURNÉE — flex column always, side by side only on desktop */
@@ -122,19 +145,16 @@
     @media(max-width:899px){#journee>div{padding:clamp(40px,6vw,60px) clamp(20px,6vw,80px)}#journee>div+div{padding-top:0}}
 
     /* FONDATEURS — flex column always, side by side only on desktop */
-    #fondateurs{background:var(--cream)}
-    .fondateurs-inner{display:flex;flex-direction:column;gap:0;max-width:1100px;margin:0 auto}
-    @media(min-width:900px){.fondateurs-inner{flex-direction:row;gap:60px;align-items:center}}
-    .fondateurs-photo{overflow:hidden;width:100%}
-    @media(min-width:900px){.fondateurs-photo{box-shadow:0 12px 48px rgba(42,26,8,.12)}}
-    .fondateurs-photo img{width:100%;height:360px;object-fit:cover;filter:grayscale(15%)}
-    @media(min-width:900px){.fondateurs-photo img{height:500px}}
+    #fondateurs{background:var(--cream);padding:0 !important}
+    .fondateurs-photo{overflow:hidden;width:100%;aspect-ratio:16/9}
+    .fondateurs-photo img{width:100%;height:100%;object-fit:cover;object-position:center 15%;filter:grayscale(15%);display:block}
+    .fondateurs-inner{padding:clamp(32px,5vw,48px) clamp(20px,6vw,80px)}
     .fondateurs-text .bio{margin-top:20px;padding-top:20px;border-top:1px solid rgba(111,62,20,.1)}
     .fondateurs-text .bio:first-of-type{border-top:none;padding-top:0}
     .fondateur-name{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:var(--dark)}
     .fondateur-role{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);display:block;margin-top:4px}
     .bio-text{margin-top:10px;font-size:14px;color:var(--grey);max-width:none;line-height:1.85}
-    @media(max-width:899px){.fondateurs-text{padding:clamp(32px,5vw,48px) clamp(20px,6vw,80px)}}
+    
 
     /* GALERIE SLIDER */
     #galerie{background:var(--warm2);padding:var(--sp) 0}
@@ -252,6 +272,7 @@
     <li><a href="#pratiques">Programme</a></li>
     <li><a href="#fondateurs">À propos</a></li>
     <li><a href="#tarifs">Tarifs</a></li>
+    <li><a href="#acces">Accès</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
   <button class="nav-burger" id="burger" aria-label="Menu">
@@ -267,6 +288,7 @@
   <a href="#fondateurs" class="mobile-link">À propos</a>
   <a href="#galerie" class="mobile-link">Galerie</a>
   <a href="#tarifs" class="mobile-link">Tarifs</a>
+  <a href="#acces" class="mobile-link">Accès</a>
   <a href="#contact" class="mobile-link">Contact</a>
 </div>
 
@@ -283,8 +305,8 @@
       <span>Art de vivre</span>
     </div>
     <div class="hero-cta">
-      <button class="btn" onclick="openModal()">Réserver ma place</button>
-      <a href="file.pdf" target="_blank" rel="noopener" class="btn btn-dark">Télécharger la présentation</a>
+      <button class="btn btn-reserve" onclick="openModal()">Réserver ma place</button>
+      <a href="file.pdf" target="_blank" rel="noopener" class="btn btn-dark">Découvrir la présentation</a>
     </div>
     <span class="hero-date">10 — 19 Août 2026<span class="date-sep"> &nbsp;·&nbsp; </span>Château&nbsp;de&nbsp;Misy&#8209;sur&#8209;Yonne</span>
   </div>
@@ -299,7 +321,6 @@
     <div class="line"></div>
     <p>Un lieu chargé d'histoire, entouré de paysages naturels préservés. Son architecture élégante et son atmosphère paisible offrent un cadre rare pour se ressourcer, loin du quotidien.</p>
     <p style="margin-top:14px">Pendant dix jours, le château devient votre espace de vie, de pratique et de rencontre — un environnement où chaque détail contribue à l'expérience.</p>
-    <br><button class="btn btn-outline" onclick="openModal()">Réserver ma place</button>
   </div>
 </section>
 
@@ -308,6 +329,8 @@
   <span class="section-label reveal">À qui s'adresse ce séjour ?</span>
   <h2 class="reveal">Une retraite pour…</h2>
   <p class="reveal">Les femmes et les hommes sensibles au corps, à l'esthétique et à la qualité de présence.<br><br><em>Aucune expérience en danse n'est nécessaire —<br>seulement l'envie de ressentir et d'explorer.</em></p>
+  <br>
+  <button class="btn btn-reserve reveal" onclick="openModal()">Réserver ma place</button>
 </section>
 
 <!-- PRATIQUES -->
@@ -318,12 +341,12 @@
   <p class="reveal">2 à 3 cours par jour, adaptés à chaque participant après bilan individuel avec un kinésithérapeute.</p>
   <div class="pratiques-photo reveal"><img src="3.jpg" alt="Pratiques corporelles au château"/></div>
   <div class="pratiques-grid reveal">
-    <div class="pratique-item"><h3>Gymnastique de Santé</h3><p>Guidée par un kinésithérapeute — renforcement, posture et programme individualisé pour chacun.</p></div>
-    <div class="pratique-item"><h3>Barre Classique</h3><p>Inspiré du ballet classique — pour développer un maintien harmonieux et une présence corporelle raffinée.</p></div>
-    <div class="pratique-item"><h3>Münz Floor<sup style="font-size:10px;vertical-align:super">®</sup></h3><p>Pratique douce au sol centrée sur les fascias pour libérer les tensions et retrouver fluidité et mobilité.</p></div>
-    <div class="pratique-item"><h3>Danse Contemporaine</h3><p>Un espace de liberté pour explorer le mouvement, relâcher le corps et exprimer ses émotions.</p></div>
-    <div class="pratique-item"><h3>Danse de Salon</h3><p>Coordination, sensualité et émotions vives à travers le mouvement partagé.</p></div>
-    <div class="pratique-item"><h3>Danse Historique</h3><p>Une immersion dans l'esthétique du passé — menuet, valse et élégance des gestes.</p></div>
+    <div class="pratique-item" data-pratique="gym"><h3>Gymnastique de Santé</h3><p>Guidée par un kinésithérapeute — renforcement, posture et programme individualisé pour chacun.</p><span class="more-hint">En savoir plus →</span></div>
+    <div class="pratique-item" data-pratique="barre"><h3>Barre Classique</h3><p>Inspiré du ballet classique — pour développer un maintien harmonieux et une présence corporelle raffinée.</p><span class="more-hint">En savoir plus →</span></div>
+    <div class="pratique-item" data-pratique="munz"><h3>Münz Floor<sup style="font-size:10px;vertical-align:super">®</sup></h3><p>Pratique douce au sol centrée sur les fascias pour libérer les tensions et retrouver fluidité et mobilité.</p><span class="more-hint">En savoir plus →</span></div>
+    <div class="pratique-item" data-pratique="contemporaine"><h3>Danse Contemporaine</h3><p>Un espace de liberté pour explorer le mouvement, relâcher le corps et exprimer ses émotions.</p><span class="more-hint">En savoir plus →</span></div>
+    <div class="pratique-item" data-pratique="salon"><h3>Danse de Salon</h3><p>Coordination, sensualité et émotions vives à travers le mouvement partagé.</p><span class="more-hint">En savoir plus →</span></div>
+    <div class="pratique-item" data-pratique="historique"><h3>Danse Historique</h3><p>Une immersion dans l'esthétique du passé — menuet, valse et élégance des gestes.</p><span class="more-hint">En savoir plus →</span></div>
   </div>
 </section>
 
@@ -347,13 +370,17 @@
       <div class="schedule-item"><span class="schedule-time">19h00</span><span class="schedule-act">Dîner</span></div>
       <div class="schedule-item"><span class="schedule-time">Soirée</span><span class="schedule-act">Libre ou activités optionnelles</span></div>
     </div>
+    <br>
+    <div style="display:flex;justify-content:center">
+      <a href="programme.pdf" target="_blank" rel="noopener" class="btn btn-outline" style="white-space:nowrap">Consulter le programme complet</a>
+    </div>
   </div>
 </section>
 
 <!-- FONDATEURS -->
 <section id="fondateurs">
+  <div class="fondateurs-photo reveal"><img src="4.jpg" alt="Marina Kudryashova et Oleg Rogachev"/></div>
   <div class="fondateurs-inner">
-    <div class="fondateurs-photo reveal"><img src="4.jpg" alt="Marina Kudryashova et Oleg Rogachev"/></div>
     <div class="fondateurs-text reveal">
       <span class="section-label">À l'origine du projet</span>
       <h2>Marina &amp; <em>Oleg</em></h2>
@@ -370,6 +397,30 @@
         <p class="bio-text">Formé à l'Académie du Bolchoï, Oleg devient Premier danseur à l'Opéra de Bordeaux. Son approche réunit expérience de la scène, transmission et recherche d'un mouvement conscient et habité.</p>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- BAL MASQUÉ -->
+<section id="bal">
+  <div class="bal-bg-img"><img src="5.jpg" alt="Bal Masqué"/></div>
+  <div class="content reveal">
+    <span class="section-label">Soirée de clôture</span>
+    <h2>Bal <em>Masqué</em></h2>
+    <div class="line"></div>
+    <p>Dîner aux chandelles, performances artistiques et danses d'époque. Une soirée d'exception pour clore le séjour dans la magie du mouvement.</p>
+  </div>
+</section>
+
+<!-- HÉBERGEMENT -->
+<section id="hebergement">
+  <div class="heb-img reveal"><img src="6.jpg" alt="Petit déjeuner dans le jardin du château"/></div>
+  <div class="heb-text reveal">
+    <span class="section-label">Hébergement</span>
+    <h2>Un séjour au <em>château</em></h2>
+    <div class="line"></div>
+    <p>Hébergement en pension complète dans le château de Misy-sur-Yonne. Petit déjeuner, déjeuner et dîner préparés chaque jour.</p>
+    <p style="margin-top:14px">Les chambres individuelles et doubles sont disponibles selon les préférences de chaque participant.</p>
+    <br><button class="btn btn-reserve" onclick="openModal()">Réserver ma place</button>
   </div>
 </section>
 
@@ -403,30 +454,6 @@
   </div>
 </section>
 
-<!-- BAL MASQUÉ -->
-<section id="bal">
-  <div class="bal-bg-img"><img src="5.jpg" alt="Bal Masqué"/></div>
-  <div class="content reveal">
-    <span class="section-label">Soirée de clôture</span>
-    <h2>Bal <em>Masqué</em></h2>
-    <div class="line"></div>
-    <p>Dîner aux chandelles, performances artistiques et danses d'époque. Une soirée d'exception pour clore le séjour dans la magie du mouvement.</p>
-  </div>
-</section>
-
-<!-- HÉBERGEMENT -->
-<section id="hebergement">
-  <div class="heb-img reveal"><img src="6.jpg" alt="Petit déjeuner dans le jardin du château"/></div>
-  <div class="heb-text reveal">
-    <span class="section-label">Hébergement</span>
-    <h2>Un séjour au <em>château</em></h2>
-    <div class="line"></div>
-    <p>Hébergement en pension complète dans le château de Misy-sur-Yonne. Petit déjeuner, déjeuner et dîner préparés chaque jour.</p>
-    <p style="margin-top:14px">Les chambres individuelles et doubles sont disponibles selon les préférences de chaque participant.</p>
-    <br><button class="btn" onclick="openModal()">Réserver ma place</button>
-  </div>
-</section>
-
 <!-- TARIFS -->
 <section id="tarifs">
   <span class="section-label reveal">Tarifs &amp; Réservation</span>
@@ -448,7 +475,46 @@
   </div>
   <p class="note reveal">Pour préserver la qualité de l'expérience, les places sont limitées.</p>
   <br><br>
-  <button class="btn reveal" onclick="openModal()">Réserver ma place</button>
+  <button class="btn btn-reserve reveal" onclick="openModal()">Réserver ma place</button>
+</section>
+
+<!-- ACCÈS -->
+<section id="acces" style="background:var(--warm);padding:var(--sp) clamp(20px,6vw,80px)">
+  <div style="max-width:1100px;margin:0 auto">
+    <span class="section-label reveal">Accès</span>
+    <h2 class="reveal">Comment <em>nous rejoindre</em></h2>
+    <div class="line reveal"></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start" class="acces-grid reveal">
+      <div>
+        <div style="margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid rgba(111,62,20,.1)">
+          <p style="font-family:'Cormorant Garamond',serif;font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;max-width:none">En train</p>
+          <p>Paris Gare de Lyon → Montereau (45 min, Transilien R)<br>Puis taxi depuis la gare de Montereau (15 min).</p>
+        </div>
+        <div style="margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid rgba(111,62,20,.1)">
+          <p style="font-family:'Cormorant Garamond',serif;font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;max-width:none">En voiture</p>
+          <p>Paris → A6 direction Lyon → sortie Montereau-Fault-Yonne<br>Environ 1h15 depuis Paris.</p>
+        </div>
+        <div>
+          <p style="font-family:'Cormorant Garamond',serif;font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;max-width:none">En avion</p>
+          <p>Aéroport Paris-Charles de Gaulle. Transfert privé depuis l'aéroport organisé sur demande — contactez-nous pour en savoir plus.</p>
+        </div>
+      </div>
+      <div>
+        <div style="width:100%;aspect-ratio:4/3;overflow:hidden;box-shadow:0 8px 32px rgba(42,26,8,.12)">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2641.0!2d3.00889!3d48.31530!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e8219b5b5b5b5b%3A0x0!2sMisy-sur-Yonne%2C%2077130!5e0!3m2!1sfr!2sfr!4v1"
+            width="100%" height="100%" style="border:0;display:block" allowfullscreen loading="lazy">
+          </iframe>
+        </div>
+        <p style="margin-top:10px;font-size:12px;color:var(--grey);text-align:center">
+          Château de Misy-sur-Yonne, 77130 Misy-sur-Yonne
+        </p>
+      </div>
+    </div>
+    <style>
+      @media(max-width:768px){.acces-grid{grid-template-columns:1fr !important;gap:32px !important}}
+    </style>
+  </div>
 </section>
 
 <!-- CONTACT -->
@@ -459,8 +525,8 @@
   <a id="contactEmailLink" class="contact-email reveal"></a>
   <a href="tel:+33625810694" class="contact-phone reveal">+33 6 25 81 06 94</a>
   <div class="contact-btns reveal">
-    <button class="btn btn-dark" onclick="openModal()">Réserver ma place</button>
-    <a href="file.pdf" target="_blank" rel="noopener" class="btn btn-dark">Télécharger la présentation</a>
+    <button class="btn btn-dark btn-reserve" onclick="openModal()">Réserver ma place</button>
+    <a href="file.pdf" target="_blank" rel="noopener" class="btn btn-dark">Découvrir la présentation</a>
   </div>
   <p class="contact-meta reveal">10 — 19 Août 2026 &nbsp;·&nbsp; Château de Misy-sur-Yonne &nbsp;·&nbsp; <a href="https://immersion-danse.fr">immersion-danse.fr</a></p>
 </section>
@@ -470,6 +536,24 @@
   <span>© 2026 Chorégraphie de Bien-Être</span>
   <span>immersion-danse.fr</span>
 </footer>
+
+<!-- PRATIQUE LIGHTBOX -->
+<div class="pratique-lb" id="pratiqueLb">
+  <div class="pratique-lb-box">
+    <button class="pratique-lb-close" id="pratiqueLbClose">✕</button>
+    <span class="pratique-lb-tag">Programme</span>
+    <h3 class="pratique-lb-title" id="plbTitle"></h3>
+    <div class="pratique-lb-line"></div>
+    <p class="pratique-lb-desc" id="plbDesc"></p>
+    <div class="pratique-lb-pedagogue">
+      <div class="pratique-lb-ped-info">
+        <span class="pratique-lb-ped-name" id="plbPedName"></span>
+        <span class="pratique-lb-ped-role" id="plbPedRole"></span>
+        <p class="pratique-lb-ped-bio" id="plbPedBio"></p>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox">
@@ -682,6 +766,82 @@ async function submitForm(e){
     btn.style.display='block';
   }
 }
+/* ── PRATIQUES LIGHTBOX ── */
+(function(){
+  var data={
+    gym:{
+      title:"Gymnastique de Santé",
+      desc:"Un programme de renforcement musculaire et de rééducation posturale conçu individuellement pour chaque participant. Avant le séjour, chaque personne bénéficie d'un bilan complet avec notre kinésithérapeute pour identifier ses besoins spécifiques — douleurs chroniques, posture, mobilité — et adapter les exercices en conséquence.",
+      pedName:"Marina Kudryashova & Oleg Rogachev",
+      pedRole:"Kinésithérapeute · Spécialiste mouvement et posture",
+      pedBio:""
+    },
+    barre:{
+      title:"Barre Classique",
+      desc:"Inspirée de la technique du ballet classique, la barre permet de travailler l'alignement du corps, la coordination et la qualité de présence. Aucune expérience préalable n'est nécessaire : les exercices sont adaptés à chaque niveau. On y développe un maintien harmonieux et une présence corporelle raffinée.",
+      pedName:"Marina Kudryashova",
+      pedRole:"Danseuse · Pédagogue · Académie du Bolchoï",
+      pedBio:""
+    },
+    munz:{
+      title:"Münz Floor®",
+      desc:"Le Münz Floor® est une pratique somatique douce travaillant au sol. Cette méthode mobilise les fascias pour libérer les tensions profondes, retrouver la fluidité articulaire et développer une mobilité consciente. Idéale pour les personnes souffrant de tensions chroniques.",
+      pedName:"Marina Kudryashova & Oleg Rogachev",
+      pedRole:"Certifié Münz Floor®",
+      pedBio:""
+    },
+    contemporaine:{
+      title:"Danse Contemporaine",
+      desc:"La danse contemporaine est un espace de liberté totale. Les séances alternent improvisation guidée, travail sur les qualités de mouvement et partage en groupe. Un espace rare pour relâcher les tensions et reconnecter avec le plaisir du mouvement.",
+      pedName:"Marina Kudryashova",
+      pedRole:"Danseuse · Chorégraphe · Opéra National de Bordeaux",
+      pedBio:""
+    },
+    salon:{
+      title:"Danse de Salon",
+      desc:"Valse, tango, foxtrot — la danse de salon est l'art du mouvement à deux. Elle développe l'écoute de l'autre, la coordination, la sensualité et la confiance en soi. Accessible à tous les niveaux, en solo ou en duo. Une expérience qui prépare magnifiquement le Bal Masqué de clôture.",
+      pedName:"Oleg Rogachev",
+      pedRole:"Premier Danseur · Opéra de Bordeaux",
+      pedBio:""
+    },
+    historique:{
+      title:"Danse Historique",
+      desc:"Danses de cour des XVIIe et XVIIIe siècles : menuet, contredanse, gavotte. Elle développe l'élégance naturelle des gestes, la conscience de l'espace et une présence cérémonieuse. Une expérience unique qui culmine lors du Bal Masqué de clôture.",
+      pedName:"Marina Kudryashova & Oleg Rogachev",
+      pedRole:"Danseurs · Pédagogues · Spécialistes danse historique",
+      pedBio:""
+    }
+  };
+
+  var lb=document.getElementById('pratiqueLb');
+  var titleEl=document.getElementById('plbTitle');
+  var descEl=document.getElementById('plbDesc');
+  var pedNameEl=document.getElementById('plbPedName');
+  var pedRoleEl=document.getElementById('plbPedRole');
+  var pedBioEl=document.getElementById('plbPedBio');
+
+  document.querySelectorAll('.pratique-item').forEach(function(item){
+    item.addEventListener('click',function(){
+      var key=item.getAttribute('data-pratique');
+      var d=data[key];
+      if(!d)return;
+      titleEl.textContent=d.title;
+      descEl.textContent=d.desc;
+      pedNameEl.textContent=d.pedName;
+      pedRoleEl.textContent=d.pedRole;
+      pedBioEl.textContent=d.pedBio;
+      var pedBlock=document.querySelector('.pratique-lb-pedagogue');
+      if(pedBlock)pedBlock.style.display=d.pedBio?'flex':'none';
+      lb.classList.add('open');
+      document.body.style.overflow='hidden';
+    });
+  });
+
+  document.getElementById('pratiqueLbClose').addEventListener('click',closePLb);
+  lb.addEventListener('click',function(e){if(e.target===lb)closePLb();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&lb.classList.contains('open'))closePLb();});
+  function closePLb(){lb.classList.remove('open');document.body.style.overflow='';}
+})();
 </script>
 </body>
 </html>
