@@ -41,28 +41,29 @@
     @media(max-width:768px){nav{padding:18px 20px !important;flex-direction:row !important;justify-content:space-between !important;align-items:center !important}.nav-links{display:none !important}.nav-burger{display:flex !important}}
 
     /* HERO */
-    #hero{display:flex;flex-direction:column;padding:0;min-height:100vh}
-    .hero-photo{width:100%;height:62vh;min-height:320px;overflow:hidden;position:relative}
-    .hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center 20%}
-    .hero-sep{height:1px;background:linear-gradient(to right,transparent,var(--gold-pale),transparent);flex-shrink:0}
-    .hero-inner{background:var(--cream);flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:44px 24px 40px}
-    .hero-eyebrow{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;opacity:0;animation:fadeUp .8s .2s forwards}
-    .hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(38px,7vw,82px);font-weight:300;line-height:1.05;color:var(--dark);opacity:0;animation:fadeUp .9s .4s forwards}
-    .hero-title em{font-style:italic;color:var(--gold)}
-    @media(max-width:500px){.hero-title{font-size:clamp(32px,9vw,52px)}}
-    .hero-sub{font-family:'Cormorant Garamond',serif;font-size:clamp(14px,2vw,19px);font-style:italic;color:var(--grey);margin:16px 0 28px;opacity:0;animation:fadeUp .9s .6s forwards}
-    .hero-dots{display:flex;justify-content:center;align-items:center;gap:14px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-pale);margin-bottom:28px;flex-wrap:wrap;opacity:0;animation:fadeUp .9s .7s forwards}
-    .dot-sep{font-size:18px;color:var(--gold-pale);line-height:1}
-    .hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;opacity:0;animation:fadeUp .9s .88s forwards}
-    .hero-date{margin-top:20px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--grey);opacity:0;animation:fadeUp .9s 1s forwards}
+    #hero{min-height:100vh;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:0}
+    .hero-bg-img{position:absolute;inset:0}
+    .hero-bg-img img{width:100%;height:100%;object-fit:cover;object-position:center 20%}
+    .hero-bg-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(20,10,4,.88) 0%,rgba(20,10,4,.5) 35%,rgba(20,10,4,.1) 65%,transparent 100%)}
+    .hero-inner{position:relative;z-index:1;width:100%;padding:0 clamp(24px,6vw,80px) clamp(40px,6vh,72px);text-align:left}
+    .hero-eyebrow{font-size:10px;letter-spacing:.36em;text-transform:uppercase;color:rgba(196,154,108,.8);margin-bottom:16px;opacity:0;animation:fadeUp .8s .2s forwards;display:block}
+    .hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(42px,8vw,96px);font-weight:300;line-height:1.0;color:#ffffff;opacity:0;animation:fadeUp .9s .4s forwards;text-shadow:0 2px 24px rgba(0,0,0,.3)}
+    .hero-title em{font-style:italic;color:#f0c880}
+    .hero-sub{font-family:'Cormorant Garamond',serif;font-size:clamp(15px,2vw,20px);font-style:italic;color:rgba(255,255,255,.72);margin:14px 0 28px;opacity:0;animation:fadeUp .9s .6s forwards;max-width:560px}
+    .hero-dots{display:flex;align-items:center;gap:14px;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(196,154,108,.65);margin-bottom:32px;flex-wrap:wrap;opacity:0;animation:fadeUp .9s .7s forwards}
+    .dot-sep{font-size:16px;line-height:1}
+    .hero-cta{display:flex;gap:14px;flex-wrap:wrap;opacity:0;animation:fadeUp .9s .88s forwards}
+    .hero-date{margin-top:20px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.35);opacity:0;animation:fadeUp .9s 1s forwards;display:block}
     .date-sep{display:inline}
     @media(max-width:500px){
-      .hero-photo{height:50vh}
-      .hero-inner{padding:32px 20px 28px}
-      .hero-date{font-size:9px;letter-spacing:.1em;text-align:center;line-height:1.8}
+      .hero-inner{text-align:center;padding-bottom:clamp(32px,5vh,52px)}
+      .hero-title{font-size:clamp(36px,10vw,56px)}
+      .hero-sub{font-size:15px;margin:12px auto 24px}
+      .hero-dots{justify-content:center;gap:8px;font-size:9px}
+      .hero-cta{flex-direction:column;align-items:center;gap:10px}
+      .hero-cta .btn{width:100%;max-width:320px;text-align:center;padding:15px 20px;display:block}
+      .hero-date{font-size:9px;letter-spacing:.1em;line-height:1.8}
       .hero-date .date-sep{display:block}
-      .hero-cta .btn{width:100%;max-width:340px;text-align:center;padding:15px 20px;display:block}
-      .hero-dots{gap:8px;font-size:10px;letter-spacing:.14em}
     }
 
     /* BUTTONS */
@@ -271,10 +272,9 @@
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-photo"><img src="1.jpg" alt="Chorégraphie de Bien-Être"/></div>
-  <div class="hero-sep"></div>
+  <div class="hero-bg-img"><img src="1.jpg" alt="Chorégraphie de Bien-Être"/></div>
   <div class="hero-inner">
-    <p class="hero-eyebrow">Séjour Immersif</p>
+    <span class="hero-eyebrow">Séjour Immersif</span>
     <h1 class="hero-title">Chorégraphie<br>de <em>Bien-Être</em></h1>
     <p class="hero-sub">Une parenthèse de 10 jours pour ralentir,<br>revenir à soi et se retrouver dans le mouvement</p>
     <div class="hero-dots">
@@ -284,9 +284,9 @@
     </div>
     <div class="hero-cta">
       <button class="btn" onclick="openModal()">Réserver ma place</button>
-      <a href="file.pdf" target="_blank" rel="noopener" class="btn btn-outline">Télécharger la présentation</a>
+      <a href="file.pdf" target="_blank" rel="noopener" class="btn btn-dark">Télécharger la présentation</a>
     </div>
-    <p class="hero-date">10 — 19 Août 2026<span class="date-sep"> &nbsp;·&nbsp; </span>Château&nbsp;de&nbsp;Misy&#8209;sur&#8209;Yonne</p>
+    <span class="hero-date">10 — 19 Août 2026<span class="date-sep"> &nbsp;·&nbsp; </span>Château&nbsp;de&nbsp;Misy&#8209;sur&#8209;Yonne</span>
   </div>
 </section>
 
