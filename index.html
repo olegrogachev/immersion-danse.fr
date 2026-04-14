@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Chorégraphie de Bien-Être — Séjour Immersif Santé et Danse</title>
+  <title>Chorégraphie de Bien-Être — Séjour Immersif</title>
   <meta name="description" content="Une parenthèse de 10 jours au Château de Misy-sur-Yonne. Danse, bien-être et art de vivre. 10–19 août 2026."/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -41,23 +41,25 @@
     @media(max-width:768px){nav{padding:18px 20px !important;flex-direction:row !important;justify-content:space-between !important;align-items:center !important}.nav-links{display:none !important}.nav-burger{display:flex !important}}
 
     /* HERO */
-    #hero{min-height:100vh;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;padding:100px 20px 60px}
-    .hero-bg-img{position:absolute;inset:0}
-    .hero-bg-img img{width:100%;height:100%;object-fit:cover}
-    .hero-bg-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(248,244,237,.6) 0%,rgba(248,244,237,.78) 55%,var(--cream) 100%)}
-    .hero-inner{position:relative;z-index:1;max-width:800px;text-align:center;width:100%}
-    .hero-eyebrow{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:28px;opacity:0;animation:fadeUp .8s .2s forwards}
-    .hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(38px,9vw,94px);font-weight:300;line-height:1.05;color:var(--dark);opacity:0;animation:fadeUp .9s .4s forwards;white-space:nowrap}
+    #hero{display:flex;flex-direction:column;padding:0;min-height:100vh}
+    .hero-photo{width:100%;height:62vh;min-height:320px;overflow:hidden;position:relative}
+    .hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center 20%}
+    .hero-sep{height:1px;background:linear-gradient(to right,transparent,var(--gold-pale),transparent);flex-shrink:0}
+    .hero-inner{background:var(--cream);flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:44px 24px 40px}
+    .hero-eyebrow{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;opacity:0;animation:fadeUp .8s .2s forwards}
+    .hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(38px,7vw,82px);font-weight:300;line-height:1.05;color:var(--dark);opacity:0;animation:fadeUp .9s .4s forwards}
     .hero-title em{font-style:italic;color:var(--gold)}
-    @media(max-width:500px){.hero-title{font-size:clamp(28px,8vw,42px);white-space:normal}}
-    .hero-sub{font-family:'Cormorant Garamond',serif;font-size:clamp(14px,2.2vw,21px);font-style:italic;color:var(--grey);margin:24px 0 38px;opacity:0;animation:fadeUp .9s .6s forwards}
-    .hero-dots{display:flex;justify-content:center;align-items:center;gap:14px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-pale);margin-bottom:40px;flex-wrap:wrap;opacity:0;animation:fadeUp .9s .7s forwards}
+    @media(max-width:500px){.hero-title{font-size:clamp(32px,9vw,52px)}}
+    .hero-sub{font-family:'Cormorant Garamond',serif;font-size:clamp(14px,2vw,19px);font-style:italic;color:var(--grey);margin:16px 0 28px;opacity:0;animation:fadeUp .9s .6s forwards}
+    .hero-dots{display:flex;justify-content:center;align-items:center;gap:14px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-pale);margin-bottom:28px;flex-wrap:wrap;opacity:0;animation:fadeUp .9s .7s forwards}
     .dot-sep{font-size:18px;color:var(--gold-pale);line-height:1}
     .hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;opacity:0;animation:fadeUp .9s .88s forwards}
-    .hero-date{margin-top:32px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--grey);opacity:0;animation:fadeUp .9s 1s forwards;white-space:nowrap}
+    .hero-date{margin-top:20px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--grey);opacity:0;animation:fadeUp .9s 1s forwards}
     .date-sep{display:inline}
     @media(max-width:500px){
-      .hero-date{font-size:9px;letter-spacing:.1em;white-space:normal;text-align:center;line-height:1.8}
+      .hero-photo{height:50vh}
+      .hero-inner{padding:32px 20px 28px}
+      .hero-date{font-size:9px;letter-spacing:.1em;text-align:center;line-height:1.8}
       .hero-date .date-sep{display:block}
       .hero-cta .btn{width:100%;max-width:340px;text-align:center;padding:15px 20px;display:block}
       .hero-dots{gap:8px;font-size:10px;letter-spacing:.14em}
@@ -269,9 +271,10 @@
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-bg-img"><img src="1.jpg" alt="Chorégraphie de Bien-Être"/></div>
+  <div class="hero-photo"><img src="1.jpg" alt="Chorégraphie de Bien-Être"/></div>
+  <div class="hero-sep"></div>
   <div class="hero-inner">
-    <p class="hero-eyebrow">Séjour Immersif &nbsp;·&nbsp; Santé et Danse</p>
+    <p class="hero-eyebrow">Séjour Immersif</p>
     <h1 class="hero-title">Chorégraphie<br>de <em>Bien-Être</em></h1>
     <p class="hero-sub">Une parenthèse de 10 jours pour ralentir,<br>revenir à soi et se retrouver dans le mouvement</p>
     <div class="hero-dots">
