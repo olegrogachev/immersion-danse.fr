@@ -623,7 +623,7 @@ footer span{font-size:11px;letter-spacing:.1em;color:rgba(248,244,237,.16)}
         </div>
         <div class="form-group">
           <label for="email">E-mail *</label>
-          <input type="email" id="email" name="email" required placeholder="votre@email.com"/>
+          <input type="email" id="email" name="email" required placeholder="votre [at] email.com"/>
         </div>
         <div class="form-group">
           <label for="tel">Téléphone</label>
@@ -660,6 +660,9 @@ const d=‘immersion-danse’+’.fr’;
 const email=u+’@’+d;
 const el=document.getElementById(‘contactEmailLink’);
 if(el){el.href=‘mail’+‘to:’+email;el.textContent=email;}
+// fix email placeholder
+const ep=document.getElementById(‘email’);
+if(ep){ep.placeholder=‘votre’+’\x40’+‘email.com’;}
 // store formspree id
 window._fsid=[‘x’,‘q’,‘e’,‘g’,‘r’,‘o’,‘d’,‘q’].join(’’);
 })();
@@ -904,7 +907,7 @@ email:     f.email.value,
 telephone: f.tel.value,
 chambre:   f.chambre.value,
 message:   f.message.value,
-to_email:  [‘contact’,’@’,‘immersion-danse.fr’].join(’’),
+to_email:  [u,’@’,d].join(’’),
 reply_to:  f.email.value
 };
 
