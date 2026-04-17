@@ -729,6 +729,12 @@ document.querySelectorAll('.reveal').forEach(function(el){obsRev.observe(el);});
   });
 })();
 
+/* ── MODAL ── */
+function openModal(){document.getElementById('modalOverlay').classList.add('open');document.body.style.overflow='hidden';}
+function closeModal(){document.getElementById('modalOverlay').classList.remove('open');document.body.style.overflow='';}
+document.getElementById('modalOverlay').addEventListener('click',function(e){if(e.target===this)closeModal();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});
+
 /* ── FORM — EmailJS ── */
 async function submitForm(e){
   e.preventDefault();
