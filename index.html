@@ -33,7 +33,7 @@
     .nav-links a:hover{color:var(--gold)}
     .nav-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
     .nav-burger span{width:24px;height:1px;background:var(--gold);display:block}
-    .nav-mobile{display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:var(--cream);z-index:190;flex-direction:column;align-items:center;justify-content:center;gap:36px}
+    .nav-mobile{display:none;position:fixed;inset:0;background:var(--cream);z-index:190;flex-direction:column;align-items:center;justify-content:center;gap:36px}
     .nav-mobile.open{display:flex}
     .nav-mobile a{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:300;color:var(--dark);text-decoration:none}
     .nav-mobile a:hover{color:var(--gold)}
@@ -83,15 +83,15 @@
     .line{height:1px;background:var(--gold);margin:26px 0;width:100%;max-width:580px}
 
     /* CONCEPT */
-    #concept{background:var(--warm);display:flex;flex-direction:column;padding:0}
-    #concept .img-wrap{width:100%;aspect-ratio:16/9;overflow:hidden;flex-shrink:0}
+    #concept{background:var(--warm);display:flex;flex-direction:column;padding:0 !important}
+    #concept .img-wrap{width:100%;aspect-ratio:16/9;overflow:hidden}
     #concept .img-wrap img{width:100%;height:100%;object-fit:cover;display:block}
     #concept .text{padding:var(--sp) clamp(20px,6vw,80px)}
     #concept .text p+p{margin-top:14px}
     @media(min-width:900px){
-      #concept{flex-direction:row;align-items:stretch}
-      #concept .img-wrap{width:52%;aspect-ratio:unset;min-height:520px}
-      #concept .text{flex:1;display:flex;flex-direction:column;justify-content:center;padding:clamp(40px,5vw,80px)}
+      #concept{flex-direction:row;align-items:center}
+      #concept .img-wrap{width:52%;aspect-ratio:unset;height:560px;flex-shrink:0}
+      #concept .text{padding:clamp(40px,6vw,80px)}
     }
 
     /* POUR QUI */
@@ -116,7 +116,7 @@
     .pratique-item .more-hint{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(196,154,108,.4);margin-top:12px;display:block}
 
     /* PRATIQUE LIGHTBOX */
-    .pratique-lb{display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(20,10,4,.92);z-index:600;align-items:center;justify-content:center;padding:20px}
+    .pratique-lb{display:none;position:fixed;inset:0;background:rgba(20,10,4,.92);z-index:600;align-items:center;justify-content:center;padding:20px}
     .pratique-lb.open{display:flex}
     .pratique-lb-box{background:var(--dark2);max-width:560px;width:100%;max-height:88vh;overflow-y:auto;position:relative;padding:48px 44px 44px}
     .pratique-lb-close{position:absolute;top:18px;right:22px;background:none;border:none;color:rgba(248,244,237,.5);font-size:24px;cursor:pointer;line-height:1}
@@ -135,28 +135,22 @@
     @media(min-width:769px) and (max-width:1024px){.pratiques-grid{grid-template-columns:repeat(2,1fr)}}
 
     /* JOURNÉE — flex column always, side by side only on desktop */
-    #journee{background:var(--warm);display:flex;flex-direction:column;gap:0;padding:var(--sp) clamp(20px,6vw,80px)}
-    @media(min-width:900px){#journee{flex-direction:row;gap:64px;align-items:start}}
-    #journee>div{flex:1}
+    #journee{background:var(--warm);display:flex;flex-direction:column;gap:0}
+    @media(min-width:900px){#journee{flex-direction:row;gap:64px;align-items:start;padding:var(--sp) clamp(20px,6vw,80px)}}
     .schedule{margin-top:36px}
     .schedule-item{display:grid;grid-template-columns:110px 1fr;gap:18px;padding:16px 0;border-bottom:1px solid rgba(111,62,20,.11)}
     .schedule-item:last-child{border-bottom:none}
     .schedule-time{font-size:11px;letter-spacing:.1em;color:var(--gold);padding-top:2px}
     .schedule-act{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--dark)}
-    @media(max-width:899px){#journee>div+div{margin-top:36px}}
+    @media(max-width:899px){#journee>div{padding:clamp(40px,6vw,60px) clamp(20px,6vw,80px)}#journee>div+div{padding-top:0}}
 
     /* FONDATEURS — flex column always, side by side only on desktop */
-    #fondateurs{background:var(--cream);padding:0;display:flex;flex-direction:column}
-    .fondateurs-photo{overflow:hidden;width:100%;aspect-ratio:16/9;flex-shrink:0}
+    #fondateurs{background:var(--cream);padding:0 !important}
+    .fondateurs-photo{overflow:hidden;width:100%;aspect-ratio:16/9}
     .fondateurs-photo img{width:100%;height:100%;object-fit:cover;object-position:center 15%;filter:grayscale(15%);display:block}
-    .fondateurs-inner{padding:clamp(32px,5vw,48px) clamp(20px,6vw,80px);display:flex;flex-direction:column;justify-content:center}
+    .fondateurs-inner{padding:clamp(32px,5vw,48px) clamp(20px,6vw,80px)}
     .fondateurs-text .bio{margin-top:20px;padding-top:20px;border-top:1px solid rgba(111,62,20,.1)}
     .fondateurs-text .bio:first-of-type{border-top:none;padding-top:0}
-    @media(min-width:900px){
-      #fondateurs{flex-direction:row;align-items:stretch}
-      .fondateurs-photo{width:48%;aspect-ratio:unset;min-height:500px}
-      .fondateurs-inner{flex:1;padding:clamp(40px,5vw,80px)}
-    }
     .fondateur-name{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:var(--dark)}
     .fondateur-role{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);display:block;margin-top:4px}
     .bio-text{margin-top:10px;font-size:14px;color:var(--grey);max-width:none;line-height:1.85}
@@ -192,23 +186,19 @@
 
     /* HÉBERGEMENT — flex column always, side by side only on desktop */
     #hebergement{background:var(--warm);display:flex;flex-direction:column;padding:0}
-    .heb-img{overflow:hidden;min-height:280px;width:100%;flex-shrink:0}
+    @media(min-width:900px){#hebergement{flex-direction:row;align-items:stretch}}
+    .heb-img{overflow:hidden;min-height:280px;width:100%}
     .heb-img img{width:100%;height:100%;object-fit:cover;display:block;min-height:280px}
-    .heb-text{padding:clamp(40px,7vw,90px) clamp(20px,6vw,80px);display:flex;flex-direction:column;justify-content:center}
-    @media(min-width:900px){
-      #hebergement{flex-direction:row;align-items:stretch}
-      .heb-img{width:48%;min-height:440px}
-      .heb-text{flex:1;padding:clamp(40px,5vw,80px)}
-    }
+    @media(min-width:900px){.heb-img{min-height:440px;flex:1}}
+    .heb-text{padding:clamp(40px,7vw,90px);display:flex;flex-direction:column;justify-content:center}
+    @media(min-width:900px){.heb-text{flex:1}}
 
     /* TARIFS */
     #tarifs{background:var(--cream);text-align:center}
     #tarifs h2{margin:0 auto 44px}
     .tarifs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;max-width:700px;margin:0 auto 36px}
-    .tarif-card{border:1px solid rgba(111,62,20,.16);padding:40px 28px;background:var(--warm);transition:border-color .25s,box-shadow .25s,transform .2s;cursor:pointer}
-    .tarif-card:hover{border-color:var(--gold);box-shadow:0 8px 36px rgba(111,62,20,.1);transform:translateY(-2px)}
-    .tarif-card:hover .tarif-select-hint{opacity:1}
-    .tarif-select-hint{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-top:18px;display:block;opacity:0;transition:opacity .2s}
+    .tarif-card{border:1px solid rgba(111,62,20,.16);padding:40px 28px;background:var(--warm);transition:border-color .25s,box-shadow .25s}
+    .tarif-card:hover{border-color:var(--gold);box-shadow:0 8px 36px rgba(111,62,20,.1)}
     .tarif-type{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:block}
     .tarif-price{font-family:'Cormorant Garamond',serif;font-size:50px;font-weight:300;color:var(--dark);line-height:1}
     .tarif-price sup{font-size:22px;vertical-align:super}
@@ -218,20 +208,6 @@
     .tarif-early strong{color:var(--gold-pale);font-weight:400;font-family:'Cormorant Garamond',serif;font-size:15px}
     .tarif-early .nodates{white-space:nowrap}
     .note{font-size:12px;color:var(--grey);font-style:italic;margin-top:10px;text-align:center;display:block}
-
-
-    /* FAQ */
-    #faq{background:var(--cream);max-width:780px;margin:0 auto;padding:var(--sp) clamp(20px,6vw,80px)}
-    #faq h2{margin-bottom:44px}
-    .faq-item{border-bottom:1px solid rgba(111,62,20,.12);padding:0}
-    .faq-item:first-of-type{border-top:1px solid rgba(111,62,20,.12)}
-    .faq-q{width:100%;background:none;border:none;text-align:left;padding:22px 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;color:var(--dark);line-height:1.3}
-    .faq-q:hover{color:var(--gold)}
-    .faq-icon{font-size:18px;color:var(--gold);flex-shrink:0;transition:transform .3s;line-height:1}
-    .faq-item.open .faq-icon{transform:rotate(45deg)}
-    .faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s ease}
-    .faq-item.open .faq-a{max-height:400px}
-    .faq-a p{font-size:14px;color:var(--grey);line-height:1.85;padding-bottom:22px;max-width:none}
 
     /* CONTACT */
     #contact{background:var(--dark2);text-align:center}
@@ -246,10 +222,10 @@
 
     /* FOOTER */
     footer{background:#1a0f04;padding:22px clamp(20px,5vw,48px);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
-    footer span{font-size:11px;letter-spacing:.1em;color:rgba(248,244,237,.45)}
+    footer span{font-size:11px;letter-spacing:.1em;color:rgba(248,244,237,.16)}
 
     /* LIGHTBOX */
-    .lightbox{display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(20,12,4,.96);z-index:700;align-items:center;justify-content:center}
+    .lightbox{display:none;position:fixed;inset:0;background:rgba(20,12,4,.96);z-index:600;align-items:center;justify-content:center}
     .lightbox.open{display:flex}
     .lightbox-img{max-width:92vw;max-height:88vh;object-fit:contain;user-select:none}
     .lightbox-close{position:absolute;top:20px;right:24px;background:none;border:none;color:rgba(248,244,237,.7);font-size:28px;cursor:pointer;z-index:2;line-height:1}
@@ -260,7 +236,7 @@
     .lightbox-counter{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);font-size:11px;letter-spacing:.2em;color:rgba(248,244,237,.4)}
 
     /* MODAL */
-    .modal-overlay{display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(42,26,8,.72);z-index:500;align-items:center;justify-content:center;padding:16px}
+    .modal-overlay{display:none;position:fixed;inset:0;background:rgba(42,26,8,.72);z-index:500;align-items:center;justify-content:center;padding:16px}
     .modal-overlay.open{display:flex}
     .modal{background:var(--cream);max-width:500px;width:100%;padding:clamp(28px,5vw,52px);position:relative;max-height:92vh;overflow-y:auto}
     .modal-close{position:absolute;top:18px;right:18px;background:none;border:none;font-size:22px;color:var(--grey);cursor:pointer;line-height:1}
@@ -296,7 +272,6 @@
     <li><a href="#pratiques">Programme</a></li>
     <li><a href="#fondateurs">À propos</a></li>
     <li><a href="#tarifs">Tarifs</a></li>
-    <li><a href="#faq">FAQ</a></li>
     <li><a href="#acces">Accès</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -313,7 +288,6 @@
   <a href="#fondateurs" class="mobile-link">À propos</a>
   <a href="#galerie" class="mobile-link">Galerie</a>
   <a href="#tarifs" class="mobile-link">Tarifs</a>
-  <a href="#faq" class="mobile-link">FAQ</a>
   <a href="#acces" class="mobile-link">Accès</a>
   <a href="#contact" class="mobile-link">Contact</a>
 </div>
@@ -322,7 +296,7 @@
 <section id="hero">
   <div class="hero-bg-img"><img src="1.jpg" alt="Chorégraphie de Bien-Être"/></div>
   <div class="hero-inner">
-    <span class="hero-eyebrow" style="color:#ffffff;letter-spacing:.28em;text-shadow:0 1px 12px rgba(0,0,0,.7)">Séjour Immersif</span>
+    <span class="hero-eyebrow">Séjour Immersif</span>
     <h1 class="hero-title">Chorégraphie<br>de <em>Bien-Être</em></h1>
     <p class="hero-sub">Une parenthèse de 10 jours pour ralentir,<br>revenir à soi et se retrouver dans le mouvement</p>
     <div class="hero-dots">
@@ -353,7 +327,7 @@
 <!-- POUR QUI -->
 <section id="pour-qui">
   <span class="section-label reveal">À qui s'adresse ce séjour ?</span>
-  <h2 class="reveal">Fait pour <em>vous</em></h2>
+  <h2 class="reveal">Une retraite pour…</h2>
   <p class="reveal">Les femmes et les hommes sensibles au corps, à l'esthétique et à la qualité de présence.<br><br><em>Aucune expérience en danse n'est nécessaire —<br>seulement l'envie de ressentir et d'explorer.</em></p>
   <br>
   <button class="btn btn-reserve reveal" onclick="openModal()">Réserver ma place</button>
@@ -362,16 +336,16 @@
 <!-- PRATIQUES -->
 <section id="pratiques">
   <span class="section-label reveal">Programme</span>
-  <h2 class="reveal">Pratiques <em style="color:var(--gold-lt)">corporelles</em></h2>
+  <h2 class="reveal">Pratiques <em>corporelles</em></h2>
   <div class="line reveal"></div>
   <p class="reveal">2 à 3 cours par jour, adaptés à chaque participant après bilan individuel avec un kinésithérapeute.</p>
   <div class="pratiques-photo reveal"><img src="3.jpg" alt="Pratiques corporelles au château"/></div>
   <div class="pratiques-grid reveal">
     <div class="pratique-item" data-pratique="gym"><h3>Gymnastique de Santé</h3><p>Guidée par un kinésithérapeute — renforcement, posture et programme individualisé pour chacun.</p><span class="more-hint">En savoir plus →</span></div>
-    <div class="pratique-item" data-pratique="barre"><h3>Travail Postural &amp; Danse Classique</h3><p>Alignement, coordination et qualité de présence — inspiré de la technique du ballet classique.</p><span class="more-hint">En savoir plus →</span></div>
-    <div class="pratique-item" data-pratique="munz"><h3>MÜNZ FLOOR<sup style="font-size:10px;vertical-align:super">®</sup></h3><p>Pratique douce au sol centrée sur les fascias pour libérer les tensions et retrouver fluidité et mobilité.</p><span class="more-hint">En savoir plus →</span></div>
+    <div class="pratique-item" data-pratique="barre"><h3>Barre Classique</h3><p>Inspiré du ballet classique — pour développer un maintien harmonieux et une présence corporelle raffinée.</p><span class="more-hint">En savoir plus →</span></div>
+    <div class="pratique-item" data-pratique="munz"><h3>Münz Floor<sup style="font-size:10px;vertical-align:super">®</sup></h3><p>Pratique douce au sol centrée sur les fascias pour libérer les tensions et retrouver fluidité et mobilité.</p><span class="more-hint">En savoir plus →</span></div>
     <div class="pratique-item" data-pratique="contemporaine"><h3>Danse Contemporaine</h3><p>Un espace de liberté pour explorer le mouvement, relâcher le corps et exprimer ses émotions.</p><span class="more-hint">En savoir plus →</span></div>
-    <div class="pratique-item" data-pratique="salon"><h3>Danse Latine</h3><p>Coordination, sensualité et émotions vives à travers le mouvement partagé.</p><span class="more-hint">En savoir plus →</span></div>
+    <div class="pratique-item" data-pratique="salon"><h3>Danse de Salon</h3><p>Coordination, sensualité et émotions vives à travers le mouvement partagé.</p><span class="more-hint">En savoir plus →</span></div>
     <div class="pratique-item" data-pratique="historique"><h3>Danse Historique</h3><p>Une immersion dans l'esthétique du passé — menuet, valse et élégance des gestes.</p><span class="more-hint">En savoir plus →</span></div>
   </div>
 </section>
@@ -384,7 +358,7 @@
     <div class="line"></div>
     <p>Chaque journée est pensée pour alterner pratique, repos et découverte — sans surcharge, avec intention.</p>
     <p style="margin-top:14px">Les ateliers et conférences couvrent la nutrition, la posture, l'art de la table et la composition florale.</p>
-    <p style="margin-top:14px">Des soins en option : massages, ostéopathie, Kobido, méditation individuelle.</p>
+    <p style="margin-top:14px">Des soins en option : massages, ostéopathie, reiki, méditation individuelle.</p>
   </div>
   <div class="reveal">
     <div class="schedule">
@@ -398,7 +372,7 @@
     </div>
     <br>
     <div style="display:flex;justify-content:center">
-      <a href="programme.pdf" target="_blank" rel="noopener" class="btn btn-outline" style="white-space:nowrap" type="application/pdf">Consulter le programme complet</a>
+      <a href="programme.pdf" target="_blank" rel="noopener" class="btn btn-outline" style="white-space:nowrap">Consulter le programme complet</a>
     </div>
   </div>
 </section>
@@ -411,9 +385,17 @@
       <span class="section-label">À l'origine du projet</span>
       <h2>Marina &amp; <em>Oleg</em></h2>
       <div class="line"></div>
-      <p>Marina Kudryashova et Oleg Rogachev, danseurs, pédagogues et partenaires sur scène comme dans la vie, ils partagent une même vision du mouvement.</p>
-      <p style="margin-top:14px">Des années à l'Académie du Bolchoï, puis à l'Opéra de Bordeaux — sur scène, chaque partie du corps devient présence. Un port de bras, un regard, une façon de se tenir qui rayonne avant même de bouger.</p>
-      <p style="margin-top:14px">Ce que la scène leur a appris, Marina et Oleg ont envie de le partager avec vous — pour habiter son corps avec plus de légèreté, de grâce et de conscience.</p>
+      <p>Danseurs, pédagogues et partenaires sur scène comme dans la vie, ils partagent une même vision du mouvement — entre exigence classique et approche sensible du corps.</p>
+      <div class="bio">
+        <span class="fondateur-name">Marina Kudryashova</span>
+        <span class="fondateur-role">Danseuse · Pédagogue</span>
+        <p class="bio-text">Formée à l'Académie du Bolchoï à Moscou, Marina poursuit sa carrière à l'Opéra National de Bordeaux. Son travail conjugue rigueur classique, transmission et recherche d'un mouvement habité.</p>
+      </div>
+      <div class="bio">
+        <span class="fondateur-name">Oleg Rogachev</span>
+        <span class="fondateur-role">Premier Danseur · Opéra de Bordeaux</span>
+        <p class="bio-text">Formé à l'Académie du Bolchoï, Oleg devient Premier danseur à l'Opéra de Bordeaux. Son approche réunit expérience de la scène, transmission et recherche d'un mouvement conscient et habité.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -476,28 +458,22 @@
 <section id="tarifs">
   <span class="section-label reveal">Tarifs &amp; Réservation</span>
   <h2 class="reveal">Rejoindre <em>l'expérience</em></h2>
-  <p class="reveal" style="text-align:center;margin:0 auto 12px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)">· Tout inclus ·</p>
-  <div style="text-align:center;margin-bottom:32px" class="reveal">
-    <p style="font-size:13px;color:var(--grey);line-height:2;max-width:none;text-align:center">10 jours &nbsp;·&nbsp; Hébergement, pension complète<br>Toutes les pratiques &amp; ateliers</p>
-  </div>
   <div class="tarifs-grid reveal">
-    <div class="tarif-card" data-tarif="En Solo — 3 000 €" onclick="openModalWithTarif(this.dataset.tarif)">
+    <div class="tarif-card">
       <span class="tarif-type">En Solo</span>
       <div class="tarif-price"><sup>€</sup>3 000</div>
-      <span class="tarif-per">par personne</span>
-      <span class="tarif-select-hint">Choisir →</span>
+      <span class="tarif-per">par personne · pension complète</span>
     </div>
-    <div class="tarif-card" data-tarif="En Duo — 2 650 € / pers." onclick="openModalWithTarif(this.dataset.tarif)">
+    <div class="tarif-card">
       <span class="tarif-type">En Duo</span>
       <div class="tarif-price"><sup>€</sup>2 650</div>
-      <span class="tarif-per">par personne</span>
-      <span class="tarif-select-hint">Choisir →</span>
+      <span class="tarif-per">par personne · pension complète</span>
     </div>
   </div>
   <div class="tarif-early reveal">
     <p><strong>Tarif préférentiel</strong> — <span class="nodates">réservation avant le 17 mai 2026</span><br><span class="nodates">2 700 € en solo</span> &nbsp;·&nbsp; <span class="nodates">2 400 € en duo</span></p>
   </div>
-  <p class="note reveal" style="text-align:center">Pour préserver la qualité de l'expérience, les places sont limitées.</p>
+  <p class="note reveal">Pour préserver la qualité de l'expérience, les places sont limitées.</p>
   <br><br>
   <button class="btn btn-reserve reveal" onclick="openModal()">Réserver ma place</button>
 </section>
@@ -541,59 +517,10 @@
   </div>
 </section>
 
-<!-- FAQ -->
-<section id="faq" style="background:var(--cream);padding:var(--sp) clamp(20px,6vw,80px)">
-  <div style="max-width:780px;margin:0 auto">
-    <span class="section-label reveal">Questions fréquentes</span>
-    <h2 class="reveal">F. A. <em>Q.</em></h2>
-
-    <div class="faq-item reveal">
-      <button class="faq-q">Faut-il avoir une expérience en danse pour participer ?<span class="faq-icon">+</span></button>
-      <div class="faq-a"><p>Non, aucune expérience préalable n'est nécessaire. Les cours sont adaptés à chaque participant après un bilan individuel réalisé à votre arrivée. L'essentiel est l'envie d'explorer le mouvement et de prendre soin de soi.</p></div>
-    </div>
-
-    <div class="faq-item reveal">
-      <button class="faq-q">Que comprend exactement le tarif ?<span class="faq-icon">+</span></button>
-      <div class="faq-a"><p>Le tarif inclut l'hébergement en pension complète (petit déjeuner, déjeuner et dîner), 13 pratiques corporelles, 6 ateliers, et la soirée de clôture Bal Masqué. Les soins individuels (massage, ostéopathie, Kobido) et cours privés sont en option et facturés séparément.</p></div>
-    </div>
-
-    <div class="faq-item reveal">
-      <button class="faq-q">Le séjour est-il adapté aux personnes ayant des douleurs ou limitations physiques ?<span class="faq-icon">+</span></button>
-      <div class="faq-a"><p>Tout à fait. Marina et Oleg adaptent chaque cours à vos possibilités du moment — vous faites ce que vous pouvez, à votre rythme. Ces cours sont avant tout là pour le plaisir et le bien-être, pas pour la performance. Un bilan avec notre kinésithérapeute est prévu dès le premier jour pour identifier vos besoins spécifiques.</p></div>
-    </div>
-
-    <div class="faq-item reveal">
-      <button class="faq-q">Combien de participants seront présents ?<span class="faq-icon">+</span></button>
-      <div class="faq-a"><p>Pour cette première édition, nous accueillons entre 13 et 15 participants. Ce format intimiste est un choix délibéré : il permet un suivi personnalisé, une vraie cohésion de groupe et une qualité d'expérience qu'un grand groupe ne permettrait pas.</p></div>
-    </div>
-
-    <div class="faq-item reveal">
-      <button class="faq-q">Faut-il assister à toutes les activités ?<span class="faq-icon">+</span></button>
-      <div class="faq-a"><p>Non, vous êtes libre de construire votre séjour selon vos envies et votre énergie. Vous déterminez votre propre rythme. Cela dit, chaque cours et atelier apporte quelque chose de spécifique — plus vous vous y investissez, plus les bénéfices seront profonds et durables.</p></div>
-    </div>
-
-    <div class="faq-item reveal">
-      <button class="faq-q">Je souhaite venir accompagné(e) d'une personne qui ne participe pas au programme — est-ce possible ?<span class="faq-icon">+</span></button>
-      <div class="faq-a"><p>Ce séjour est conçu comme une immersion dans le mouvement et la vie de groupe — l'hébergement au château est proposé uniquement dans le cadre du programme complet. Une exception est faite pour les enfants de moins de 10 ans accompagnant un participant. Contactez-nous pour en discuter.</p></div>
-    </div>
-
-    <div class="faq-item reveal">
-      <button class="faq-q">Quelles sont les conditions d'annulation ?<span class="faq-icon">+</span></button>
-      <div class="faq-a"><p>Nous comprenons que la vie peut réserver des surprises. Annulation jusqu'à 45 jours avant : remboursement intégral. Entre 15 et 45 jours : 50 % sont retenus pour couvrir les frais engagés. Moins de 15 jours : contactez-nous, nous trouverons une solution ensemble.</p></div>
-    </div>
-
-    <div class="faq-item reveal">
-      <button class="faq-q">Y a-t-il un transfert depuis Paris ?<span class="faq-icon">+</span></button>
-      <div class="faq-a"><p>Le château est accessible en train depuis Paris Gare de Lyon (45 min jusqu'à Montereau, puis taxi 15 min). Un transfert privé depuis l'aéroport ou tout autre point de Paris peut être organisé sur demande — contactez-nous pour en savoir plus.</p></div>
-    </div>
-
-  </div>
-</section>
-
 <!-- CONTACT -->
 <section id="contact">
   <span class="section-label reveal">Contact</span>
-  <h2 class="reveal">Prendre <em style="color:var(--gold-pale)">contact</em></h2>
+  <h2 class="reveal">Prendre <em>contact</em></h2>
   <p class="reveal">Pour toute question ou pour réserver votre place, contactez-nous directement.</p>
   <a id="contactEmailLink" class="contact-email reveal"></a>
   <a href="tel:+33625810694" class="contact-phone reveal">+33 6 25 81 06 94</a>
@@ -706,24 +633,11 @@ var obsRev=new IntersectionObserver(function(entries){
 },{threshold:0.07});
 document.querySelectorAll('.reveal').forEach(function(el){obsRev.observe(el);});
 
-/* ── SLIDER + LIGHTBOX ── */
+/* ── SLIDER ── */
 (function(){
   var outer=document.getElementById('sliderOuter');
   var track=document.getElementById('sliderTrack');
-  var currentX=0,startX=0,startY=0,startTranslate=0,isDragging=false,isPointer=false,hasMoved=false;
-
-  var images=['7.jpg','8.jpg','9.jpg','10.jpg','11.jpg','12.jpg','13.jpg','14.jpg','15.jpg','16.jpg','17.jpg','18.jpg','19.jpg','20.jpg','21.jpg','22.jpg'];
-  var current=0;
-  var lb=document.getElementById('lightbox');
-  var lbImg=document.getElementById('lbImg');
-  var lbCounter=document.getElementById('lbCounter');
-
-  function openLB(idx){current=idx;lbImg.src=images[current];lbCounter.textContent=(current+1)+' / '+images.length;lb.classList.add('open');document.body.style.overflow='hidden';}
-  function closeLB(){lb.classList.remove('open');document.body.style.overflow='';lbImg.src='';}
-  function prevLB(){current=(current-1+images.length)%images.length;lbImg.src=images[current];lbCounter.textContent=(current+1)+' / '+images.length;}
-  function nextLB(){current=(current+1)%images.length;lbImg.src=images[current];lbCounter.textContent=(current+1)+' / '+images.length;}
-
-  var slides=Array.from(document.querySelectorAll('.slide'));
+  var currentX=0,startX=0,startTranslate=0,isDragging=false,isPointer=false;
 
   function getSlideWidth(){var s=track.querySelector('.slide');return s?s.offsetWidth+14:0;}
   function getMaxTranslate(){return Math.max(0,track.scrollWidth-outer.offsetWidth);}
@@ -745,39 +659,40 @@ document.querySelectorAll('.reveal').forEach(function(el){obsRev.observe(el);});
   document.getElementById('sliderPrev').addEventListener('click',function(){currentX=Math.max(0,currentX-getSlideWidth());track.classList.remove('dragging');track.style.transform='translateX(-'+currentX+'px)';});
   document.getElementById('sliderNext').addEventListener('click',function(){currentX=Math.min(getMaxTranslate(),currentX+getSlideWidth());track.classList.remove('dragging');track.style.transform='translateX(-'+currentX+'px)';});
 
-  outer.addEventListener('pointerdown',function(e){if(e.pointerType==='touch')return;isPointer=true;isDragging=true;hasMoved=false;startX=e.clientX;startY=e.clientY;startTranslate=currentX;outer.setPointerCapture(e.pointerId);},{passive:false});
-  outer.addEventListener('pointermove',function(e){if(!isDragging||!isPointer)return;var dx=Math.abs(e.clientX-startX);if(dx>5){hasMoved=true;track.classList.add('dragging');}moveTo(startTranslate+(startX-e.clientX));});
-  outer.addEventListener('pointerup',function(e){
-    if(!isPointer)return;
-    var d=e.clientX-startX;
-    isDragging=false;isPointer=false;
-    if(!hasMoved){
-      var target=document.elementFromPoint(e.clientX,e.clientY);
-      var slide=target&&(target.closest?target.closest('.slide'):null);
-      if(slide){var idx=slides.indexOf(slide);if(idx>=0)openLB(idx);}
-      return;
-    }
-    snapWithDelta(-d);
-  });
+  outer.addEventListener('pointerdown',function(e){if(e.pointerType==='touch')return;isPointer=true;isDragging=true;startX=e.clientX;startTranslate=currentX;track.classList.add('dragging');outer.setPointerCapture(e.pointerId);e.preventDefault();},{passive:false});
+  outer.addEventListener('pointermove',function(e){if(!isDragging||!isPointer)return;moveTo(startTranslate+(startX-e.clientX));});
+  outer.addEventListener('pointerup',function(e){if(!isPointer)return;var d=e.clientX-startX;isDragging=false;isPointer=false;snapWithDelta(-d);});
   outer.addEventListener('pointercancel',function(){isDragging=false;isPointer=false;snapToNearest();});
 
   var touchStartX=0;
   outer.addEventListener('touchstart',function(e){touchStartX=e.touches[0].clientX;startTranslate=currentX;track.classList.add('dragging');},{passive:true});
   outer.addEventListener('touchmove',function(e){moveTo(startTranslate+(touchStartX-e.touches[0].clientX));},{passive:true});
-  outer.addEventListener('touchend',function(e){
-    var dx=touchStartX-e.changedTouches[0].clientX;
-    if(Math.abs(dx)<5){
-      var t=e.changedTouches[0];
-      var target=document.elementFromPoint(t.clientX,t.clientY);
-      var slide=target&&(target.closest?target.closest('.slide'):null);
-      if(slide){var idx=slides.indexOf(slide);if(idx>=0){openLB(idx);return;}}
-    }
-    snapWithDelta(-dx);
-  });
+  outer.addEventListener('touchend',function(e){snapWithDelta(-(e.changedTouches[0].clientX-touchStartX));});
 
   outer.addEventListener('wheel',function(e){if(Math.abs(e.deltaX)>Math.abs(e.deltaY)){e.preventDefault();track.classList.add('dragging');moveTo(currentX+e.deltaX);clearTimeout(outer._wt);outer._wt=setTimeout(snapToNearest,120);}},{passive:false});
   window.addEventListener('resize',function(){currentX=0;track.classList.remove('dragging');track.style.transform='translateX(0)';});
+})();
 
+/* ── MODAL ── */
+function openModal(){document.getElementById('modalOverlay').classList.add('open');document.body.style.overflow='hidden';}
+function closeModal(){document.getElementById('modalOverlay').classList.remove('open');document.body.style.overflow='';}
+document.getElementById('modalOverlay').addEventListener('click',function(e){if(e.target===this)closeModal();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});
+
+/* ── LIGHTBOX ── */
+(function(){
+  var images=['7.jpg','8.jpg','9.jpg','10.jpg','11.jpg','12.jpg','13.jpg','14.jpg','15.jpg','16.jpg','17.jpg','18.jpg','19.jpg','20.jpg','21.jpg','22.jpg'];
+  var current=0;
+  var lb=document.getElementById('lightbox');
+  var lbImg=document.getElementById('lbImg');
+  var lbCounter=document.getElementById('lbCounter');
+
+  function openLB(idx){current=idx;lbImg.src=images[current];lbCounter.textContent=(current+1)+' / '+images.length;lb.classList.add('open');document.body.style.overflow='hidden';}
+  function closeLB(){lb.classList.remove('open');document.body.style.overflow='';lbImg.src='';}
+  function prevLB(){current=(current-1+images.length)%images.length;lbImg.src=images[current];lbCounter.textContent=(current+1)+' / '+images.length;}
+  function nextLB(){current=(current+1)%images.length;lbImg.src=images[current];lbCounter.textContent=(current+1)+' / '+images.length;}
+
+  document.querySelectorAll('.slide').forEach(function(slide,i){slide.addEventListener('click',function(){openLB(i);});});
   document.getElementById('lbClose').addEventListener('click',closeLB);
   document.getElementById('lbPrev').addEventListener('click',prevLB);
   document.getElementById('lbNext').addEventListener('click',nextLB);
@@ -790,20 +705,9 @@ document.querySelectorAll('.reveal').forEach(function(el){obsRev.observe(el);});
   lb.addEventListener('touchend',function(e){
     var dx=lbTouchX-e.changedTouches[0].clientX;
     var dy=Math.abs(lbTouchY-e.changedTouches[0].clientY);
-    if(Math.abs(dx)>30&&dy<60){dx>0?nextLB():prevLB();}
+    if(Math.abs(dx)>30 && dy<60){dx>0?nextLB():prevLB();}
   });
 })();
-
-/* ── MODAL ── */
-function openModal(){document.getElementById('modalOverlay').classList.add('open');document.body.style.overflow='hidden';}
-function openModalWithTarif(val){
-  var sel=document.getElementById('chambre');
-  if(sel){for(var i=0;i<sel.options.length;i++){if(sel.options[i].value===val){sel.selectedIndex=i;break;}}}
-  openModal();
-}
-function closeModal(){document.getElementById('modalOverlay').classList.remove('open');document.body.style.overflow='';}
-document.getElementById('modalOverlay').addEventListener('click',function(e){if(e.target===this)closeModal();});
-document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});
 
 /* ── FORM — EmailJS ── */
 async function submitForm(e){
@@ -873,14 +777,14 @@ async function submitForm(e){
       pedBio:""
     },
     barre:{
-      title:"Travail Postural & Danse Classique",
-      desc:"Inspirée de la technique du ballet classique, cette pratique permet de travailler l'alignement du corps, la coordination et la qualité de présence. Aucune expérience préalable n'est nécessaire : les exercices sont adaptés à chaque niveau. On y développe un maintien harmonieux et une présence corporelle raffinée.",
+      title:"Barre Classique",
+      desc:"Inspirée de la technique du ballet classique, la barre permet de travailler l'alignement du corps, la coordination et la qualité de présence. Aucune expérience préalable n'est nécessaire : les exercices sont adaptés à chaque niveau. On y développe un maintien harmonieux et une présence corporelle raffinée.",
       pedName:"Marina Kudryashova",
       pedRole:"Danseuse · Pédagogue · Académie du Bolchoï",
       pedBio:""
     },
     munz:{
-      title:"MÜNZ FLOOR®",
+      title:"Münz Floor®",
       desc:"Le Münz Floor® est une pratique somatique douce travaillant au sol. Cette méthode mobilise les fascias pour libérer les tensions profondes, retrouver la fluidité articulaire et développer une mobilité consciente. Idéale pour les personnes souffrant de tensions chroniques.",
       pedName:"Marina Kudryashova & Oleg Rogachev",
       pedRole:"Certifié Münz Floor®",
@@ -894,8 +798,8 @@ async function submitForm(e){
       pedBio:""
     },
     salon:{
-      title:"Danse Latine",
-      desc:"Salsa, bachata, cha-cha — la danse latine est l'art du mouvement à deux. Elle développe l'écoute de l'autre, la coordination, la sensualité et la confiance en soi. Accessible à tous les niveaux, en solo ou en duo. Une expérience qui prépare magnifiquement le Bal Masqué de clôture.",
+      title:"Danse de Salon",
+      desc:"Valse, tango, foxtrot — la danse de salon est l'art du mouvement à deux. Elle développe l'écoute de l'autre, la coordination, la sensualité et la confiance en soi. Accessible à tous les niveaux, en solo ou en duo. Une expérience qui prépare magnifiquement le Bal Masqué de clôture.",
       pedName:"Oleg Rogachev",
       pedRole:"Premier Danseur · Opéra de Bordeaux",
       pedBio:""
@@ -938,15 +842,6 @@ async function submitForm(e){
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&lb.classList.contains('open'))closePLb();});
   function closePLb(){lb.classList.remove('open');document.body.style.overflow='';}
 })();
-
-/* ── FAQ ACCORDION ── */
-document.querySelectorAll('.faq-item').forEach(function(item){
-  item.querySelector('.faq-q').addEventListener('click',function(){
-    var isOpen=item.classList.contains('open');
-    document.querySelectorAll('.faq-item.open').forEach(function(el){el.classList.remove('open');});
-    if(!isOpen)item.classList.add('open');
-  });
-});
 </script>
 </body>
 </html>
