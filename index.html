@@ -126,6 +126,7 @@
     }
     @media(max-width:899px){
       .pratiques-intro{padding:var(--sp) clamp(20px,6vw,80px) 0}
+      .pratiques-photo{aspect-ratio:16/9}
     }
 
     /* PRATIQUE LIGHTBOX */
@@ -580,42 +581,42 @@
     <h2 class="reveal">F. A. <em>Q.</em></h2>
 
     <div class="faq-item reveal">
-      <button class="faq-q">Faut-il avoir une expérience en danse pour participer ?<span class="faq-icon">+</span></button>
+      <button class="faq-q">Faut-il avoir une expérience en danse pour participer&nbsp;?<span class="faq-icon">+</span></button>
       <div class="faq-a"><p>Non, aucune expérience préalable n'est nécessaire. Les cours sont adaptés à chaque participant après un bilan individuel réalisé à votre arrivée. L'essentiel est l'envie d'explorer le mouvement et de prendre soin de soi.</p></div>
     </div>
 
     <div class="faq-item reveal">
-      <button class="faq-q">Que comprend exactement le tarif ?<span class="faq-icon">+</span></button>
+      <button class="faq-q">Que comprend exactement le tarif&nbsp;?<span class="faq-icon">+</span></button>
       <div class="faq-a"><p>Le tarif inclut l'hébergement en pension complète (petit déjeuner, déjeuner et dîner), 13 pratiques corporelles, 6 ateliers, et la soirée de clôture Bal Masqué. Les soins individuels (massage, ostéopathie, Kobido) et cours privés sont en option et facturés séparément.</p></div>
     </div>
 
     <div class="faq-item reveal">
-      <button class="faq-q">Le séjour est-il adapté aux personnes ayant des douleurs ou limitations physiques ?<span class="faq-icon">+</span></button>
+      <button class="faq-q">Le séjour est-il adapté aux personnes ayant des douleurs ou limitations physiques&nbsp;?<span class="faq-icon">+</span></button>
       <div class="faq-a"><p>Tout à fait. Marina et Oleg adaptent chaque cours à vos possibilités du moment — vous faites ce que vous pouvez, à votre rythme. Ces cours sont avant tout là pour le plaisir et le bien-être, pas pour la performance. Un bilan avec notre kinésithérapeute est prévu dès le premier jour pour identifier vos besoins spécifiques.</p></div>
     </div>
 
     <div class="faq-item reveal">
-      <button class="faq-q">Combien de participants seront présents ?<span class="faq-icon">+</span></button>
+      <button class="faq-q">Combien de participants seront présents&nbsp;?<span class="faq-icon">+</span></button>
       <div class="faq-a"><p>Pour cette première édition, nous accueillons entre 13 et 15 participants. Ce format intimiste est un choix délibéré : il permet un suivi personnalisé, une vraie cohésion de groupe et une qualité d'expérience qu'un grand groupe ne permettrait pas.</p></div>
     </div>
 
     <div class="faq-item reveal">
-      <button class="faq-q">Faut-il assister à toutes les activités ?<span class="faq-icon">+</span></button>
+      <button class="faq-q">Faut-il assister à toutes les activités&nbsp;?<span class="faq-icon">+</span></button>
       <div class="faq-a"><p>Non, vous êtes libre de construire votre séjour selon vos envies et votre énergie. Vous déterminez votre propre rythme. Cela dit, chaque cours et atelier apporte quelque chose de spécifique — plus vous vous y investissez, plus les bénéfices seront profonds et durables.</p></div>
     </div>
 
     <div class="faq-item reveal">
-      <button class="faq-q">Je souhaite venir accompagné(e) d'une personne qui ne participe pas au programme — est-ce possible ?<span class="faq-icon">+</span></button>
+      <button class="faq-q">Je souhaite venir accompagné(e) d'une personne qui ne participe pas au programme — est-ce possible&nbsp;?<span class="faq-icon">+</span></button>
       <div class="faq-a"><p>Ce séjour est conçu comme une immersion dans le mouvement et la vie de groupe — l'hébergement au château est proposé uniquement dans le cadre du programme complet. Une exception est faite pour les enfants de moins de 10 ans accompagnant un participant. Contactez-nous pour en discuter.</p></div>
     </div>
 
     <div class="faq-item reveal">
-      <button class="faq-q">Quelles sont les conditions d'annulation ?<span class="faq-icon">+</span></button>
+      <button class="faq-q">Quelles sont les conditions d'annulation&nbsp;?<span class="faq-icon">+</span></button>
       <div class="faq-a"><p>Nous comprenons que la vie peut réserver des surprises. Annulation jusqu'à 45 jours avant : remboursement intégral. Entre 15 et 45 jours : 50 % sont retenus pour couvrir les frais engagés. Moins de 15 jours : contactez-nous, nous trouverons une solution ensemble.</p></div>
     </div>
 
     <div class="faq-item reveal">
-      <button class="faq-q">Y a-t-il un transfert depuis Paris ?<span class="faq-icon">+</span></button>
+      <button class="faq-q">Y a-t-il un transfert depuis Paris&nbsp;?<span class="faq-icon">+</span></button>
       <div class="faq-a"><p>Le château est accessible en train depuis Paris Gare de Lyon (45 min jusqu'à Montereau, puis taxi 15 min). Un transfert privé depuis l'aéroport ou tout autre point de Paris peut être organisé sur demande — contactez-nous pour en savoir plus.</p></div>
     </div>
 
@@ -791,11 +792,20 @@ document.querySelectorAll('.reveal').forEach(function(el){obsRev.observe(el);});
   });
   outer.addEventListener('pointercancel',function(){isDragging=false;isPointer=false;snapToNearest();});
 
-  var touchStartX=0;
-  outer.addEventListener('touchstart',function(e){touchStartX=e.touches[0].clientX;startTranslate=currentX;track.classList.add('dragging');},{passive:true});
-  outer.addEventListener('touchmove',function(e){moveTo(startTranslate+(touchStartX-e.touches[0].clientX));},{passive:true});
+  var touchStartX=0,touchStartY=0,touchIsHoriz=false;
+  outer.addEventListener('touchstart',function(e){touchStartX=e.touches[0].clientX;touchStartY=e.touches[0].clientY;touchIsHoriz=false;startTranslate=currentX;},{passive:true});
+  outer.addEventListener('touchmove',function(e){
+    var dx=touchStartX-e.touches[0].clientX;
+    var dy=Math.abs(touchStartY-e.touches[0].clientY);
+    if(!touchIsHoriz && dy>Math.abs(dx))return;
+    touchIsHoriz=true;
+    e.preventDefault();
+    track.classList.add('dragging');
+    moveTo(startTranslate+dx);
+  },{passive:false});
   outer.addEventListener('touchend',function(e){
     var dx=touchStartX-e.changedTouches[0].clientX;
+    track.classList.remove('dragging');
     if(Math.abs(dx)<5){
       var t=e.changedTouches[0];
       var target=document.elementFromPoint(t.clientX,t.clientY);
