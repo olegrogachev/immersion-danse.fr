@@ -112,7 +112,7 @@
     .pratiques-header{padding:0}
     .pratiques-photo{width:100%;aspect-ratio:16/9;overflow:hidden;margin-top:0}
     .pratiques-photo img{width:100%;height:100%;object-fit:cover;object-position:center 35%;display:block}
-    .pratiques-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.05)}
+    .pratiques-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.05);margin-top:clamp(32px,5vw,60px)}
     .pratique-item{padding:30px 26px;background:var(--dark2);transition:background .25s;cursor:pointer}
     .pratique-item:hover{background:#4a3018}
     .pratique-item h3{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:400;color:var(--gold-pale);margin-bottom:10px}
@@ -242,7 +242,8 @@
     .tarif-card{border:1px solid rgba(111,62,20,.16);padding:40px 28px;background:var(--warm);transition:border-color .25s,box-shadow .25s,transform .2s;cursor:pointer}
     .tarif-card:hover{border-color:var(--gold);box-shadow:0 8px 36px rgba(111,62,20,.1);transform:translateY(-2px)}
     .tarif-card:hover .tarif-select-hint{opacity:1}
-    .tarif-select-hint{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-top:18px;display:block;opacity:0;transition:opacity .2s}
+    .tarif-select-hint{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-pale);margin-top:18px;display:block;opacity:.6;transition:opacity .2s}
+    .tarif-card:hover .tarif-select-hint{opacity:1}
     .tarif-type{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:block}
     .tarif-price{font-family:'Cormorant Garamond',serif;font-size:50px;font-weight:300;color:var(--dark);line-height:1}
     .tarif-price sup{font-size:22px;vertical-align:super}
@@ -772,11 +773,15 @@ document.querySelectorAll('.reveal').forEach(function(el){obsRev.observe(el);});
 
   goToIndex(0,false);
 
-  document.getElementById('sliderPrev').addEventListener('click',function(){if(!isAnimating)goToIndex(currentIndex-1,true);});
-  document.getElementById('sliderNext').addEventListener('click',function(){if(!isAnimating)goToIndex(currentIndex+1,true);});
+  document.getElementById('sliderPrev').addEventListener('click',function(e){e.stopPropagation();if(!isAnimating)goToIndex(currentIndex-1,true);});
+  document.getElementById('sliderNext').addEventListener('click',function(e){e.stopPropagation();if(!isAnimating)goToIndex(currentIndex+1,true);});
 
   var pStartX=0,pStartT=0,pDragging=false,pMoved=false;
-  outer.addEventListener('pointerdown',function(e){if(e.pointerType==='touch')return;pDragging=true;pMoved=false;pStartX=e.clientX;pStartT=currentX;outer.setPointerCapture(e.pointerId);});
+  outer.addEventListener('pointerdown',function(e){
+    if(e.target.closest('.slider-btn'))return;
+    if(e.pointerType==='touch')return;
+    pDragging=true;pMoved=false;pStartX=e.clientX;pStartT=currentX;outer.setPointerCapture(e.pointerId);
+  });
   outer.addEventListener('pointermove',function(e){if(!pDragging||e.pointerType==='touch')return;if(Math.abs(e.clientX-pStartX)>5)pMoved=true;if(pMoved){track.style.transition='none';track.style.transform='translateX(-'+(pStartT-(e.clientX-pStartX))+'px)';}});
   outer.addEventListener('pointerup',function(e){
     if(!pDragging||e.pointerType==='touch')return;
@@ -789,7 +794,10 @@ document.querySelectorAll('.reveal').forEach(function(el){obsRev.observe(el);});
   outer.addEventListener('pointercancel',function(){pDragging=false;goToIndex(currentIndex,true);});
 
   var tSX=0,tSY=0,tST=0,tHoriz=false,tLX=0,tLT=0,tVel=0;
-  outer.addEventListener('touchstart',function(e){tSX=e.touches[0].clientX;tSY=e.touches[0].clientY;tHoriz=false;tST=currentX;tLX=tSX;tLT=Date.now();tVel=0;},{passive:true});
+  outer.addEventListener('touchstart',function(e){
+    if(e.target.closest('.slider-btn'))return;
+    tSX=e.touches[0].clientX;tSY=e.touches[0].clientY;tHoriz=false;tST=currentX;tLX=tSX;tLT=Date.now();tVel=0;
+  },{passive:true});
   outer.addEventListener('touchmove',function(e){
     var dx=e.touches[0].clientX-tSX,dy=Math.abs(e.touches[0].clientY-tSY);
     if(!tHoriz&&dy>Math.abs(dx))return;
