@@ -84,7 +84,8 @@
 
     /* SECTION SPACING */
     @media(max-width:899px){
-      #bal{margin-bottom:0;padding-bottom:clamp(32px,6vw,60px);background:var(--warm)}
+      #hebergement{border-top:clamp(32px,6vw,60px) solid var(--warm)}
+      .pratiques-photo{margin-left:calc(-1 * clamp(20px,6vw,80px));margin-right:calc(-1 * clamp(20px,6vw,80px));width:auto}
     }
     #concept{background:var(--warm);display:flex;flex-direction:column;padding:0}
     #concept .img-wrap{width:100%;aspect-ratio:16/9;overflow:hidden;flex-shrink:0}
@@ -104,13 +105,15 @@
     #pour-qui p em{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;color:var(--gold)}
 
     /* PRATIQUES */
-    #pratiques{background:var(--dark2);padding:0}
+    #pratiques{background:var(--dark2);padding:0 !important;overflow:hidden}
+    #pratiques .pratiques-header{padding:0 !important;width:100% !important}
+    #pratiques .pratiques-photo{width:100% !important;margin:0 !important;padding:0 !important}
     #pratiques .section-label{color:var(--gold-pale);display:block}
     #pratiques h2{color:var(--cream)}
     #pratiques .pratiques-intro p{color:rgba(248,244,237,.5)}
     #pratiques .line{background:var(--gold-pale)}
-    .pratiques-header{padding:var(--sp) clamp(20px,6vw,80px) 0}
-    .pratiques-photo{width:100%;aspect-ratio:16/9;overflow:hidden;margin-top:var(--sp)}
+    .pratiques-header{padding:0}
+    .pratiques-photo{width:100%;aspect-ratio:16/9;overflow:hidden;margin-top:0}
     .pratiques-photo img{width:100%;height:100%;object-fit:cover;object-position:center 35%;display:block}
     .pratiques-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.05)}
     .pratique-item{padding:30px 26px;background:var(--dark2);transition:background .25s;cursor:pointer}
@@ -124,12 +127,14 @@
     /* Desktop: photo left, header right */
     @media(min-width:900px){
       .pratiques-header{display:flex;flex-direction:row;align-items:stretch;padding:0;margin-bottom:0}
-      .pratiques-photo{width:46%;aspect-ratio:unset;min-height:400px;margin-top:0;flex-shrink:0}
+      .pratiques-photo{width:46%;aspect-ratio:unset;min-height:400px;flex-shrink:0}
       .pratiques-intro{flex:1;padding:clamp(40px,5vw,80px);display:flex;flex-direction:column;justify-content:center}
     }
     @media(max-width:899px){
+      #pratiques{padding-top:0}
+      .pratiques-header{width:100%}
+      .pratiques-photo{width:100%;aspect-ratio:16/9}
       .pratiques-intro{padding:var(--sp) clamp(20px,6vw,80px) 0}
-      .pratiques-photo{aspect-ratio:16/9}
     }
 
     /* PRATIQUE LIGHTBOX */
