@@ -190,7 +190,7 @@
     .galerie-header{padding:0 clamp(20px,6vw,80px);margin-bottom:36px}
     .slider-outer{position:relative;overflow:hidden;cursor:grab;user-select:none}
     .slider-outer:active{cursor:grabbing}
-    .slider-track{display:flex;gap:14px;padding:0 clamp(20px,6vw,80px);transition:transform .45s cubic-bezier(.25,.46,.45,.94);will-change:transform}
+    .slider-track{display:flex;gap:14px;padding:0 clamp(20px,6vw,80px);transition:transform .5s cubic-bezier(.23,1,.32,1);will-change:transform}
     .slider-track.no-transition{transition:none}
     .slide{flex:0 0 clamp(220px,30vw,360px);height:clamp(180px,25vw,300px);overflow:hidden;cursor:zoom-in}
     .slide img{width:100%;height:100%;object-fit:cover;transition:transform .4s;pointer-events:none;-webkit-user-drag:none;user-select:none}
@@ -272,6 +272,8 @@
     .faq-a p{font-size:14px;color:var(--grey);line-height:1.85;padding-bottom:22px;max-width:none}
 
     /* CONTACT */
+    .acces-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+    @media(max-width:768px){.acces-grid{grid-template-columns:1fr;gap:32px}}
     #contact{background:var(--dark2);text-align:center}
     #contact .section-label{color:var(--gold-pale)}
     #contact h2{color:var(--cream);margin:0 auto 20px}
@@ -550,7 +552,7 @@
     <span class="section-label reveal">Accès</span>
     <h2 class="reveal">Comment <em>nous rejoindre</em></h2>
     <div class="line reveal"></div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start" class="acces-grid reveal">
+    <div class="acces-grid reveal">
       <div>
         <div style="margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid rgba(111,62,20,.1)">
           <p style="font-family:'Cormorant Garamond',serif;font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;max-width:none">En train</p>
@@ -839,19 +841,27 @@ document.querySelectorAll('.reveal').forEach(function(el){obsRev.observe(el);});
   outer.addEventListener('pointercancel',function(){isDragging=false;goToIndex(currentIndex,true);});
 
   /* ── TOUCH (mobile) ── */
-  var touchStartX=0,touchStartY=0,touchIsHoriz=false,touchStartTranslate=0;
-  outer.addEventListener('touchstart',function(e){touchStartX=e.touches[0].clientX;touchStartY=e.touches[0].clientY;touchIsHoriz=false;touchStartTranslate=currentX;},{passive:true});
+  var touchStartX=0,touchStartY=0,touchIsHoriz=false,touchStartTranslate=0,touchLastX=0,touchLastTime=0,touchVelocity=0;
+  outer.addEventListener('touchstart',function(e){
+    touchStartX=e.touches[0].clientX;touchStartY=e.touches[0].clientY;
+    touchIsHoriz=false;touchStartTranslate=currentX;
+    touchLastX=touchStartX;touchLastTime=Date.now();touchVelocity=0;
+  },{passive:true});
   outer.addEventListener('touchmove',function(e){
     var dx=e.touches[0].clientX-touchStartX;
     var dy=Math.abs(e.touches[0].clientY-touchStartY);
     if(!touchIsHoriz&&dy>Math.abs(dx))return;
     touchIsHoriz=true;
     e.preventDefault();
+    var now=Date.now();
+    var dt=now-touchLastTime;
+    if(dt>0)touchVelocity=(e.touches[0].clientX-touchLastX)/dt;
+    touchLastX=e.touches[0].clientX;touchLastTime=now;
     setPosition(touchStartTranslate-dx,false);
   },{passive:false});
   outer.addEventListener('touchend',function(e){
     var dx=e.changedTouches[0].clientX-touchStartX;
-    if(Math.abs(dx)<5){
+    if(Math.abs(dx)<5&&Math.abs(touchVelocity)<0.1){
       var t=e.changedTouches[0];
       var target=document.elementFromPoint(t.clientX,t.clientY);
       var slide=target&&target.closest('.slide');
@@ -862,8 +872,13 @@ document.querySelectorAll('.reveal').forEach(function(el){obsRev.observe(el);});
       }
     }
     var sw=getSlideWidth();
-    if(Math.abs(dx)>sw*0.15){
-      goToIndex(dx<0?currentIndex+1:currentIndex-1,true);
+    /* Инерция — если скорость высокая, перелистываем на несколько слайдов */
+    var momentum=touchVelocity*300;
+    var totalDx=dx+momentum;
+    if(Math.abs(totalDx)>sw*0.15){
+      var steps=Math.round(Math.abs(totalDx)/sw);
+      steps=Math.max(1,Math.min(steps,2));
+      goToIndex(totalDx<0?currentIndex+steps:currentIndex-steps,true);
     } else {
       goToIndex(currentIndex,true);
     }
