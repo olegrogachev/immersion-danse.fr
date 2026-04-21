@@ -84,10 +84,6 @@
     .line{height:1px;background:var(--gold);margin:0 0 26px;width:100%;max-width:580px}
 
     /* SECTION SPACING */
-    @media(max-width:899px){
-      #hebergement{border-top:clamp(32px,6vw,60px) solid var(--warm)}
-      .pratiques-photo{margin-left:calc(-1 * clamp(20px,6vw,80px));margin-right:calc(-1 * clamp(20px,6vw,80px));width:auto}
-    }
     #concept{background:var(--warm);display:flex;flex-direction:column;padding:0}
     #concept .img-wrap{width:100%;aspect-ratio:16/9;overflow:hidden;flex-shrink:0}
     #concept .img-wrap img{width:100%;height:100%;object-fit:cover;display:block}
@@ -412,11 +408,11 @@
   </div>
   <div class="pratiques-grid reveal">
     <div class="pratique-item" data-pratique="gym"><h3>Gymnastique de Santé</h3><p>Guidée par un kinésithérapeute — renforcement, posture et programme individualisé pour chacun.</p><span class="more-hint">En savoir plus →</span></div>
-    <div class="pratique-item" data-pratique="barre"><h3>Travail Postural &amp; Danse Classique</h3><p>Alignement, coordination et qualité de présence — inspiré de la technique du ballet classique.</p><span class="more-hint">En savoir plus →</span></div>
-    <div class="pratique-item" data-pratique="munz"><h3>MÜNZ FLOOR<sup style="font-size:10px;vertical-align:super">®</sup></h3><p>Pratique douce au sol centrée sur les fascias pour libérer les tensions et retrouver fluidité et mobilité.</p><span class="more-hint">En savoir plus →</span></div>
+    <div class="pratique-item" data-pratique="barre"><h3>Travail Postural &amp; Danse Classique</h3><p>Verticalité, qualité de présence et maintien harmonieux — inspiré de la technique du ballet classique.</p><span class="more-hint">En savoir plus →</span></div>
+    <div class="pratique-item" data-pratique="munz"><h3>MÜNZ FLOOR<sup style="font-size:10px;vertical-align:super">®</sup></h3><p>Pratique douce au sol centrée sur les fascias pour libérer les tensions profondes et retrouver la fluidité articulaire.</p><span class="more-hint">En savoir plus →</span></div>
     <div class="pratique-item" data-pratique="contemporaine"><h3>Danse Contemporaine</h3><p>Un espace de liberté pour explorer le mouvement, relâcher le corps et exprimer ses émotions.</p><span class="more-hint">En savoir plus →</span></div>
-    <div class="pratique-item" data-pratique="salon"><h3>Danse Latine</h3><p>Coordination, sensualité et émotions vives à travers le mouvement partagé.</p><span class="more-hint">En savoir plus →</span></div>
-    <div class="pratique-item" data-pratique="historique"><h3>Danse Historique</h3><p>Une immersion dans l'esthétique du passé — menuet, valse et élégance des gestes.</p><span class="more-hint">En savoir plus →</span></div>
+    <div class="pratique-item" data-pratique="salon"><h3>Danse Latine</h3><p>La sensualité et la confiance en soi — une présence qui rayonne.</p><span class="more-hint">En savoir plus →</span></div>
+    <div class="pratique-item" data-pratique="historique"><h3>Danse Historique</h3><p>Valse, menuet et élégance des gestes — une immersion dans l'esthétique des XVIIe et XVIIIe siècles. Une expérience qui prépare magnifiquement le Bal Masqué de clôture.</p><span class="more-hint">En savoir plus →</span></div>
   </div>
 </section>
 
@@ -468,22 +464,21 @@
     <span class="section-label">Soirée de clôture</span>
     <h2>Bal <em>Masqué</em></h2>
     <div class="line"></div>
-    <p>Dîner aux chandelles, performances artistiques et danses d'époque. Une soirée d'exception pour clore le séjour dans la magie du mouvement.</p>
+    <p>Une soirée avec son charme envoûtant — dîner aux chandelles dans les salons du château, performances artistiques et danses d'époque. Une clôture digne de dix jours d'exception.</p>
   </div>
   <div class="bal-img reveal"><img src="5.jpg" alt="Bal Masqué"/></div>
 </section>
 
 <!-- HÉBERGEMENT -->
 <section id="hebergement">
-  <div class="heb-img reveal"><img src="6.jpg" alt="Petit déjeuner dans le jardin du château"/></div>
   <div class="heb-text reveal">
     <span class="section-label">Hébergement</span>
     <h2>Un séjour au <em>château</em></h2>
     <div class="line"></div>
-    <p>Hébergement en pension complète dans le château de Misy-sur-Yonne. Petit déjeuner, déjeuner et dîner préparés chaque jour.</p>
-    <p style="margin-top:14px">Les chambres individuelles et doubles sont disponibles selon les préférences de chaque participant.</p>
+    <p>Hébergement en pension complète dans le château de Misy-sur-Yonne — entièrement rénové dans un esprit qui respecte l'âme du lieu, ses pierres, ses volumes et son histoire. Les chambres allient le confort moderne à l'élégance d'époque, pour un séjour qui prend soin de chaque détail.</p>
     <br><button class="btn btn-reserve" onclick="openModal()">Réserver ma place</button>
   </div>
+  <div class="heb-img reveal"><img src="6.jpg" alt="Château de Misy-sur-Yonne hébergement"/></div>
 </section>
 
 <!-- GALERIE -->
@@ -562,9 +557,13 @@
           <p style="font-family:'Cormorant Garamond',serif;font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;max-width:none">En voiture</p>
           <p>Paris → A6 direction Lyon → sortie Montereau-Fault-Yonne<br>Environ 1h15 depuis Paris.</p>
         </div>
-        <div>
+        <div style="margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid rgba(111,62,20,.1)">
           <p style="font-family:'Cormorant Garamond',serif;font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;max-width:none">En avion</p>
-          <p>Aéroport Paris-Charles de Gaulle. Transfert privé depuis l'aéroport organisé sur demande — contactez-nous pour en savoir plus.</p>
+          <p>Aéroport Paris-Charles de Gaulle — comptez environ 1h30 jusqu'au château.</p>
+        </div>
+        <div>
+          <p style="font-family:'Cormorant Garamond',serif;font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;max-width:none">Transfert privé</p>
+          <p>Un transfert depuis l'aéroport ou tout autre point de Paris peut être organisé sur demande. Contactez-nous pour en savoir plus.</p>
         </div>
       </div>
       <div>
@@ -614,7 +613,7 @@
 
     <div class="faq-item reveal">
       <button class="faq-q">Je souhaite venir accompagné(e) d'une personne qui ne participe pas au programme — est-ce possible&nbsp;?<span class="faq-icon">+</span></button>
-      <div class="faq-a"><p>Ce séjour est conçu comme une immersion dans le mouvement et la vie de groupe — l'hébergement au château est proposé uniquement dans le cadre du programme complet. Une exception est faite pour les enfants de moins de 10 ans accompagnant un participant. Contactez-nous pour en discuter.</p></div>
+      <div class="faq-a"><p>Oui, tout à fait. Si vous souhaitez venir avec quelqu'un, cette personne est la bienvenue — elle participera au séjour au même tarif que vous. Elle peut choisir de suivre les cours ou simplement profiter du cadre et de l'ambiance, sans obligation. L'hébergement au château est proposé uniquement dans le cadre du programme complet. Une exception est faite pour les enfants de moins de 10 ans accompagnant un participant.</p></div>
     </div>
 
     <div class="faq-item reveal">
@@ -936,14 +935,14 @@ async function submitForm(e){
     },
     barre:{
       title:"Travail Postural & Danse Classique",
-      desc:"Inspirée de la technique du ballet classique, cette pratique permet de travailler l'alignement du corps, la coordination et la qualité de présence. Aucune expérience préalable n'est nécessaire : les exercices sont adaptés à chaque niveau. On y développe un maintien harmonieux et une présence corporelle raffinée.",
+      desc:"Inspirée de la technique du ballet classique, cette pratique travaille la verticalité, l'alignement du corps et la qualité de présence. Aucune expérience préalable n'est nécessaire : les exercices sont adaptés à chaque niveau. On y développe un maintien harmonieux et une présence corporelle raffinée.",
       pedName:"Marina Kudryashova",
       pedRole:"Danseuse · Pédagogue · Académie du Bolchoï",
       pedBio:""
     },
     munz:{
       title:"MÜNZ FLOOR®",
-      desc:"Le Münz Floor® est une pratique somatique douce travaillant au sol. Cette méthode mobilise les fascias pour libérer les tensions profondes, retrouver la fluidité articulaire et développer une mobilité consciente. Idéale pour les personnes souffrant de tensions chroniques.",
+      desc:"Le Münz Floor® est une pratique somatique douce travaillant au sol. Cette méthode mobilise les fascias pour libérer les tensions profondes. Elle permet de retrouver la fluidité articulaire et de développer une mobilité plus consciente et habitée. Idéale pour les personnes souffrant de tensions chroniques.",
       pedName:"Marina Kudryashova & Oleg Rogachev",
       pedRole:"Certifié Münz Floor®",
       pedBio:""
@@ -957,14 +956,14 @@ async function submitForm(e){
     },
     salon:{
       title:"Danse Latine",
-      desc:"Salsa, bachata, cha-cha — la danse latine est l'art du mouvement à deux. Elle développe l'écoute de l'autre, la coordination, la sensualité et la confiance en soi. Accessible à tous les niveaux, en solo ou en duo. Une expérience qui prépare magnifiquement le Bal Masqué de clôture.",
+      desc:"Une invitation à habiter son corps autrement — à se sentir désirable avec élégance, sans ostentation. On y cultive la sensualité et la confiance en soi à travers la musique et le mouvement. Une expérience qui prépare magnifiquement le Bal Masqué de clôture.",
       pedName:"Oleg Rogachev",
       pedRole:"Premier Danseur · Opéra de Bordeaux",
       pedBio:""
     },
     historique:{
       title:"Danse Historique",
-      desc:"Danses de cour des XVIIe et XVIIIe siècles : menuet, contredanse, gavotte. Elle développe l'élégance naturelle des gestes, la conscience de l'espace et une présence cérémonieuse. Une expérience unique qui culmine lors du Bal Masqué de clôture.",
+      desc:"Valse, menuet — les danses de cour des XVIIe et XVIIIe siècles. Ces formes élégantes développent la grâce naturelle des gestes, la conscience de l'espace et une présence cérémonieuse. Une expérience unique qui culmine lors du Bal Masqué de clôture.",
       pedName:"Marina Kudryashova & Oleg Rogachev",
       pedRole:"Danseurs · Pédagogues · Spécialistes danse historique",
       pedBio:""
