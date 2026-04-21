@@ -101,11 +101,12 @@
     #pour-qui p em{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;color:var(--gold)}
 
     /* PRATIQUES */
-    #pratiques{background:var(--dark2);padding-bottom:0;padding-left:0 !important;padding-right:0 !important}
-    #pratiques .section-label{color:var(--gold-pale);padding:0 clamp(20px,6vw,80px);display:block}
-    #pratiques h2{color:var(--cream);padding:0 clamp(20px,6vw,80px)}
-    #pratiques>p{color:rgba(248,244,237,.5);padding:0 clamp(20px,6vw,80px)}
-    #pratiques .line{background:var(--gold-pale);margin-left:clamp(20px,6vw,80px);margin-right:clamp(20px,6vw,80px);width:auto;max-width:none}
+    #pratiques{background:var(--dark2);padding:0}
+    #pratiques .section-label{color:var(--gold-pale);display:block}
+    #pratiques h2{color:var(--cream)}
+    #pratiques .pratiques-intro p{color:rgba(248,244,237,.5)}
+    #pratiques .line{background:var(--gold-pale)}
+    .pratiques-header{padding:var(--sp) clamp(20px,6vw,80px) 0}
     .pratiques-photo{width:100%;aspect-ratio:16/9;overflow:hidden;margin-top:var(--sp)}
     .pratiques-photo img{width:100%;height:100%;object-fit:cover;object-position:center 35%;display:block}
     .pratiques-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.05)}
@@ -114,6 +115,18 @@
     .pratique-item h3{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:400;color:var(--gold-pale);margin-bottom:10px}
     .pratique-item p{font-size:13px;color:rgba(248,244,237,.42);max-width:none;line-height:1.7}
     .pratique-item .more-hint{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(196,154,108,.4);margin-top:12px;display:block}
+    @media(max-width:768px){.pratiques-grid{grid-template-columns:1fr}}
+    @media(min-width:769px) and (max-width:1024px){.pratiques-grid{grid-template-columns:repeat(2,1fr)}}
+
+    /* Desktop: photo left, header right */
+    @media(min-width:900px){
+      .pratiques-header{display:flex;flex-direction:row;align-items:stretch;padding:0;margin-bottom:0}
+      .pratiques-photo{width:46%;aspect-ratio:unset;min-height:400px;margin-top:0;flex-shrink:0}
+      .pratiques-intro{flex:1;padding:clamp(40px,5vw,80px);display:flex;flex-direction:column;justify-content:center}
+    }
+    @media(max-width:899px){
+      .pratiques-intro{padding:var(--sp) clamp(20px,6vw,80px) 0}
+    }
 
     /* PRATIQUE LIGHTBOX */
     .pratique-lb{display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(20,10,4,.92);z-index:600;align-items:center;justify-content:center;padding:20px}
@@ -179,16 +192,31 @@
     @media(max-width:600px){.slide{flex:0 0 80vw;height:55vw}}
 
     /* BAL */
-    #bal{min-height:460px;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:clamp(36px,7vw,96px)}
-    .bal-bg-img{position:absolute;inset:0}
-    .bal-bg-img img{width:100%;height:100%;object-fit:cover;object-position:center 40%}
-    .bal-bg-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(20,10,2,.92) 0%,rgba(20,10,2,.5) 50%,rgba(20,10,2,.15) 100%)}
-    #bal .content{position:relative;z-index:1;max-width:500px}
-    #bal .section-label{color:#e8c898;letter-spacing:.36em}
-    #bal h2{color:#ffffff;text-shadow:0 2px 12px rgba(0,0,0,.4)}
+    #bal{background:var(--dark2);display:flex;flex-direction:column;padding:0}
+    .bal-img{overflow:hidden;width:100%;flex-shrink:0}
+    .bal-img img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;filter:brightness(.88)}
+    .bal-text{padding:clamp(40px,7vw,90px) clamp(20px,6vw,80px);display:flex;flex-direction:column;justify-content:center}
+    #bal .section-label{color:var(--gold-pale)}
+    #bal h2{color:var(--cream)}
     #bal h2 em{color:#f0c880;font-style:italic}
-    #bal p{color:rgba(255,255,255,.82);max-width:360px;text-shadow:0 1px 6px rgba(0,0,0,.3)}
-    #bal .line{background:#c49a6c;opacity:.7}
+    #bal p{color:rgba(248,244,237,.72);max-width:400px}
+    #bal .line{background:rgba(196,154,108,.5)}
+
+    /* BAL mobile — fullscreen with overlay text */
+    @media(max-width:899px){
+      #bal{position:relative;min-height:460px;align-items:flex-end}
+      .bal-img{position:absolute;top:0;left:0;width:100%;height:100%;aspect-ratio:unset;order:-1}
+      .bal-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(20,10,2,.92) 0%,rgba(20,10,2,.5) 50%,rgba(20,10,2,.15) 100%)}
+      .bal-text{position:relative;z-index:1;padding:clamp(32px,6vw,60px) clamp(20px,6vw,48px)}
+      #bal p{color:rgba(255,255,255,.82)}
+    }
+
+    /* BAL desktop — split layout */
+    @media(min-width:900px){
+      #bal{flex-direction:row;align-items:stretch}
+      .bal-img{width:42%;aspect-ratio:unset;min-height:500px}
+      .bal-text{flex:1;padding:clamp(40px,5vw,80px)}
+    }
 
     /* HÉBERGEMENT — flex column always, side by side only on desktop */
     #hebergement{background:var(--warm);display:flex;flex-direction:column;padding:0}
@@ -217,7 +245,7 @@
     .tarif-early p{color:rgba(248,244,237,.62);font-size:12px;max-width:none;text-align:center;margin:0;line-height:1.8}
     .tarif-early strong{color:var(--gold-pale);font-weight:400;font-family:'Cormorant Garamond',serif;font-size:15px}
     .tarif-early .nodates{white-space:nowrap}
-    .note{font-size:12px;color:var(--grey);font-style:italic;margin-top:10px;text-align:center;display:block}
+    .note{font-size:12px;color:var(--grey);font-style:italic;margin:10px auto 0;text-align:center;display:block;max-width:none}
 
 
     /* FAQ */
@@ -361,11 +389,15 @@
 
 <!-- PRATIQUES -->
 <section id="pratiques">
-  <span class="section-label reveal">Programme</span>
-  <h2 class="reveal">Pratiques <em style="color:var(--gold-lt)">corporelles</em></h2>
-  <div class="line reveal"></div>
-  <p class="reveal">2 à 3 cours par jour, adaptés à chaque participant après bilan individuel avec un kinésithérapeute.</p>
-  <div class="pratiques-photo reveal"><img src="3.jpg" alt="Pratiques corporelles au château"/></div>
+  <div class="pratiques-header">
+    <div class="pratiques-photo reveal"><img src="3.jpg" alt="Pratiques corporelles au château"/></div>
+    <div class="pratiques-intro reveal">
+      <span class="section-label">Programme</span>
+      <h2>Pratiques <em style="color:var(--gold-lt)">corporelles</em></h2>
+      <div class="line"></div>
+      <p>2 à 3 cours par jour, adaptés à chaque participant après bilan individuel avec un kinésithérapeute.</p>
+    </div>
+  </div>
   <div class="pratiques-grid reveal">
     <div class="pratique-item" data-pratique="gym"><h3>Gymnastique de Santé</h3><p>Guidée par un kinésithérapeute — renforcement, posture et programme individualisé pour chacun.</p><span class="more-hint">En savoir plus →</span></div>
     <div class="pratique-item" data-pratique="barre"><h3>Travail Postural &amp; Danse Classique</h3><p>Alignement, coordination et qualité de présence — inspiré de la technique du ballet classique.</p><span class="more-hint">En savoir plus →</span></div>
@@ -420,13 +452,13 @@
 
 <!-- BAL MASQUÉ -->
 <section id="bal">
-  <div class="bal-bg-img"><img src="5.jpg" alt="Bal Masqué"/></div>
-  <div class="content reveal">
+  <div class="bal-text reveal">
     <span class="section-label">Soirée de clôture</span>
     <h2>Bal <em>Masqué</em></h2>
     <div class="line"></div>
     <p>Dîner aux chandelles, performances artistiques et danses d'époque. Une soirée d'exception pour clore le séjour dans la magie du mouvement.</p>
   </div>
+  <div class="bal-img reveal"><img src="5.jpg" alt="Bal Masqué"/></div>
 </section>
 
 <!-- HÉBERGEMENT -->
