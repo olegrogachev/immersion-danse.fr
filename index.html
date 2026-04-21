@@ -773,8 +773,8 @@ document.querySelectorAll('.reveal').forEach(function(el){obsRev.observe(el);});
 
   goToIndex(0,false);
 
-  document.getElementById('sliderPrev').addEventListener('click',function(e){e.stopPropagation();if(!isAnimating)goToIndex(currentIndex+1,true);});
-  document.getElementById('sliderNext').addEventListener('click',function(e){e.stopPropagation();if(!isAnimating)goToIndex(currentIndex-1,true);});
+  document.getElementById('sliderPrev').addEventListener('click',function(e){e.stopPropagation();if(!isAnimating)goToIndex(currentIndex-1,true);});
+  document.getElementById('sliderNext').addEventListener('click',function(e){e.stopPropagation();if(!isAnimating)goToIndex(currentIndex+1,true);});
 
   var pStartX=0,pStartT=0,pDragging=false,pMoved=false;
   outer.addEventListener('pointerdown',function(e){
