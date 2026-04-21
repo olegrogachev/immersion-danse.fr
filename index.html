@@ -195,8 +195,8 @@
     .slide{flex:0 0 clamp(220px,30vw,360px);height:clamp(180px,25vw,300px);overflow:hidden;cursor:zoom-in}
     .slide img{width:100%;height:100%;object-fit:cover;transition:transform .4s;pointer-events:none;-webkit-user-drag:none;user-select:none}
     .slide:hover img{transform:scale(1.04)}
-    .slider-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(248,244,237,.92);border:1px solid rgba(111,62,20,.18);color:var(--gold);width:42px;height:42px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:17px;transition:.2s;z-index:2}
-    .slider-btn:hover{background:var(--gold);color:var(--cream)}
+    .slider-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(248,244,237,.15);border:1px solid rgba(248,244,237,.25);color:rgba(248,244,237,.8);width:42px;height:42px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:17px;transition:.2s;z-index:2;backdrop-filter:blur(4px)}
+    .slider-btn:hover{background:rgba(248,244,237,.35);color:#fff}
     .slider-prev{left:10px}
     .slider-next{right:10px}
     @media(max-width:600px){.slide{flex:0 0 80vw;height:55vw}}
@@ -744,175 +744,94 @@ var obsRev=new IntersectionObserver(function(entries){
 },{threshold:0.07});
 document.querySelectorAll('.reveal').forEach(function(el){obsRev.observe(el);});
 
-/* ── SLIDER + LIGHTBOX (infinite loop) ── */
+/* ── SLIDER + LIGHTBOX ── */
 (function(){
   var outer=document.getElementById('sliderOuter');
   var track=document.getElementById('sliderTrack');
-
   var images=['7.JPG','8.JPG','9.JPG','10.JPG','11.JPG','12.JPG','13.JPG','14.JPG','15.JPG','16.JPG','17.JPG','18.JPG','19.JPG','20.JPG','21.JPG','22.JPG'];
   var total=images.length;
-
-  /* ── Клонируем слайды: [clone_end ... originals ... clone_start] ── */
   var origSlides=Array.from(track.querySelectorAll('.slide'));
-  var clonesBefore=[], clonesAfter=[];
+  var currentIndex=0,currentX=0,isAnimating=false;
 
-  /* N клонов с конца — перед оригиналами */
-  var cloneCount=4;
-  for(var i=total-cloneCount;i<total;i++){
-    var cl=origSlides[i].cloneNode(true);
-    cl.classList.add('slide-clone');
-    track.insertBefore(cl,track.firstChild);
-    clonesBefore.unshift(cl);
-  }
-  /* N клонов с начала — после оригиналов */
-  for(var j=0;j<cloneCount;j++){
-    var cl2=origSlides[j].cloneNode(true);
-    cl2.classList.add('slide-clone');
-    track.appendChild(cl2);
-    clonesAfter.push(cl2);
-  }
-
-  var allSlides=Array.from(track.querySelectorAll('.slide'));
-
-  function getSlideWidth(){var s=track.querySelector('.slide');return s?s.offsetWidth+14:0;}
-
-  /* Начальная позиция — на первом оригинальном слайде */
-  var currentIndex=cloneCount; /* индекс в allSlides */
-  var currentX=0;
-
-  function setPosition(x,animate){
-    if(!animate)track.classList.add('no-transition');
-    track.style.transform='translateX(-'+x+'px)';
-    if(!animate)requestAnimationFrame(function(){requestAnimationFrame(function(){track.classList.remove('no-transition');});});
-    currentX=x;
-  }
+  function getSlideWidth(){return origSlides[0]?origSlides[0].offsetWidth+14:0;}
 
   function goToIndex(idx,animate){
+    idx=((idx%total)+total)%total;
     currentIndex=idx;
-    currentX=idx*getSlideWidth();
-    setPosition(currentX,animate!==false);
+    var targetX=idx*getSlideWidth();
+    if(animate){
+      isAnimating=true;
+      track.style.transition='transform .5s cubic-bezier(.23,1,.32,1)';
+      track.style.transform='translateX(-'+targetX+'px)';
+      setTimeout(function(){isAnimating=false;},520);
+    } else {
+      track.style.transition='none';
+      track.style.transform='translateX(-'+targetX+'px)';
+    }
+    currentX=targetX;
   }
 
-  /* Инициализация без анимации */
-  setTimeout(function(){goToIndex(cloneCount,false);},0);
+  goToIndex(0,false);
 
-  /* После анимации — проверяем нужен ли прыжок */
-  track.addEventListener('transitionend',function(){
-    if(currentIndex<cloneCount){
-      goToIndex(currentIndex+total,false);
-    } else if(currentIndex>=cloneCount+total){
-      goToIndex(currentIndex-total,false);
-    }
-  });
+  document.getElementById('sliderPrev').addEventListener('click',function(){if(!isAnimating)goToIndex(currentIndex-1,true);});
+  document.getElementById('sliderNext').addEventListener('click',function(){if(!isAnimating)goToIndex(currentIndex+1,true);});
 
-  /* Кнопки */
-  document.getElementById('sliderPrev').addEventListener('click',function(){goToIndex(currentIndex-1,true);});
-  document.getElementById('sliderNext').addEventListener('click',function(){goToIndex(currentIndex+1,true);});
-
-  /* ── POINTER (desktop) ── */
-  var startX=0,startTranslate=0,isDragging=false,hasMoved=false;
-
-  outer.addEventListener('pointerdown',function(e){if(e.pointerType==='touch')return;isDragging=true;hasMoved=false;startX=e.clientX;startTranslate=currentX;outer.setPointerCapture(e.pointerId);},{passive:false});
-  outer.addEventListener('pointermove',function(e){if(!isDragging||e.pointerType==='touch')return;var dx=Math.abs(e.clientX-startX);if(dx>5){hasMoved=true;track.classList.add('no-transition');}setPosition(startTranslate-(e.clientX-startX),false);});
+  var pStartX=0,pStartT=0,pDragging=false,pMoved=false;
+  outer.addEventListener('pointerdown',function(e){if(e.pointerType==='touch')return;pDragging=true;pMoved=false;pStartX=e.clientX;pStartT=currentX;outer.setPointerCapture(e.pointerId);});
+  outer.addEventListener('pointermove',function(e){if(!pDragging||e.pointerType==='touch')return;if(Math.abs(e.clientX-pStartX)>5)pMoved=true;if(pMoved){track.style.transition='none';track.style.transform='translateX(-'+(pStartT-(e.clientX-pStartX))+'px)';}});
   outer.addEventListener('pointerup',function(e){
-    if(!isDragging||e.pointerType==='touch')return;
-    isDragging=false;track.classList.remove('no-transition');
-    if(!hasMoved){
-      var target=document.elementFromPoint(e.clientX,e.clientY);
-      var slide=target&&target.closest('.slide');
-      if(slide){
-        var idx=origSlides.indexOf(slide);
-        if(idx<0){/* это клон — найдём оригинальный индекс */
-          var src=slide.querySelector('img').getAttribute('src');
-          idx=images.indexOf(src);
-        }
-        if(idx>=0)openLB(idx);
-      }
-      return;
-    }
-    var moved=startTranslate-currentX;
-    var sw=getSlideWidth();
-    if(Math.abs(moved)>sw*0.15){
-      goToIndex(moved>0?currentIndex+1:currentIndex-1,true);
-    } else {
-      goToIndex(currentIndex,true);
-    }
+    if(!pDragging||e.pointerType==='touch')return;
+    pDragging=false;
+    if(!pMoved){var target=document.elementFromPoint(e.clientX,e.clientY);var slide=target&&target.closest('.slide');if(slide){var idx=origSlides.indexOf(slide);if(idx>=0)openLB(idx);}return;}
+    var dx=e.clientX-pStartX,sw=getSlideWidth();
+    if(Math.abs(dx)>sw*0.15)goToIndex(dx<0?currentIndex+1:currentIndex-1,true);
+    else goToIndex(currentIndex,true);
   });
-  outer.addEventListener('pointercancel',function(){isDragging=false;goToIndex(currentIndex,true);});
+  outer.addEventListener('pointercancel',function(){pDragging=false;goToIndex(currentIndex,true);});
 
-  /* ── TOUCH (mobile) ── */
-  var touchStartX=0,touchStartY=0,touchIsHoriz=false,touchStartTranslate=0,touchLastX=0,touchLastTime=0,touchVelocity=0;
-  outer.addEventListener('touchstart',function(e){
-    touchStartX=e.touches[0].clientX;touchStartY=e.touches[0].clientY;
-    touchIsHoriz=false;touchStartTranslate=currentX;
-    touchLastX=touchStartX;touchLastTime=Date.now();touchVelocity=0;
-  },{passive:true});
+  var tSX=0,tSY=0,tST=0,tHoriz=false,tLX=0,tLT=0,tVel=0;
+  outer.addEventListener('touchstart',function(e){tSX=e.touches[0].clientX;tSY=e.touches[0].clientY;tHoriz=false;tST=currentX;tLX=tSX;tLT=Date.now();tVel=0;},{passive:true});
   outer.addEventListener('touchmove',function(e){
-    var dx=e.touches[0].clientX-touchStartX;
-    var dy=Math.abs(e.touches[0].clientY-touchStartY);
-    if(!touchIsHoriz&&dy>Math.abs(dx))return;
-    touchIsHoriz=true;
-    e.preventDefault();
-    var now=Date.now();
-    var dt=now-touchLastTime;
-    if(dt>0)touchVelocity=(e.touches[0].clientX-touchLastX)/dt;
-    touchLastX=e.touches[0].clientX;touchLastTime=now;
-    setPosition(touchStartTranslate-dx,false);
+    var dx=e.touches[0].clientX-tSX,dy=Math.abs(e.touches[0].clientY-tSY);
+    if(!tHoriz&&dy>Math.abs(dx))return;
+    tHoriz=true;e.preventDefault();
+    var now=Date.now(),dt=now-tLT;
+    if(dt>0)tVel=(e.touches[0].clientX-tLX)/dt;
+    tLX=e.touches[0].clientX;tLT=now;
+    track.style.transition='none';
+    track.style.transform='translateX(-'+(tST-dx)+'px)';
   },{passive:false});
   outer.addEventListener('touchend',function(e){
-    var dx=e.changedTouches[0].clientX-touchStartX;
-    if(Math.abs(dx)<5&&Math.abs(touchVelocity)<0.1){
-      var t=e.changedTouches[0];
-      var target=document.elementFromPoint(t.clientX,t.clientY);
+    var dx=e.changedTouches[0].clientX-tSX;
+    if(Math.abs(dx)<5&&Math.abs(tVel)<0.1){
+      var t=e.changedTouches[0],target=document.elementFromPoint(t.clientX,t.clientY);
       var slide=target&&target.closest('.slide');
-      if(slide){
-        var idx=origSlides.indexOf(slide);
-        if(idx<0){var src=slide.querySelector('img').getAttribute('src');idx=images.indexOf(src);}
-        if(idx>=0){openLB(idx);return;}
-      }
+      if(slide){var idx=origSlides.indexOf(slide);if(idx>=0){openLB(idx);return;}}
     }
-    var sw=getSlideWidth();
-    /* Инерция — если скорость высокая, перелистываем на несколько слайдов */
-    var momentum=touchVelocity*300;
-    var totalDx=dx+momentum;
-    if(Math.abs(totalDx)>sw*0.15){
-      var steps=Math.round(Math.abs(totalDx)/sw);
-      steps=Math.max(1,Math.min(steps,2));
-      goToIndex(totalDx<0?currentIndex+steps:currentIndex-steps,true);
-    } else {
-      goToIndex(currentIndex,true);
-    }
+    var sw=getSlideWidth(),momentum=tVel*250,total_dx=dx+momentum;
+    if(Math.abs(total_dx)>sw*0.12){
+      var steps=Math.min(2,Math.max(1,Math.round(Math.abs(total_dx)/sw)));
+      goToIndex(total_dx>0?currentIndex-steps:currentIndex+steps,true);
+    } else goToIndex(currentIndex,true);
   });
 
-  /* ── WHEEL ── */
-  outer.addEventListener('wheel',function(e){if(Math.abs(e.deltaX)>Math.abs(e.deltaY)){e.preventDefault();goToIndex(e.deltaX>0?currentIndex+1:currentIndex-1,true);}},{passive:false});
+  outer.addEventListener('wheel',function(e){if(Math.abs(e.deltaX)>Math.abs(e.deltaY)){e.preventDefault();if(!isAnimating)goToIndex(e.deltaX>0?currentIndex+1:currentIndex-1,true);}},{passive:false});
   window.addEventListener('resize',function(){goToIndex(currentIndex,false);});
 
-  /* ── LIGHTBOX ── */
-  var current=0;
-  var lb=document.getElementById('lightbox');
-  var lbImg=document.getElementById('lbImg');
-  var lbCounter=document.getElementById('lbCounter');
-
-  function openLB(idx){current=idx;lbImg.src=images[current];lbCounter.textContent=(current+1)+' / '+total;lb.classList.add('open');document.body.style.overflow='hidden';}
+  var lbCur=0,lb=document.getElementById('lightbox'),lbImg=document.getElementById('lbImg'),lbCounter=document.getElementById('lbCounter');
+  function openLB(idx){lbCur=idx;lbImg.src=images[lbCur];lbCounter.textContent=(lbCur+1)+' / '+total;lb.classList.add('open');document.body.style.overflow='hidden';}
   function closeLB(){lb.classList.remove('open');document.body.style.overflow='';lbImg.src='';}
-  function prevLB(){current=(current-1+total)%total;lbImg.src=images[current];lbCounter.textContent=(current+1)+' / '+total;}
-  function nextLB(){current=(current+1)%total;lbImg.src=images[current];lbCounter.textContent=(current+1)+' / '+total;}
-
+  function prevLB(){lbCur=(lbCur-1+total)%total;lbImg.src=images[lbCur];lbCounter.textContent=(lbCur+1)+' / '+total;}
+  function nextLB(){lbCur=(lbCur+1)%total;lbImg.src=images[lbCur];lbCounter.textContent=(lbCur+1)+' / '+total;}
   document.getElementById('lbClose').addEventListener('click',closeLB);
   document.getElementById('lbPrev').addEventListener('click',prevLB);
   document.getElementById('lbNext').addEventListener('click',nextLB);
   lb.addEventListener('click',function(e){if(e.target===lb)closeLB();});
   document.addEventListener('keydown',function(e){if(!lb.classList.contains('open'))return;if(e.key==='Escape')closeLB();if(e.key==='ArrowLeft')prevLB();if(e.key==='ArrowRight')nextLB();});
-
-  var lbTouchX=0,lbTouchY=0;
-  lb.addEventListener('touchstart',function(e){lbTouchX=e.touches[0].clientX;lbTouchY=e.touches[0].clientY;},{passive:true});
+  var lbTX=0,lbTY=0;
+  lb.addEventListener('touchstart',function(e){lbTX=e.touches[0].clientX;lbTY=e.touches[0].clientY;},{passive:true});
   lb.addEventListener('touchmove',function(e){e.preventDefault();},{passive:false});
-  lb.addEventListener('touchend',function(e){
-    var dx=lbTouchX-e.changedTouches[0].clientX;
-    var dy=Math.abs(lbTouchY-e.changedTouches[0].clientY);
-    if(Math.abs(dx)>30&&dy<60){dx>0?nextLB():prevLB();}
-  });
+  lb.addEventListener('touchend',function(e){var dx=lbTX-e.changedTouches[0].clientX,dy=Math.abs(lbTY-e.changedTouches[0].clientY);if(Math.abs(dx)>30&&dy<60){dx>0?nextLB():prevLB();}});
 })();
 
 /* ── TARIFS DYNAMIQUES ── */
