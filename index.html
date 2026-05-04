@@ -43,8 +43,8 @@
 
     /* HERO */
     #hero{min-height:100vh;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:0}
-    .hero-bg-img{position:absolute;inset:0}
-    .hero-bg-img img{width:100%;height:100%;object-fit:cover;object-position:center 20%}
+    .hero-bg-img{position:absolute;top:0;left:0;width:100%;height:100%}
+    .hero-bg-img img,.hero-bg-img video{width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block}
     .hero-bg-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(20,10,4,.88) 0%,rgba(20,10,4,.5) 35%,rgba(20,10,4,.1) 65%,transparent 100%)}
     .hero-inner{position:relative;z-index:1;width:100%;padding:0 clamp(24px,6vw,80px) clamp(40px,6vh,72px);text-align:left}
     .hero-eyebrow{font-size:10px;letter-spacing:.36em;text-transform:uppercase;color:#f0c880;margin-bottom:16px;opacity:0;animation:fadeUp .8s .2s forwards;display:block;text-shadow:0 1px 8px rgba(0,0,0,.5)}
@@ -357,7 +357,12 @@
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-bg-img"><img src="1.jpg" alt="Chorégraphie de Bien-Être"/></div>
+  <div class="hero-bg-img">
+    <video autoplay muted loop playsinline poster="1.jpg" id="heroVideo">
+      <source src="hero-desktop.mp4" media="(min-width:768px)" type="video/mp4">
+      <source src="hero-mobile.mp4" type="video/mp4">
+    </video>
+  </div>
   <div class="hero-inner">
     <span class="hero-eyebrow" style="color:#ffffff;letter-spacing:.28em;text-shadow:0 1px 12px rgba(0,0,0,.7)">Séjour Immersif</span>
     <h1 class="hero-title">Chorégraphie<br>de <em>Bien-Être</em></h1>
@@ -839,6 +844,22 @@ document.querySelectorAll('.reveal').forEach(function(el){obsRev.observe(el);});
   lb.addEventListener('touchstart',function(e){lbTX=e.touches[0].clientX;lbTY=e.touches[0].clientY;},{passive:true});
   lb.addEventListener('touchmove',function(e){e.preventDefault();},{passive:false});
   lb.addEventListener('touchend',function(e){var dx=lbTX-e.changedTouches[0].clientX,dy=Math.abs(lbTY-e.changedTouches[0].clientY);if(Math.abs(dx)>30&&dy<60){dx>0?nextLB():prevLB();}});
+})();
+
+/* ── HERO VIDEO ── */
+(function(){
+  var video=document.getElementById('heroVideo');
+  if(!video)return;
+  function loadVideo(){
+    var src=window.innerWidth>=768?'hero-desktop.mp4':'hero-mobile.mp4';
+    if(video.getAttribute('data-src')===src)return;
+    video.setAttribute('data-src',src);
+    video.innerHTML='<source src="'+src+'" type="video/mp4">';
+    video.load();
+    video.play().catch(function(){});
+  }
+  loadVideo();
+  window.addEventListener('resize',loadVideo);
 })();
 
 /* ── TARIFS DYNAMIQUES ── */
