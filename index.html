@@ -865,18 +865,36 @@ document.querySelectorAll('.reveal').forEach(function(el){obsRev.observe(el);});
   video.addEventListener('playing',function(){
     video.style.transition='opacity .6s';
     video.style.opacity='1';
-  },{once:false});
+  });
+
+  function restartVideo(){
+    video.style.transition='none';
+    video.style.opacity='0';
+    video.currentTime=0;
+    var p=video.play();
+    if(p!==undefined){
+      p.then(function(){
+        video.style.transition='opacity .6s';
+        video.style.opacity='1';
+      }).catch(function(){
+        /* автовоспроизведение заблокировано — показываем постер */
+        video.style.opacity='0';
+      });
+    }
+  }
 
   /* Перезапуск при возврате на вкладку */
   document.addEventListener('visibilitychange',function(){
-    if(document.visibilityState==='visible'){
-      video.play().catch(function(){});
-    }
+    if(document.visibilityState==='visible') restartVideo();
   });
 
-  /* Перезапуск при фокусе окна (Safari) */
+  /* Перезапуск при фокусе окна (Safari на iOS) */
+  window.addEventListener('pageshow',function(e){
+    restartVideo();
+  });
+
   window.addEventListener('focus',function(){
-    if(video.paused)video.play().catch(function(){});
+    if(video.paused) restartVideo();
   });
 
   loadVideo();
