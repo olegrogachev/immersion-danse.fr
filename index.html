@@ -860,42 +860,30 @@ document.querySelectorAll('.reveal').forEach(function(el){obsRev.observe(el);});
     video.play().catch(function(){});
   }
 
-  /* Показываем poster пока видео не начало играть */
   video.style.opacity='0';
   video.addEventListener('playing',function(){
     video.style.transition='opacity .6s';
     video.style.opacity='1';
   });
 
-  function restartVideo(){
-    video.style.transition='none';
-    video.style.opacity='0';
-    video.currentTime=0;
-    var p=video.play();
-    if(p!==undefined){
-      p.then(function(){
-        video.style.transition='opacity .6s';
-        video.style.opacity='1';
-      }).catch(function(){
-        /* автовоспроизведение заблокировано — показываем постер */
-        video.style.opacity='0';
-      });
+  function tryPlay(){
+    if(video.paused&&video.readyState>=2){
+      video.play().catch(function(){});
     }
   }
 
-  /* Перезапуск при возврате на вкладку */
   document.addEventListener('visibilitychange',function(){
-    if(document.visibilityState==='visible') restartVideo();
+    if(document.visibilityState==='visible') tryPlay();
   });
+  window.addEventListener('pageshow',function(){ tryPlay(); });
+  window.addEventListener('focus',function(){ tryPlay(); });
+  document.addEventListener('touchstart',function(){ tryPlay(); },{passive:true});
+  document.addEventListener('click',function(){ tryPlay(); },{passive:true});
 
-  /* Перезапуск при фокусе окна (Safari на iOS) */
-  window.addEventListener('pageshow',function(e){
-    restartVideo();
-  });
-
-  window.addEventListener('focus',function(){
-    if(video.paused) restartVideo();
-  });
+  /* Полинг каждые 2 сек — перезапускаем если видео встало */
+  setInterval(function(){
+    if(document.visibilityState==='visible') tryPlay();
+  }, 2000);
 
   loadVideo();
   window.addEventListener('resize',loadVideo);
