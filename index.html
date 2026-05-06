@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Chorégraphie de Bien-Être — Séjour Immersif</title>
+  <title>Chorégraphie du Bien-Être — Séjour Immersif</title>
   <meta name="description" content="Une parenthèse de 10 jours au Château de Misy-sur-Yonne. Danse, bien-être et art de vivre. 10–19 août 2026."/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -327,7 +327,7 @@
 
 <!-- NAV -->
 <nav id="main-nav">
-  <a href="#hero" class="nav-brand">Chorégraphie de Bien-Être</a>
+  <a href="#hero" class="nav-brand">Chorégraphie du Bien-Être</a>
   <ul class="nav-links">
     <li><a href="#concept">Le séjour</a></li>
     <li><a href="#pratiques">Programme</a></li>
@@ -365,7 +365,7 @@
   </div>
   <div class="hero-inner">
     <span class="hero-eyebrow" style="color:#ffffff;letter-spacing:.28em;text-shadow:0 1px 12px rgba(0,0,0,.7)">Séjour Immersif</span>
-    <h1 class="hero-title">Chorégraphie<br>de <em>Bien-Être</em></h1>
+    <h1 class="hero-title">Chorégraphie<br>du <em>Bien-Être</em></h1>
     <p class="hero-sub">Une parenthèse de 10 jours pour ralentir,<br>revenir à soi et se retrouver dans le mouvement</p>
     <div class="hero-dots">
       <span>Danse</span><span class="dot-sep">·</span>
@@ -647,7 +647,7 @@
 
 <!-- FOOTER -->
 <footer>
-  <span>© 2026 Chorégraphie de Bien-Être</span>
+  <span>© 2026 Chorégraphie du Bien-Être</span>
   <span>immersion-danse.fr</span>
 </footer>
 
@@ -880,7 +880,6 @@ document.querySelectorAll('.reveal').forEach(function(el){obsRev.observe(el);});
   document.addEventListener('touchstart',function(){ tryPlay(); },{passive:true});
   document.addEventListener('click',function(){ tryPlay(); },{passive:true});
 
-  /* Полинг каждые 2 сек — перезапускаем если видео встало */
   setInterval(function(){
     if(document.visibilityState==='visible') tryPlay();
   }, 2000);
@@ -903,7 +902,6 @@ document.querySelectorAll('.reveal').forEach(function(el){obsRev.observe(el);});
       + '<option value="En Duo — 2 650 € / pers.">En Duo — 2 650 € / pers.</option>';
   }
 
-  /* Mettre à jour openModalWithTarif pour matcher les bonnes valeurs */
   window._earlyBird = earlyBird;
 })();
 
