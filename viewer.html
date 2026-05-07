@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <title>Document — Chorégraphie du Bien-Être</title>
+  <meta name="robots" content="noindex"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="viewer.css"/>
+</head>
+<body>
+
+<!-- ── LOADER ── -->
+<div id="loader" role="status" aria-live="polite">
+  <span class="loader-brand">Chorégraphie du Bien-Être</span>
+  <div class="loader-bar-track" aria-hidden="true">
+    <div class="loader-bar" id="loader-bar"></div>
+  </div>
+  <span class="loader-label" id="loader-label">Chargement…</span>
+</div>
+
+<!-- ── HEADER ── -->
+<header id="viewer-header" role="banner">
+  <div class="header-left">
+    <button id="btn-back" class="btn-back" aria-label="Retour au site">
+      <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
+        <path d="M13 5H1M1 5L5 1M1 5L5 9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>Retour</span>
+    </button>
+    <span class="doc-title" id="doc-title"></span>
+  </div>
+
+  <div class="header-right">
+    <span class="page-indicator" id="page-indicator" aria-live="polite" aria-atomic="true"></span>
+
+    <a id="btn-download" class="btn-download" href="#" download aria-label="Télécharger le PDF">
+      <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
+        <path d="M6.5 1v7M3.5 5.5l3 3 3-3M1.5 10.5h10" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>Télécharger</span>
+    </a>
+
+    <button id="btn-fullscreen" class="icon-btn" aria-label="Plein écran (F)">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+        <path d="M1 4V1h3M10 1h3v3M13 10v3h-3M4 13H1v-3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<!-- ── VIEWER BODY ── -->
+<main id="viewer-body" role="main" tabindex="0" aria-label="Contenu du document PDF">
+  <div id="canvas-container">
+    <!-- Pages injected by viewer.js -->
+  </div>
+
+  <!-- Error state -->
+  <div id="error-state" role="alert">
+    <h2>Document introuvable</h2>
+    <p>Le document n'a pas pu être chargé.<br>Veuillez réessayer ou nous contacter directement.</p>
+    <button class="btn-back" onclick="window.location.href='index.html'" style="margin-top:8px">
+      <svg width="14" height="10" viewBox="0 0 14 10" fill="none">
+        <path d="M13 5H1M1 5L5 1M1 5L5 9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>Retour au site</span>
+    </button>
+  </div>
+</main>
+
+<!-- ── SCROLL TO TOP ── -->
+<button id="scroll-top" aria-label="Remonter en haut">
+  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+    <path d="M6 10V2M2 6l4-4 4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</button>
+
+<!-- ── KEYBOARD HINT (desktop only) ── -->
+<p class="kbd-hint" aria-hidden="true">↑ ↓ · Espace · Échap</p>
+
+<script src="viewer.js"></script>
+</body>
+</html>

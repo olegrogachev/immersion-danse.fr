@@ -1,0 +1,361 @@
+/* ─────────────────────────────────────────────
+   VIEWER.CSS — Chorégraphie du Bien-Être
+   PDF Viewer · Design cohérent avec le site
+───────────────────────────────────────────── */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cream:     #f8f4ed;
+  --warm:      #f0e8da;
+  --gold:      #6f3e14;
+  --gold-lt:   #a0642e;
+  --gold-pale: #c49a6c;
+  --dark:      #2a1a08;
+  --dark2:     #3d2810;
+  --grey:      #7a6a58;
+  --bg:        #1e1208;
+
+  --header-h: 64px;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bot: env(safe-area-inset-bottom, 0px);
+}
+
+html, body {
+  height: 100%;
+  background: var(--bg);
+  color: var(--cream);
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  overflow: hidden;
+}
+
+/* ── HEADER ── */
+#viewer-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  height: calc(var(--header-h) + var(--safe-top));
+  padding-top: var(--safe-top);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-left: clamp(16px, 4vw, 48px);
+  padding-right: clamp(16px, 4vw, 48px);
+  background: rgba(30, 18, 8, 0.88);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  border-bottom: 1px solid rgba(196, 154, 108, 0.14);
+  transition: background 0.3s;
+}
+
+/* Left group */
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex: 1;
+  min-width: 0;
+}
+
+.btn-back {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Jost', sans-serif;
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--gold-pale);
+  text-decoration: none;
+  cursor: pointer;
+  background: none;
+  border: 1px solid rgba(196, 154, 108, 0.22);
+  padding: 8px 14px;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.btn-back:hover {
+  color: var(--cream);
+  border-color: rgba(196, 154, 108, 0.5);
+  background: rgba(196, 154, 108, 0.08);
+}
+.btn-back svg { flex-shrink: 0; }
+
+.doc-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(13px, 2vw, 18px);
+  font-weight: 300;
+  color: rgba(248, 244, 237, 0.72);
+  letter-spacing: .04em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Right group */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.page-indicator {
+  font-size: 10px;
+  letter-spacing: .18em;
+  color: rgba(196, 154, 108, 0.55);
+  white-space: nowrap;
+  padding: 0 6px;
+}
+
+.icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  background: none;
+  border: 1px solid rgba(196, 154, 108, 0.18);
+  color: var(--gold-pale);
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+  flex-shrink: 0;
+}
+.icon-btn:hover, .icon-btn:focus-visible {
+  color: var(--cream);
+  border-color: rgba(196, 154, 108, 0.5);
+  background: rgba(196, 154, 108, 0.08);
+  outline: none;
+}
+.icon-btn:focus-visible {
+  outline: 2px solid var(--gold-pale);
+  outline-offset: 2px;
+}
+
+.btn-download {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-family: 'Jost', sans-serif;
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--cream);
+  background: var(--gold);
+  border: 1px solid var(--gold);
+  padding: 9px 18px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  white-space: nowrap;
+}
+.btn-download:hover {
+  background: var(--dark2);
+  border-color: var(--dark2);
+  transform: translateY(-1px);
+}
+
+/* ── CANVAS AREA ── */
+#viewer-body {
+  position: fixed;
+  top: calc(var(--header-h) + var(--safe-top));
+  left: 0; right: 0;
+  bottom: calc(var(--safe-bot));
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  background: var(--bg);
+}
+
+#canvas-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(12px, 2vw, 24px);
+  padding: clamp(20px, 3vw, 48px) clamp(12px, 4vw, 48px);
+  padding-bottom: calc(clamp(20px, 3vw, 48px) + var(--safe-bot));
+  min-height: 100%;
+}
+
+/* Page wrapper with shadow */
+.pdf-page-wrapper {
+  position: relative;
+  max-width: min(900px, 100%);
+  width: 100%;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.pdf-page-wrapper.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.pdf-page-wrapper canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  box-shadow:
+    0 4px 32px rgba(0, 0, 0, 0.55),
+    0 1px 0 rgba(196, 154, 108, 0.08) inset;
+}
+
+/* ── LOADER ── */
+#loader {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  background: var(--bg);
+  transition: opacity 0.5s ease;
+}
+#loader.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loader-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(13px, 2vw, 16px);
+  letter-spacing: .32em;
+  text-transform: uppercase;
+  color: var(--gold-pale);
+  opacity: 0.7;
+}
+
+.loader-bar-track {
+  width: clamp(140px, 30vw, 220px);
+  height: 1px;
+  background: rgba(196, 154, 108, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+.loader-bar {
+  position: absolute;
+  top: 0; left: 0;
+  height: 100%;
+  width: 0%;
+  background: var(--gold-pale);
+  transition: width 0.3s ease;
+}
+
+.loader-label {
+  font-size: 10px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: rgba(196, 154, 108, 0.45);
+}
+
+/* ── ERROR STATE ── */
+#error-state {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 60px 24px;
+  text-align: center;
+}
+#error-state.visible { display: flex; }
+#error-state h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 300;
+  color: var(--cream);
+}
+#error-state p {
+  font-size: 13px;
+  color: rgba(248,244,237,.45);
+  max-width: 340px;
+  line-height: 1.8;
+}
+
+/* ── SKELETON pages during load ── */
+.pdf-page-skeleton {
+  max-width: min(900px, 100%);
+  width: 100%;
+  background: rgba(196, 154, 108, 0.04);
+  border: 1px solid rgba(196, 154, 108, 0.06);
+  aspect-ratio: 1 / 1.414; /* A4 */
+  animation: shimmer 1.8s ease-in-out infinite;
+}
+@keyframes shimmer {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+/* ── SCROLL TO TOP ── */
+#scroll-top {
+  position: fixed;
+  bottom: calc(24px + var(--safe-bot));
+  right: 20px;
+  z-index: 90;
+  width: 40px;
+  height: 40px;
+  background: rgba(30, 18, 8, 0.88);
+  border: 1px solid rgba(196, 154, 108, 0.22);
+  color: var(--gold-pale);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.3s, transform 0.3s, background 0.2s;
+  backdrop-filter: blur(10px);
+}
+#scroll-top.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+#scroll-top:hover {
+  background: rgba(111, 62, 20, 0.5);
+  color: var(--cream);
+}
+
+/* ── KEYBOARD HINT ── */
+.kbd-hint {
+  position: fixed;
+  bottom: calc(20px + var(--safe-bot));
+  left: 50%;
+  transform: translateX(-50%) translateY(0);
+  font-size: 10px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: rgba(196, 154, 108, 0.28);
+  white-space: nowrap;
+  pointer-events: none;
+  transition: opacity 0.4s;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 600px) {
+  .doc-title { display: none; }
+  .page-indicator { display: none; }
+  .btn-download span { display: none; }
+  .btn-download { padding: 9px 12px; gap: 0; }
+}
+@media (max-width: 400px) {
+  .btn-back span { display: none; }
+  .btn-back { padding: 8px 10px; gap: 0; }
+}
+
+/* ── FULLSCREEN overrides ── */
+:fullscreen #viewer-header,
+:-webkit-full-screen #viewer-header {
+  top: 0;
+  padding-top: 0;
+}
+:fullscreen #viewer-body,
+:-webkit-full-screen #viewer-body {
+  top: var(--header-h);
+}
