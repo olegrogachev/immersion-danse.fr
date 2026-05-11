@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Chorégraphie de Bien-Être — Séjour Immersif</title>
+  <title>Chorégraphie du Bien-Être — Séjour Immersif</title>
   <meta name="description" content="Une parenthèse de 10 jours au Château de Misy-sur-Yonne. Danse, bien-être et art de vivre. 10–19 août 2026."/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -43,8 +43,8 @@
 
     /* HERO */
     #hero{min-height:100vh;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:0}
-    .hero-bg-img{position:absolute;inset:0}
-    .hero-bg-img img{width:100%;height:100%;object-fit:cover;object-position:center 20%}
+    .hero-bg-img{position:absolute;top:0;left:0;width:100%;height:100%}
+    .hero-bg-img img,.hero-bg-img video{width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block}
     .hero-bg-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(20,10,4,.88) 0%,rgba(20,10,4,.5) 35%,rgba(20,10,4,.1) 65%,transparent 100%)}
     .hero-inner{position:relative;z-index:1;width:100%;padding:0 clamp(24px,6vw,80px) clamp(40px,6vh,72px);text-align:left}
     .hero-eyebrow{font-size:10px;letter-spacing:.36em;text-transform:uppercase;color:#f0c880;margin-bottom:16px;opacity:0;animation:fadeUp .8s .2s forwards;display:block;text-shadow:0 1px 8px rgba(0,0,0,.5)}
@@ -327,7 +327,7 @@
 
 <!-- NAV -->
 <nav id="main-nav">
-  <a href="#hero" class="nav-brand">Chorégraphie de Bien-Être</a>
+  <a href="#hero" class="nav-brand">Chorégraphie du Bien-Être</a>
   <ul class="nav-links">
     <li><a href="#concept">Le séjour</a></li>
     <li><a href="#pratiques">Programme</a></li>
@@ -357,19 +357,24 @@
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-bg-img"><img src="1.jpg" alt="Chorégraphie de Bien-Être"/></div>
+  <div class="hero-bg-img">
+    <video autoplay muted loop playsinline poster="1.jpg" id="heroVideo">
+      <source src="hero-desktop.mp4" media="(min-width:768px)" type="video/mp4">
+      <source src="hero-mobile.mp4" type="video/mp4">
+    </video>
+  </div>
   <div class="hero-inner">
     <span class="hero-eyebrow" style="color:#ffffff;letter-spacing:.28em;text-shadow:0 1px 12px rgba(0,0,0,.7)">Séjour Immersif</span>
-    <h1 class="hero-title">Chorégraphie<br>de <em>Bien-Être</em></h1>
+    <h1 class="hero-title">Chorégraphie<br>du <em>Bien-Être</em></h1>
     <p class="hero-sub">Une parenthèse de 10 jours pour ralentir,<br>revenir à soi et se retrouver dans le mouvement</p>
     <div class="hero-dots">
-      <span>Danse</span><span class="dot-sep">·</span>
+      <span>Mouvement</span><span class="dot-sep">·</span>
       <span>Bien-être</span><span class="dot-sep">·</span>
       <span>Art de vivre</span>
     </div>
     <div class="hero-cta">
       <button class="btn btn-reserve" onclick="openModal()">Réserver ma place</button>
-      <a href="choreographie-bien-etre.pdf" target="_blank" rel="noopener" class="btn btn-dark">Découvrir la présentation</a>
+      <a href="viewer.html?file=presentation" class="btn btn-dark">Découvrir la présentation</a>
     </div>
     <span class="hero-date">10 — 19 Août 2026<span class="date-sep"> &nbsp;·&nbsp; </span>Château&nbsp;de&nbsp;Misy&#8209;sur&#8209;Yonne</span>
   </div>
@@ -392,8 +397,6 @@
   <span class="section-label reveal">À qui s'adresse ce séjour ?</span>
   <h2 class="reveal">Fait pour <em>vous</em></h2>
   <p class="reveal">Les femmes et les hommes sensibles au corps, à l'esthétique et à la qualité de présence.<br><br><em>Aucune expérience en danse n'est nécessaire —<br>seulement l'envie de ressentir et d'explorer.</em></p>
-  <br>
-  <button class="btn btn-reserve reveal" onclick="openModal()">Réserver ma place</button>
 </section>
 
 <!-- PRATIQUES -->
@@ -439,7 +442,7 @@
     </div>
     <br>
     <div style="display:flex;justify-content:center">
-      <a href="programme.pdf" target="_blank" rel="noopener" class="btn btn-outline" style="white-space:nowrap" type="application/pdf">Consulter le programme complet</a>
+      <a href="viewer.html?file=programme" class="btn btn-outline" style="white-space:nowrap">Consulter le programme complet</a>
     </div>
   </div>
 </section>
@@ -477,7 +480,6 @@
     <h2>Un séjour au <em>château</em></h2>
     <div class="line"></div>
     <p>Hébergement en pension complète dans le château de Misy-sur-Yonne — entièrement rénové dans un esprit qui respecte l'âme du lieu, ses pierres, ses volumes et son histoire. Les chambres allient le confort moderne à l'élégance d'époque, pour un séjour qui prend soin de chaque détail.</p>
-    <br><button class="btn btn-reserve" onclick="openModal()">Réserver ma place</button>
   </div>
   <div class="heb-img reveal"><img src="6.jpg" alt="Château de Misy-sur-Yonne hébergement"/></div>
 </section>
@@ -560,7 +562,7 @@
         </div>
         <div style="margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid rgba(111,62,20,.1)">
           <p style="font-family:'Cormorant Garamond',serif;font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;max-width:none">En avion</p>
-          <p>Aéroport Paris-Charles de Gaulle — comptez environ 1h30 jusqu'au château.</p>
+          <p>Aéroport Paris-Charles de Gaulle — environ 1h30 jusqu'au château.<br>Aéroport Paris-Orly — environ 1h00 jusqu'au château.</p>
         </div>
         <div>
           <p style="font-family:'Cormorant Garamond',serif;font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;max-width:none">Transfert privé</p>
@@ -639,14 +641,13 @@
   <a href="tel:+33625810694" class="contact-phone reveal">+33 6 25 81 06 94</a>
   <div class="contact-btns reveal">
     <button class="btn btn-dark btn-reserve" onclick="openModal()">Réserver ma place</button>
-    <a href="choreographie-bien-etre.pdf" target="_blank" rel="noopener" class="btn btn-dark">Découvrir la présentation</a>
   </div>
   <p class="contact-meta reveal">10 — 19 Août 2026 &nbsp;·&nbsp; Château de Misy-sur-Yonne &nbsp;·&nbsp; <a href="https://immersion-danse.fr">immersion-danse.fr</a></p>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <span>© 2026 Chorégraphie de Bien-Être</span>
+  <span>© 2026 Chorégraphie du Bien-Être</span>
   <span>immersion-danse.fr</span>
 </footer>
 
@@ -845,6 +846,48 @@ document.querySelectorAll('.reveal').forEach(function(el){obsRev.observe(el);});
   lb.addEventListener('touchend',function(e){var dx=lbTX-e.changedTouches[0].clientX,dy=Math.abs(lbTY-e.changedTouches[0].clientY);if(Math.abs(dx)>30&&dy<60){dx>0?nextLB():prevLB();}});
 })();
 
+/* ── HERO VIDEO ── */
+(function(){
+  var video=document.getElementById('heroVideo');
+  if(!video)return;
+
+  function loadVideo(){
+    var src=window.innerWidth>=768?'hero-desktop.mp4':'hero-mobile.mp4';
+    if(video.getAttribute('data-src')===src)return;
+    video.setAttribute('data-src',src);
+    video.innerHTML='<source src="'+src+'" type="video/mp4">';
+    video.load();
+    video.play().catch(function(){});
+  }
+
+  video.style.opacity='0';
+  video.addEventListener('playing',function(){
+    video.style.transition='opacity .6s';
+    video.style.opacity='1';
+  });
+
+  function tryPlay(){
+    if(video.paused&&video.readyState>=2){
+      video.play().catch(function(){});
+    }
+  }
+
+  document.addEventListener('visibilitychange',function(){
+    if(document.visibilityState==='visible') tryPlay();
+  });
+  window.addEventListener('pageshow',function(){ tryPlay(); });
+  window.addEventListener('focus',function(){ tryPlay(); });
+  document.addEventListener('touchstart',function(){ tryPlay(); },{passive:true});
+  document.addEventListener('click',function(){ tryPlay(); },{passive:true});
+
+  setInterval(function(){
+    if(document.visibilityState==='visible') tryPlay();
+  }, 2000);
+
+  loadVideo();
+  window.addEventListener('resize',loadVideo);
+})();
+
 /* ── TARIFS DYNAMIQUES ── */
 (function(){
   var earlyBird = new Date('2026-06-01T00:00:00') > new Date();
@@ -859,7 +902,6 @@ document.querySelectorAll('.reveal').forEach(function(el){obsRev.observe(el);});
       + '<option value="En Duo — 2 650 € / pers.">En Duo — 2 650 € / pers.</option>';
   }
 
-  /* Mettre à jour openModalWithTarif pour matcher les bonnes valeurs */
   window._earlyBird = earlyBird;
 })();
 
