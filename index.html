@@ -3,8 +3,17 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Chorégraphie du Bien-Être — Séjour Immersif</title>
-  <meta name="description" content="Une parenthèse de 10 jours au Château de Misy-sur-Yonne. Danse, bien-être et art de vivre. 10–19 août 2026."/>
+  <title>Chorégraphie du Bien-Être — Séjour Immersif Danse &amp; Santé</title>
+  <meta name="description" content="Séjour immersif danse et bien-être au Château de Misy-sur-Yonne. 10 jours de pratiques corporelles, mouvement et art de vivre. 10–19 août 2026."/>
+  <link rel="canonical" href="https://immersion-danse.fr"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%236f3e14'/><text y='.9em' font-size='72' x='50%' text-anchor='middle' font-family='serif' fill='%23f8f4ed'>C</text></svg>"/>
+  <!-- Open Graph -->
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://immersion-danse.fr"/>
+  <meta property="og:title" content="Chorégraphie du Bien-Être — Séjour Immersif Danse &amp; Santé"/>
+  <meta property="og:description" content="10 jours de pratiques corporelles, mouvement et art de vivre au Château de Misy-sur-Yonne. 10–19 août 2026."/>
+  <meta property="og:image" content="https://immersion-danse.fr/sejour-danse-bien-etre-hero.jpg"/>
+  <meta property="og:locale" content="fr_FR"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
@@ -22,8 +31,8 @@
       --grey:#7a6a58;
       --sp:clamp(60px,9vw,120px);
     }
-    html{scroll-behavior:smooth}
-    body{background:var(--cream);color:var(--dark);font-family:'Jost',sans-serif;font-weight:300;line-height:1.75;overflow-x:hidden}
+    html{scroll-behavior:smooth;scroll-padding-top:80px}
+    body{background:var(--cream);color:var(--dark);font-family:'Jost',sans-serif;font-weight:300;line-height:1.8;overflow-x:hidden}
 
     /* NAV */
     nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;flex-direction:row;justify-content:space-between;align-items:center;padding:22px 48px;background:rgba(248,244,237,0.96);backdrop-filter:blur(10px);border-bottom:1px solid rgba(111,62,20,0.12);transition:padding .3s}
@@ -33,13 +42,12 @@
     .nav-links a:hover{color:var(--gold)}
     .nav-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
     .nav-burger span{width:24px;height:1px;background:var(--gold);display:block}
-    .nav-mobile{display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:var(--cream);z-index:190;flex-direction:column;align-items:center;justify-content:center;gap:36px}
+    .nav-mobile{display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:var(--cream);z-index:210;flex-direction:column;align-items:center;justify-content:center;gap:36px}
     .nav-mobile.open{display:flex}
     .nav-mobile a{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:300;color:var(--dark);text-decoration:none}
     .nav-mobile a:hover{color:var(--gold)}
     .nav-close{position:absolute;top:24px;right:24px;font-size:26px;cursor:pointer;color:var(--grey);background:none;border:none}
     @media(max-width:768px){nav{padding:18px 20px;flex-direction:row;justify-content:space-between;align-items:center}.nav-links{display:none}.nav-burger{display:flex}}
-    @media(max-width:768px){.acces-grid{grid-template-columns:1fr;gap:32px}}
 
     /* HERO */
     #hero{min-height:100vh;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:0}
@@ -47,41 +55,42 @@
     .hero-bg-img img,.hero-bg-img video{width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block}
     .hero-bg-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(20,10,4,.88) 0%,rgba(20,10,4,.5) 35%,rgba(20,10,4,.1) 65%,transparent 100%)}
     .hero-inner{position:relative;z-index:1;width:100%;padding:0 clamp(24px,6vw,80px) clamp(40px,6vh,72px);text-align:left}
-    .hero-eyebrow{font-size:10px;letter-spacing:.36em;text-transform:uppercase;color:#f0c880;margin-bottom:16px;opacity:0;animation:fadeUp .8s .2s forwards;display:block;text-shadow:0 1px 8px rgba(0,0,0,.5)}
+    .hero-eyebrow{font-size:11px;letter-spacing:.36em;text-transform:uppercase;color:#f0c880;margin-bottom:16px;opacity:0;animation:fadeUp .8s .2s forwards;display:block;text-shadow:0 1px 8px rgba(0,0,0,.5)}
     .hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(42px,8vw,96px);font-weight:300;line-height:1.0;color:#ffffff;opacity:0;animation:fadeUp .9s .4s forwards;text-shadow:0 2px 24px rgba(0,0,0,.3)}
     .hero-title em{font-style:italic;color:#f0c880}
-    .hero-sub{font-family:'Cormorant Garamond',serif;font-size:clamp(15px,2vw,20px);font-style:italic;color:rgba(255,255,255,.88);margin:14px 0 28px;opacity:0;animation:fadeUp .9s .6s forwards;max-width:560px;text-shadow:0 1px 8px rgba(0,0,0,.4)}
-    .hero-dots{display:flex;align-items:center;gap:14px;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#f0c880;margin-bottom:32px;flex-wrap:wrap;opacity:0;animation:fadeUp .9s .7s forwards;text-shadow:0 1px 8px rgba(0,0,0,.5)}
+    .hero-sub{font-family:'Cormorant Garamond',serif;font-size:clamp(16px,2vw,22px);font-style:italic;color:rgba(255,255,255,.88);margin:14px 0 28px;opacity:0;animation:fadeUp .9s .6s forwards;max-width:560px;text-shadow:0 1px 8px rgba(0,0,0,.4)}
+    .hero-dots{display:flex;align-items:center;gap:14px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#f0c880;margin-bottom:32px;flex-wrap:wrap;opacity:0;animation:fadeUp .9s .7s forwards;text-shadow:0 1px 8px rgba(0,0,0,.5)}
     .dot-sep{font-size:16px;line-height:1;color:rgba(196,154,108,.6)}
     .hero-cta{display:flex;gap:14px;flex-wrap:wrap;opacity:0;animation:fadeUp .9s .88s forwards}
-    .hero-date{margin-top:20px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.7);opacity:0;animation:fadeUp .9s 1s forwards;display:block;text-shadow:0 1px 6px rgba(0,0,0,.5)}
+    .hero-date{margin-top:20px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.7);opacity:0;animation:fadeUp .9s 1s forwards;display:block;text-shadow:0 1px 6px rgba(0,0,0,.5)}
     .date-sep{display:inline}
     @media(max-width:500px){
       .hero-inner{text-align:center;padding-bottom:clamp(32px,5vh,52px)}
       .hero-title{font-size:clamp(36px,10vw,56px)}
-      .hero-sub{font-size:15px;margin:12px auto 24px}
-      .hero-dots{justify-content:center;gap:8px;font-size:9px}
+      .hero-sub{font-size:16px;margin:12px auto 24px}
+      .hero-dots{justify-content:center;gap:8px;font-size:10px}
       .hero-cta{flex-direction:column;align-items:center;gap:10px}
       .hero-cta .btn{width:100%;max-width:320px;text-align:center;padding:15px 20px;display:block}
-      .hero-date{font-size:9px;letter-spacing:.1em;line-height:1.8}
+      .hero-date{font-size:10px;letter-spacing:.1em;line-height:1.8}
       .hero-date .date-sep{display:block}
     }
 
     /* BUTTONS */
-    .btn{display:inline-block;padding:15px 38px;background:var(--gold);color:var(--cream);font-size:11px;letter-spacing:.22em;text-transform:uppercase;text-decoration:none;border:1px solid var(--gold);cursor:pointer;transition:background .2s,color .2s,transform .15s;font-family:'Jost',sans-serif;font-weight:300;line-height:1;white-space:nowrap}
+    .btn{display:inline-block;padding:15px 38px;background:var(--gold);color:var(--cream);font-size:12px;letter-spacing:.22em;text-transform:uppercase;text-decoration:none;border:1px solid var(--gold);cursor:pointer;transition:background .2s,color .2s,transform .15s;font-family:'Jost',sans-serif;font-weight:300;line-height:1;white-space:nowrap}
     .btn:hover{background:var(--dark);border-color:var(--dark);transform:translateY(-1px)}
     .btn-reserve{min-width:240px;text-align:center}
+    .btn-outline{background:transparent;color:var(--gold);border-color:var(--gold)}
     .btn-outline:hover{background:var(--gold);color:var(--cream)}
     .btn-dark{background:transparent;color:rgba(248,244,237,.75);border-color:rgba(248,244,237,.35)}
     .btn-dark:hover{background:var(--cream);color:var(--gold);border-color:var(--cream)}
 
     /* SECTIONS */
     section{padding:var(--sp) clamp(20px,6vw,80px)}
-    .section-label{font-size:10px;letter-spacing:.36em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;display:block}
+    .section-label{font-size:11px;letter-spacing:.36em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;display:block}
     h2{font-family:'Cormorant Garamond',serif;font-size:clamp(30px,5vw,58px);font-weight:300;line-height:1.1;color:var(--dark);margin-bottom:20px}
     h2 em{font-style:italic;color:var(--gold)}
-    p{color:var(--grey);font-size:15px;max-width:580px;line-height:1.8}
-    .line{height:1px;background:var(--gold);margin:0 0 26px;width:100%;max-width:580px}
+    p{color:var(--grey);font-size:16px;max-width:620px;line-height:1.9}
+    .line{height:1px;background:var(--gold);margin:0 0 28px;width:100%;max-width:620px}
 
     /* SECTION SPACING */
     #concept{background:var(--warm);display:flex;flex-direction:column;padding:0}
@@ -98,13 +107,13 @@
     /* POUR QUI */
     #pour-qui{text-align:center;background:var(--cream)}
     #pour-qui h2{margin:0 auto 20px}
-    #pour-qui>p{margin:0 auto;text-align:center;font-size:17px;line-height:2}
-    #pour-qui p em{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;color:var(--gold)}
+    #pour-qui>p{margin:0 auto;text-align:center;font-size:18px;line-height:2.1}
+    #pour-qui p em{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;color:var(--gold)}
 
     /* PRATIQUES */
     #pratiques{background:var(--dark2);padding:0;overflow:hidden}
-    #pratiques .pratiques-header{padding:0;width:100%}
-    #pratiques .pratiques-photo{width:100%;margin:0;padding:0}
+    #pratiques .pratiques-header{width:100%}
+    #pratiques .pratiques-photo{margin:0}
     #pratiques .section-label{color:var(--gold-pale);display:block}
     #pratiques h2{color:var(--cream)}
     #pratiques .pratiques-intro p{color:rgba(248,244,237,.5)}
@@ -115,9 +124,9 @@
     .pratiques-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.05);margin-top:clamp(32px,5vw,60px)}
     .pratique-item{padding:30px 26px;background:var(--dark2);transition:background .25s;cursor:pointer}
     .pratique-item:hover{background:#4a3018}
-    .pratique-item h3{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:400;color:var(--gold-pale);margin-bottom:10px}
-    .pratique-item p{font-size:13px;color:rgba(248,244,237,.42);max-width:none;line-height:1.7}
-    .pratique-item .more-hint{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(196,154,108,.4);margin-top:12px;display:block}
+    .pratique-item h3{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;color:var(--gold-pale);margin-bottom:10px}
+    .pratique-item p{font-size:14px;color:rgba(248,244,237,.42);max-width:none;line-height:1.8}
+    .pratique-item .more-hint{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(196,154,108,.4);margin-top:14px;display:block}
     @media(max-width:768px){.pratiques-grid{grid-template-columns:1fr}}
     @media(min-width:769px) and (max-width:1024px){.pratiques-grid{grid-template-columns:repeat(2,1fr)}}
 
@@ -140,18 +149,16 @@
     .pratique-lb-box{background:var(--dark2);max-width:560px;width:100%;max-height:88vh;overflow-y:auto;position:relative;padding:48px 44px 44px}
     .pratique-lb-close{position:absolute;top:18px;right:22px;background:none;border:none;color:rgba(248,244,237,.5);font-size:24px;cursor:pointer;line-height:1}
     .pratique-lb-close:hover{color:var(--cream)}
-    .pratique-lb-tag{font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-pale);display:block;margin-bottom:14px}
+    .pratique-lb-tag{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-pale);display:block;margin-bottom:14px}
     .pratique-lb-title{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:var(--cream);margin-bottom:6px}
     .pratique-lb-line{height:1px;background:rgba(196,154,108,.3);margin:16px 0}
-    .pratique-lb-desc{font-size:14px;color:rgba(248,244,237,.65);line-height:1.85;margin-bottom:20px;max-width:none}
+    .pratique-lb-desc{font-size:15px;color:rgba(248,244,237,.65);line-height:1.9;margin-bottom:20px;max-width:none}
     .pratique-lb-pedagogue{display:flex;gap:16px;align-items:flex-start;padding-top:16px;border-top:1px solid rgba(255,255,255,.06)}
     .pratique-lb-ped-info{}
     .pratique-lb-ped-name{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--cream);display:block;margin-bottom:3px}
-    .pratique-lb-ped-role{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-pale);display:block;margin-bottom:8px}
+    .pratique-lb-ped-role{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-pale);display:block;margin-bottom:8px}
     .pratique-lb-ped-bio{font-size:13px;color:rgba(248,244,237,.5);line-height:1.75;max-width:none}
     @media(max-width:500px){.pratique-lb-box{padding:36px 24px 32px}}
-    @media(max-width:768px){.pratiques-grid{grid-template-columns:1fr}}
-    @media(min-width:769px) and (max-width:1024px){.pratiques-grid{grid-template-columns:repeat(2,1fr)}}
 
     /* JOURNÉE — flex column always, side by side only on desktop */
     #journee{background:var(--warm);display:flex;flex-direction:column;gap:0;padding:var(--sp) clamp(20px,6vw,80px)}
@@ -160,8 +167,8 @@
     .schedule{margin-top:36px}
     .schedule-item{display:grid;grid-template-columns:110px 1fr;gap:18px;padding:16px 0;border-bottom:1px solid rgba(111,62,20,.11)}
     .schedule-item:last-child{border-bottom:none}
-    .schedule-time{font-size:11px;letter-spacing:.1em;color:var(--gold);padding-top:2px}
-    .schedule-act{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--dark)}
+    .schedule-time{font-size:12px;letter-spacing:.1em;color:var(--gold);padding-top:2px}
+    .schedule-act{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:400;color:var(--dark)}
     @media(max-width:899px){#journee>div+div{margin-top:36px}}
 
     /* FONDATEURS — flex column always, side by side only on desktop */
@@ -169,17 +176,11 @@
     .fondateurs-photo{overflow:hidden;width:100%;aspect-ratio:16/9;flex-shrink:0}
     .fondateurs-photo img{width:100%;height:100%;object-fit:cover;object-position:center 15%;filter:grayscale(15%);display:block}
     .fondateurs-inner{padding:clamp(32px,5vw,48px) clamp(20px,6vw,80px);display:flex;flex-direction:column;justify-content:center}
-    .fondateurs-text .bio{margin-top:20px;padding-top:20px;border-top:1px solid rgba(111,62,20,.1)}
-    .fondateurs-text .bio:first-of-type{border-top:none;padding-top:0}
     @media(min-width:900px){
       #fondateurs{flex-direction:row;align-items:stretch}
       .fondateurs-photo{width:48%;aspect-ratio:unset;min-height:500px}
       .fondateurs-inner{flex:1;padding:clamp(40px,5vw,80px)}
     }
-    .fondateur-name{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:var(--dark)}
-    .fondateur-role{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);display:block;margin-top:4px}
-    .bio-text{margin-top:10px;font-size:14px;color:var(--grey);max-width:none;line-height:1.85}
-    
 
     /* GALERIE SLIDER */
     #galerie{background:var(--warm2);padding:var(--sp) 0}
@@ -187,7 +188,6 @@
     .slider-outer{position:relative;overflow:hidden;cursor:grab;user-select:none}
     .slider-outer:active{cursor:grabbing}
     .slider-track{display:flex;gap:14px;padding:0 clamp(20px,6vw,80px);transition:transform .5s cubic-bezier(.23,1,.32,1);will-change:transform}
-    .slider-track.no-transition{transition:none}
     .slide{flex:0 0 clamp(220px,30vw,360px);height:clamp(180px,25vw,300px);overflow:hidden;cursor:zoom-in}
     .slide img{width:100%;height:100%;object-fit:cover;transition:transform .4s;pointer-events:none;-webkit-user-drag:none;user-select:none}
     .slide:hover img{transform:scale(1.04)}
@@ -227,7 +227,7 @@
     /* HÉBERGEMENT — flex column always, side by side only on desktop */
     #hebergement{background:var(--warm);display:flex;flex-direction:column;padding:0}
     .heb-img{overflow:hidden;min-height:280px;width:100%;flex-shrink:0}
-    .heb-img img{width:100%;height:100%;object-fit:cover;display:block;min-height:280px}
+    .heb-img img{width:100%;height:100%;object-fit:cover;display:block}
     .heb-text{padding:clamp(40px,7vw,90px) clamp(20px,6vw,80px);display:flex;flex-direction:column;justify-content:center}
     @media(min-width:900px){
       #hebergement{flex-direction:row;align-items:stretch}
@@ -241,32 +241,35 @@
     .tarifs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;max-width:700px;margin:0 auto 36px}
     .tarif-card{border:1px solid rgba(111,62,20,.16);padding:40px 28px;background:var(--warm);transition:border-color .25s,box-shadow .25s,transform .2s;cursor:pointer}
     .tarif-card:hover{border-color:var(--gold);box-shadow:0 8px 36px rgba(111,62,20,.1);transform:translateY(-2px)}
+    .tarif-select-hint{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-pale);margin-top:18px;display:block;opacity:.6;transition:opacity .2s}
     .tarif-card:hover .tarif-select-hint{opacity:1}
-    .tarif-select-hint{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-pale);margin-top:18px;display:block;opacity:.6;transition:opacity .2s}
-    .tarif-card:hover .tarif-select-hint{opacity:1}
-    .tarif-type{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:block}
+    .tarif-type{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:block}
     .tarif-price{font-family:'Cormorant Garamond',serif;font-size:50px;font-weight:300;color:var(--dark);line-height:1}
     .tarif-price sup{font-size:22px;vertical-align:super}
-    .tarif-per{font-size:12px;color:var(--grey);margin-top:8px;display:block}
+    .tarif-per{font-size:13px;color:var(--grey);margin-top:8px;display:block}
     .tarif-early{background:transparent;border:none;border-left:3px solid var(--gold);padding:16px 24px;max-width:460px;margin:0 auto 36px;text-align:left}
-    .tarif-early p{color:var(--dark);font-size:13px;max-width:none;text-align:left;margin:0;line-height:1.9}
-    .tarif-early strong{color:var(--gold);font-weight:400;font-family:'Cormorant Garamond',serif;font-size:17px}
+    .tarif-early p{color:var(--dark);font-size:14px;max-width:none;text-align:left;margin:0;line-height:1.9}
+    .tarif-early strong{color:var(--gold);font-weight:400;font-family:'Cormorant Garamond',serif;font-size:18px}
     .tarif-early .nodates{white-space:nowrap}
-    .note{font-size:12px;color:var(--grey);font-style:italic;margin:10px auto 0;text-align:center;display:block;max-width:none}
+    .note{font-size:13px;color:var(--grey);font-style:italic;margin:10px auto 0;text-align:center;display:block;max-width:none}
+    #tarifs>.btn-reserve{margin-top:36px}
 
+
+    /* ACCÈS */
+    #acces{background:var(--warm);padding:var(--sp) clamp(20px,6vw,80px)}
 
     /* FAQ */
     #faq{background:var(--cream);max-width:780px;margin:0 auto;padding:var(--sp) clamp(20px,6vw,80px)}
     #faq h2{margin-bottom:20px}
     .faq-item{border-bottom:1px solid rgba(111,62,20,.12);padding:0}
     .faq-item:first-of-type{border-top:1px solid rgba(111,62,20,.12)}
-    .faq-q{width:100%;background:none;border:none;text-align:left;padding:22px 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;color:var(--dark);line-height:1.3}
+    .faq-q{width:100%;background:none;border:none;text-align:left;padding:22px 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:400;color:var(--dark);line-height:1.3}
     .faq-q:hover{color:var(--gold)}
     .faq-icon{font-size:18px;color:var(--gold);flex-shrink:0;transition:transform .3s;line-height:1}
     .faq-item.open .faq-icon{transform:rotate(45deg)}
     .faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s ease}
-    .faq-item.open .faq-a{max-height:400px}
-    .faq-a p{font-size:14px;color:var(--grey);line-height:1.85;padding-bottom:22px;max-width:none}
+    .faq-item.open .faq-a{max-height:600px}
+    .faq-a p{font-size:15px;color:var(--grey);line-height:1.9;padding-bottom:22px;max-width:none}
 
     /* CONTACT */
     .acces-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
@@ -278,12 +281,12 @@
     .contact-email,.contact-phone{font-family:'Cormorant Garamond',serif;font-size:clamp(16px,2.8vw,24px);color:var(--gold-pale);text-decoration:none;display:block;margin-bottom:12px;letter-spacing:.04em;transition:color .2s}
     .contact-email:hover,.contact-phone:hover{color:var(--cream)}
     .contact-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin:32px 0 48px}
-    .contact-meta{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(248,244,237,.18)}
+    .contact-meta{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:rgba(248,244,237,.18)}
     .contact-meta a{color:inherit;text-decoration:none}
 
     /* FOOTER */
     footer{background:#1a0f04;padding:22px clamp(20px,5vw,48px);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
-    footer span{font-size:11px;letter-spacing:.1em;color:rgba(248,244,237,.45)}
+    footer span{font-size:12px;letter-spacing:.1em;color:rgba(248,244,237,.45)}
 
     /* LIGHTBOX */
     .lightbox{display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(20,12,4,.96);z-index:700;align-items:center;justify-content:center}
@@ -303,24 +306,34 @@
     .modal-close{position:absolute;top:18px;right:18px;background:none;border:none;font-size:22px;color:var(--grey);cursor:pointer;line-height:1}
     .modal-close:hover{color:var(--gold)}
     .modal h3{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:300;color:var(--dark);margin-bottom:6px}
-    .modal-sub{font-size:13px;color:var(--grey);margin-bottom:28px;max-width:none}
+    .modal-sub{font-size:14px;color:var(--grey);margin-bottom:28px;max-width:none}
     .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
     .form-group{margin-bottom:18px}
-    .form-group label{display:block;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:7px}
-    .form-group input,.form-group textarea,.form-group select{width:100%;background:var(--warm);border:1px solid rgba(111,62,20,.15);padding:12px 14px;font-family:'Jost',sans-serif;font-size:14px;color:var(--dark);outline:none;transition:border-color .2s;border-radius:0;-webkit-appearance:none}
+    .form-group label{display:block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:7px}
+    .form-group input,.form-group textarea,.form-group select{width:100%;background:var(--warm);border:1px solid rgba(111,62,20,.15);padding:12px 14px;font-family:'Jost',sans-serif;font-size:15px;color:var(--dark);outline:none;transition:border-color .2s;border-radius:0;-webkit-appearance:none}
     .form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--gold)}
     .form-group textarea{resize:vertical;min-height:90px}
     .form-success{display:none;text-align:center;padding:20px 0}
     .form-success p{color:var(--gold);font-family:'Cormorant Garamond',serif;font-size:21px;max-width:none;line-height:1.6}
     .form-sending{display:none;text-align:center;padding:10px 0 18px}
-    .form-sending p{color:var(--grey);font-size:13px;max-width:none}
-    .form-error{display:none;padding:10px 14px;background:#fdf0ed;border:1px solid #e0a090;font-size:13px;color:#8b3020;margin-bottom:14px}
+    .form-sending p{color:var(--grey);font-size:14px;max-width:none}
+    .form-error{display:none;padding:10px 14px;background:#fdf0ed;border:1px solid #e0a090;font-size:14px;color:#8b3020;margin-bottom:14px}
     @media(max-width:480px){.form-row{grid-template-columns:1fr}}
 
     /* REVEAL */
     .reveal{opacity:0;transform:translateY(26px);transition:opacity .75s ease,transform .75s ease}
     .reveal.visible{opacity:1;transform:translateY(0)}
     @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+    /* DESKTOP TYPOGRAPHY — larger screens get slightly more breathing room */
+    @media(min-width:1200px){
+      p{font-size:17px}
+      .faq-a p{font-size:16px}
+      .pratique-lb-desc{font-size:16px}
+      #concept .text p,
+      .bal-text p,
+      .heb-text p{max-width:520px}
+    }
   </style>
 </head>
 <body>
@@ -358,7 +371,7 @@
 <!-- HERO -->
 <section id="hero">
   <div class="hero-bg-img">
-    <video autoplay muted loop playsinline poster="1.jpg" id="heroVideo">
+    <video autoplay muted loop playsinline poster="sejour-danse-bien-etre-hero.jpg" id="heroVideo">
       <source src="hero-desktop.mp4" media="(min-width:768px)" type="video/mp4">
       <source src="hero-mobile.mp4" type="video/mp4">
     </video>
@@ -382,7 +395,7 @@
 
 <!-- CONCEPT -->
 <section id="concept">
-  <div class="img-wrap reveal"><img src="2.jpg" alt="Château de Misy-sur-Yonne"/></div>
+  <div class="img-wrap reveal"><img src="chateau-misy-sur-yonne-facade.jpg" alt="Château de Misy-sur-Yonne — lieu du séjour immersif danse et bien-être" loading="lazy"/></div>
   <div class="text reveal">
     <span class="section-label">Le lieu</span>
     <h2>Château de<br><em style="white-space:nowrap">Misy-sur-Yonne</em></h2>
@@ -402,7 +415,7 @@
 <!-- PRATIQUES -->
 <section id="pratiques">
   <div class="pratiques-header">
-    <div class="pratiques-photo reveal"><img src="3.jpg" alt="Pratiques corporelles au château"/></div>
+    <div class="pratiques-photo reveal"><img src="salle-pratiques-corporelles-chateau.jpg" alt="Salle de pratiques corporelles au Château de Misy-sur-Yonne" loading="lazy"/></div>
     <div class="pratiques-intro reveal">
       <span class="section-label">Programme</span>
       <h2>Pratiques <em style="color:var(--gold-lt)">corporelles</em></h2>
@@ -440,8 +453,7 @@
       <div class="schedule-item"><span class="schedule-time">19h00</span><span class="schedule-act">Dîner</span></div>
       <div class="schedule-item"><span class="schedule-time">Soirée</span><span class="schedule-act">Libre ou activités optionnelles</span></div>
     </div>
-    <br>
-    <div style="display:flex;justify-content:center">
+    <div style="display:flex;justify-content:center;margin-top:32px">
       <a href="viewer.html?file=programme" class="btn btn-outline" style="white-space:nowrap">Consulter le programme complet</a>
     </div>
   </div>
@@ -449,7 +461,7 @@
 
 <!-- FONDATEURS -->
 <section id="fondateurs">
-  <div class="fondateurs-photo reveal"><img src="4.jpg" alt="Marina Kudryashova et Oleg Rogachev"/></div>
+  <div class="fondateurs-photo reveal"><img src="marina-kudryashova-oleg-rogachev-danseurs.jpg" alt="Marina Kudryashova et Oleg Rogachev — danseurs de l'Opéra de Bordeaux, fondateurs du séjour" loading="lazy"/></div>
   <div class="fondateurs-inner">
     <div class="fondateurs-text reveal">
       <span class="section-label">À l'origine du projet</span>
@@ -470,7 +482,7 @@
     <div class="line"></div>
     <p>Une soirée avec son charme envoûtant — dîner aux chandelles dans les salons du château, performances artistiques et danses d'époque. Une clôture digne de dix jours d'exception.</p>
   </div>
-  <div class="bal-img reveal"><img src="5.jpg" alt="Bal Masqué"/></div>
+  <div class="bal-img reveal"><img src="bal-masque-soiree-cloture.jpg" alt="Bal Masqué — soirée de clôture aux chandelles dans les salons du château" loading="lazy"/></div>
 </section>
 
 <!-- HÉBERGEMENT -->
@@ -481,7 +493,7 @@
     <div class="line"></div>
     <p>Hébergement en pension complète dans le château de Misy-sur-Yonne — entièrement rénové dans un esprit qui respecte l'âme du lieu, ses pierres, ses volumes et son histoire. Les chambres allient le confort moderne à l'élégance d'époque, pour un séjour qui prend soin de chaque détail.</p>
   </div>
-  <div class="heb-img reveal"><img src="6.jpg" alt="Château de Misy-sur-Yonne hébergement"/></div>
+  <div class="heb-img reveal"><img src="hebergement-chateau-misy-sur-yonne.jpg" alt="Hébergement en pension complète — chambres rénovées du Château de Misy-sur-Yonne" loading="lazy"/></div>
 </section>
 
 <!-- GALERIE -->
@@ -492,22 +504,23 @@
   </div>
   <div class="slider-outer" id="sliderOuter">
     <div class="slider-track" id="sliderTrack">
-      <div class="slide"><img src="7.JPG" alt=""/></div>
-      <div class="slide"><img src="8.JPG" alt=""/></div>
-      <div class="slide"><img src="9.JPG" alt=""/></div>
-      <div class="slide"><img src="10.JPG" alt=""/></div>
-      <div class="slide"><img src="11.JPG" alt=""/></div>
-      <div class="slide"><img src="12.JPG" alt=""/></div>
-      <div class="slide"><img src="13.JPG" alt=""/></div>
-      <div class="slide"><img src="14.JPG" alt=""/></div>
-      <div class="slide"><img src="15.JPG" alt=""/></div>
-      <div class="slide"><img src="16.JPG" alt=""/></div>
-      <div class="slide"><img src="17.JPG" alt=""/></div>
-      <div class="slide"><img src="18.JPG" alt=""/></div>
-      <div class="slide"><img src="19.JPG" alt=""/></div>
-      <div class="slide"><img src="20.JPG" alt=""/></div>
-      <div class="slide"><img src="21.JPG" alt=""/></div>
-      <div class="slide"><img src="22.JPG" alt=""/></div>
+      <div class="slide"><img src="galerie-chateau-misy-sur-yonne-exterieur.jpg" alt="Château de Misy-sur-Yonne — vue extérieure du lieu du séjour" loading="lazy"/></div>
+      <div class="slide"><img src="galerie-sejour-danse-salle-pratique.jpg" alt="Salle de danse et pratiques corporelles — séjour immersif" loading="lazy"/></div>
+      <div class="slide"><img src="galerie-chateau-parc-jardins.jpg" alt="Parc et jardins du Château de Misy-sur-Yonne" loading="lazy"/></div>
+      <div class="slide"><img src="galerie-cours-danse-contemporaine.jpg" alt="Cours de danse contemporaine — exploration du mouvement" loading="lazy"/></div>
+      <div class="slide"><img src="galerie-atelier-bien-etre-mouvement.jpg" alt="Atelier bien-être et mouvement au château" loading="lazy"/></div>
+      <div class="slide"><img src="galerie-chambre-hebergement-chateau.jpg" alt="Chambre et hébergement au Château de Misy-sur-Yonne" loading="lazy"/></div>
+      <div class="slide"><img src="galerie-salle-danse-classique-barre.jpg" alt="Travail postural et danse classique à la barre" loading="lazy"/></div>
+      <div class="slide"><img src="galerie-danse-latine-mouvement.jpg" alt="Danse latine — sensualité et confiance en soi" loading="lazy"/></div>
+      <div class="slide"><img src="galerie-chateau-couloir-interieur.jpg" alt="Intérieur et couloirs du Château de Misy-sur-Yonne" loading="lazy"/></div>
+      <div class="slide"><img src="galerie-pratiques-somatiques-sol.jpg" alt="MÜNZ FLOOR® — pratiques somatiques au sol" loading="lazy"/></div>
+      <div class="slide"><img src="galerie-sejour-immersif-participants.jpg" alt="Participants au séjour immersif danse et bien-être" loading="lazy"/></div>
+      <div class="slide"><img src="galerie-chateau-salon-reception.jpg" alt="Salon de réception du Château de Misy-sur-Yonne" loading="lazy"/></div>
+      <div class="slide"><img src="galerie-danse-historique-valse.jpg" alt="Danse historique — valse et menuet au château" loading="lazy"/></div>
+      <div class="slide"><img src="galerie-repas-table-chateau.jpg" alt="Repas en pension complète — art de la table au château" loading="lazy"/></div>
+      <div class="slide"><img src="galerie-parc-nature-yonne.jpg" alt="Parc et nature au bord de l'Yonne — cadre naturel du séjour" loading="lazy"/></div>
+      <div class="slide"><img src="galerie-bal-masque-soiree.jpg" alt="Bal Masqué — soirée dansante de clôture au château" loading="lazy"/></div>
+      <div class="slide"><img src="galerie-chateau-vue-ensemble.jpg" alt="Vue d'ensemble du Château de Misy-sur-Yonne" loading="lazy"/></div>
     </div>
     <button class="slider-btn slider-prev" id="sliderPrev" aria-label="Précédent">&#8592;</button>
     <button class="slider-btn slider-next" id="sliderNext" aria-label="Suivant">&#8594;</button>
@@ -540,12 +553,11 @@
     <p><strong>Tarif préférentiel</strong> — <span class="nodates">réservation avant le 1er juin 2026</span><br><span class="nodates">2 700 € en solo</span> &nbsp;·&nbsp; <span class="nodates">2 400 € en duo</span></p>
   </div>
   <p class="note reveal" style="text-align:center">Pour préserver la qualité de l'expérience, les places sont limitées.</p>
-  <br><br>
   <button class="btn btn-reserve reveal" onclick="openModal()">Réserver ma place</button>
 </section>
 
 <!-- ACCÈS -->
-<section id="acces" style="background:var(--warm);padding:var(--sp) clamp(20px,6vw,80px)">
+<section id="acces">
   <div style="max-width:1100px;margin:0 auto">
     <span class="section-label reveal">Accès</span>
     <h2 class="reveal">Comment <em>nous rejoindre</em></h2>
@@ -581,55 +593,52 @@
         </p>
       </div>
     </div>
-</section>
-
-<!-- FAQ -->
-<section id="faq" style="background:var(--cream);padding:var(--sp) clamp(20px,6vw,80px)">
-  <div style="max-width:780px;margin:0 auto">
-    <span class="section-label reveal">Questions fréquentes</span>
-    <h2 class="reveal">F. A. <em>Q.</em></h2>
-
-    <div class="faq-item reveal">
-      <button class="faq-q">Faut-il avoir une expérience en danse pour participer&nbsp;?<span class="faq-icon">+</span></button>
-      <div class="faq-a"><p>Non, aucune expérience préalable n'est nécessaire. Les cours sont adaptés à chaque participant après un bilan individuel réalisé à votre arrivée. L'essentiel est l'envie d'explorer le mouvement et de prendre soin de soi.</p></div>
-    </div>
-
-    <div class="faq-item reveal">
-      <button class="faq-q">Que comprend exactement le tarif&nbsp;?<span class="faq-icon">+</span></button>
-      <div class="faq-a"><p>Le tarif inclut l'hébergement en pension complète (petit déjeuner, déjeuner et dîner), 13 pratiques corporelles, 6 ateliers, et la soirée de clôture Bal Masqué. Les soins individuels (massage, ostéopathie, Kobido) et cours privés sont en option et facturés séparément.</p></div>
-    </div>
-
-    <div class="faq-item reveal">
-      <button class="faq-q">Le séjour est-il adapté aux personnes ayant des douleurs ou limitations physiques&nbsp;?<span class="faq-icon">+</span></button>
-      <div class="faq-a"><p>Tout à fait. Marina et Oleg adaptent chaque cours à vos possibilités du moment — vous faites ce que vous pouvez, à votre rythme. Ces cours sont avant tout là pour le plaisir et le bien-être, pas pour la performance. Un bilan avec notre kinésithérapeute est prévu dès le premier jour pour identifier vos besoins spécifiques.</p></div>
-    </div>
-
-    <div class="faq-item reveal">
-      <button class="faq-q">Combien de participants seront présents&nbsp;?<span class="faq-icon">+</span></button>
-      <div class="faq-a"><p>Pour cette première édition, nous accueillons entre 13 et 15 participants. Ce format intimiste est un choix délibéré : il permet un suivi personnalisé, une vraie cohésion de groupe et une qualité d'expérience qu'un grand groupe ne permettrait pas.</p></div>
-    </div>
-
-    <div class="faq-item reveal">
-      <button class="faq-q">Faut-il assister à toutes les activités&nbsp;?<span class="faq-icon">+</span></button>
-      <div class="faq-a"><p>Non, vous êtes libre de construire votre séjour selon vos envies et votre énergie. Vous déterminez votre propre rythme. Cela dit, chaque cours et atelier apporte quelque chose de spécifique — plus vous vous y investissez, plus les bénéfices seront profonds et durables.</p></div>
-    </div>
-
-    <div class="faq-item reveal">
-      <button class="faq-q">Je souhaite venir accompagné(e) d'une personne qui ne participe pas au programme — est-ce possible&nbsp;?<span class="faq-icon">+</span></button>
-      <div class="faq-a"><p>Oui, tout à fait. Si vous souhaitez venir avec quelqu'un, cette personne est la bienvenue — elle participera au séjour au même tarif que vous. Elle peut choisir de suivre les cours ou simplement profiter du cadre et de l'ambiance, sans obligation. L'hébergement au château est proposé uniquement dans le cadre du programme complet. Une exception est faite pour les enfants de moins de 10 ans accompagnant un participant.</p></div>
-    </div>
-
-    <div class="faq-item reveal">
-      <button class="faq-q">Quelles sont les conditions d'annulation&nbsp;?<span class="faq-icon">+</span></button>
-      <div class="faq-a"><p>Nous comprenons que la vie peut réserver des surprises. Annulation jusqu'à 45 jours avant : remboursement intégral. Entre 15 et 45 jours : 50 % sont retenus pour couvrir les frais engagés. Moins de 15 jours : contactez-nous, nous trouverons une solution ensemble.</p></div>
-    </div>
-
-    <div class="faq-item reveal">
-      <button class="faq-q">Y a-t-il un transfert depuis Paris&nbsp;?<span class="faq-icon">+</span></button>
-      <div class="faq-a"><p>Le château est accessible en train depuis Paris Gare de Lyon (45 min jusqu'à Montereau, puis taxi 15 min). Un transfert privé depuis l'aéroport ou tout autre point de Paris peut être organisé sur demande — contactez-nous pour en savoir plus.</p></div>
-    </div>
-
   </div>
+</section>
+<section id="faq">
+  <span class="section-label reveal">Questions fréquentes</span>
+  <h2 class="reveal">F. A. <em>Q.</em></h2>
+
+  <div class="faq-item reveal">
+    <button class="faq-q">Faut-il avoir une expérience en danse pour participer&nbsp;?<span class="faq-icon">+</span></button>
+    <div class="faq-a"><p>Non, aucune expérience préalable n'est nécessaire. Les cours sont adaptés à chaque participant après un bilan individuel réalisé à votre arrivée. L'essentiel est l'envie d'explorer le mouvement et de prendre soin de soi.</p></div>
+  </div>
+
+  <div class="faq-item reveal">
+    <button class="faq-q">Que comprend exactement le tarif&nbsp;?<span class="faq-icon">+</span></button>
+    <div class="faq-a"><p>Le tarif inclut l'hébergement en pension complète (petit déjeuner, déjeuner et dîner), 13 pratiques corporelles, 6 ateliers, et la soirée de clôture Bal Masqué. Les soins individuels (massage, ostéopathie, Kobido) et cours privés sont en option et facturés séparément.</p></div>
+  </div>
+
+  <div class="faq-item reveal">
+    <button class="faq-q">Le séjour est-il adapté aux personnes ayant des douleurs ou limitations physiques&nbsp;?<span class="faq-icon">+</span></button>
+    <div class="faq-a"><p>Tout à fait. Marina et Oleg adaptent chaque cours à vos possibilités du moment — vous faites ce que vous pouvez, à votre rythme. Ces cours sont avant tout là pour le plaisir et le bien-être, pas pour la performance. Un bilan avec notre kinésithérapeute est prévu dès le premier jour pour identifier vos besoins spécifiques.</p></div>
+  </div>
+
+  <div class="faq-item reveal">
+    <button class="faq-q">Combien de participants seront présents&nbsp;?<span class="faq-icon">+</span></button>
+    <div class="faq-a"><p>Pour cette première édition, nous accueillons entre 13 et 15 participants. Ce format intimiste est un choix délibéré : il permet un suivi personnalisé, une vraie cohésion de groupe et une qualité d'expérience qu'un grand groupe ne permettrait pas.</p></div>
+  </div>
+
+  <div class="faq-item reveal">
+    <button class="faq-q">Faut-il assister à toutes les activités&nbsp;?<span class="faq-icon">+</span></button>
+    <div class="faq-a"><p>Non, vous êtes libre de construire votre séjour selon vos envies et votre énergie. Vous déterminez votre propre rythme. Cela dit, chaque cours et atelier apporte quelque chose de spécifique — plus vous vous y investissez, plus les bénéfices seront profonds et durables.</p></div>
+  </div>
+
+  <div class="faq-item reveal">
+    <button class="faq-q">Je souhaite venir accompagné(e) d'une personne qui ne participe pas au programme — est-ce possible&nbsp;?<span class="faq-icon">+</span></button>
+    <div class="faq-a"><p>Oui, tout à fait. Si vous souhaitez venir avec quelqu'un, cette personne est la bienvenue — elle participera au séjour au même tarif que vous. Elle peut choisir de suivre les cours ou simplement profiter du cadre et de l'ambiance, sans obligation. L'hébergement au château est proposé uniquement dans le cadre du programme complet. Une exception est faite pour les enfants de moins de 10 ans accompagnant un participant.</p></div>
+  </div>
+
+  <div class="faq-item reveal">
+    <button class="faq-q">Quelles sont les conditions d'annulation&nbsp;?<span class="faq-icon">+</span></button>
+    <div class="faq-a"><p>Nous comprenons que la vie peut réserver des surprises. Annulation jusqu'à 45 jours avant : remboursement intégral. Entre 15 et 45 jours : 50 % sont retenus pour couvrir les frais engagés. Moins de 15 jours : contactez-nous, nous trouverons une solution ensemble.</p></div>
+  </div>
+
+  <div class="faq-item reveal">
+    <button class="faq-q">Y a-t-il un transfert depuis Paris&nbsp;?<span class="faq-icon">+</span></button>
+    <div class="faq-a"><p>Le château est accessible en train depuis Paris Gare de Lyon (45 min jusqu'à Montereau, puis taxi 15 min). Un transfert privé depuis l'aéroport ou tout autre point de Paris peut être organisé sur demande — contactez-nous pour en savoir plus.</p></div>
+  </div>
+
 </section>
 
 <!-- CONTACT -->
@@ -652,9 +661,9 @@
 </footer>
 
 <!-- PRATIQUE LIGHTBOX -->
-<div class="pratique-lb" id="pratiqueLb">
+<div class="pratique-lb" id="pratiqueLb" role="dialog" aria-modal="true" aria-label="Détail de la pratique">
   <div class="pratique-lb-box">
-    <button class="pratique-lb-close" id="pratiqueLbClose">✕</button>
+    <button class="pratique-lb-close" id="pratiqueLbClose" aria-label="Fermer">✕</button>
     <span class="pratique-lb-tag">Programme</span>
     <h3 class="pratique-lb-title" id="plbTitle"></h3>
     <div class="pratique-lb-line"></div>
@@ -722,19 +731,27 @@
   if(ep){ep.placeholder='votre@email.com';}
 })();
 
+/* ── SCROLL LOCK MANAGER — centralised to prevent multi-overlay conflicts ── */
+var _scrollLocks=0;
+function lockScroll(){_scrollLocks++;document.body.style.overflow='hidden';}
+function unlockScroll(){_scrollLocks=Math.max(0,_scrollLocks-1);if(_scrollLocks===0)document.body.style.overflow='';}
+
 /* ── MOBILE NAV ── */
 document.getElementById('burger').addEventListener('click',function(){
   var nav=document.getElementById('mobile-nav');
   if(nav.classList.contains('open')){closeMob();}
-  else{nav.classList.add('open');document.body.style.overflow='hidden';}
+  else{nav.classList.add('open');lockScroll();}
 });
 document.getElementById('nav-close').addEventListener('click',closeMob);
 document.querySelectorAll('.mobile-link').forEach(function(l){l.addEventListener('click',closeMob);});
-function closeMob(){document.getElementById('mobile-nav').classList.remove('open');document.body.style.overflow='';}
+function closeMob(){document.getElementById('mobile-nav').classList.remove('open');unlockScroll();}
 
-/* ── NAV SHRINK ── */
+/* ── NAV SHRINK — FIX #2: responsive padding on scroll ── */
 window.addEventListener('scroll',function(){
-  document.getElementById('main-nav').style.padding=window.scrollY>60?'14px 48px':'22px 48px';
+  var isMobile=window.innerWidth<=768;
+  document.getElementById('main-nav').style.padding=window.scrollY>60
+    ?(isMobile?'14px 20px':'14px 48px')
+    :(isMobile?'18px 20px':'22px 48px');
 });
 
 /* ── SCROLL REVEAL ── */
@@ -749,7 +766,25 @@ document.querySelectorAll('.reveal').forEach(function(el){obsRev.observe(el);});
 (function(){
   var outer=document.getElementById('sliderOuter');
   var track=document.getElementById('sliderTrack');
-  var images=['7.JPG','8.JPG','9.JPG','10.JPG','11.JPG','12.JPG','13.JPG','14.JPG','15.JPG','16.JPG','17.JPG','18.JPG','19.JPG','20.JPG','21.JPG','22.JPG'];
+  var images=[
+    'galerie-chateau-misy-sur-yonne-exterieur.jpg',
+    'galerie-sejour-danse-salle-pratique.jpg',
+    'galerie-chateau-parc-jardins.jpg',
+    'galerie-cours-danse-contemporaine.jpg',
+    'galerie-atelier-bien-etre-mouvement.jpg',
+    'galerie-chambre-hebergement-chateau.jpg',
+    'galerie-salle-danse-classique-barre.jpg',
+    'galerie-danse-latine-mouvement.jpg',
+    'galerie-chateau-couloir-interieur.jpg',
+    'galerie-pratiques-somatiques-sol.jpg',
+    'galerie-sejour-immersif-participants.jpg',
+    'galerie-chateau-salon-reception.jpg',
+    'galerie-danse-historique-valse.jpg',
+    'galerie-repas-table-chateau.jpg',
+    'galerie-parc-nature-yonne.jpg',
+    'galerie-bal-masque-soiree.jpg',
+    'galerie-chateau-vue-ensemble.jpg'
+  ];
   var total=images.length;
   var origSlides=Array.from(track.querySelectorAll('.slide'));
   var currentIndex=0,currentX=0,isAnimating=false;
@@ -831,15 +866,15 @@ document.querySelectorAll('.reveal').forEach(function(el){obsRev.observe(el);});
   window.addEventListener('resize',function(){goToIndex(currentIndex,false);});
 
   var lbCur=0,lb=document.getElementById('lightbox'),lbImg=document.getElementById('lbImg'),lbCounter=document.getElementById('lbCounter');
-  function openLB(idx){lbCur=idx;lbImg.src=images[lbCur];lbCounter.textContent=(lbCur+1)+' / '+total;lb.classList.add('open');document.body.style.overflow='hidden';}
-  function closeLB(){lb.classList.remove('open');document.body.style.overflow='';lbImg.src='';}
+  function openLB(idx){lbCur=idx;lbImg.src=images[lbCur];lbCounter.textContent=(lbCur+1)+' / '+total;lb.classList.add('open');lockScroll();}
+  function closeLB(){lb.classList.remove('open');unlockScroll();lbImg.src='';}
   function prevLB(){lbCur=(lbCur-1+total)%total;lbImg.src=images[lbCur];lbCounter.textContent=(lbCur+1)+' / '+total;}
   function nextLB(){lbCur=(lbCur+1)%total;lbImg.src=images[lbCur];lbCounter.textContent=(lbCur+1)+' / '+total;}
   document.getElementById('lbClose').addEventListener('click',closeLB);
   document.getElementById('lbPrev').addEventListener('click',prevLB);
   document.getElementById('lbNext').addEventListener('click',nextLB);
   lb.addEventListener('click',function(e){if(e.target===lb)closeLB();});
-  document.addEventListener('keydown',function(e){if(!lb.classList.contains('open'))return;if(e.key==='Escape')closeLB();if(e.key==='ArrowLeft')prevLB();if(e.key==='ArrowRight')nextLB();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&lb.classList.contains('open')){e.stopImmediatePropagation();closeLB();}if(lb.classList.contains('open')&&e.key==='ArrowLeft')prevLB();if(lb.classList.contains('open')&&e.key==='ArrowRight')nextLB();});
   var lbTX=0,lbTY=0;
   lb.addEventListener('touchstart',function(e){lbTX=e.touches[0].clientX;lbTY=e.touches[0].clientY;},{passive:true});
   lb.addEventListener('touchmove',function(e){e.preventDefault();},{passive:false});
@@ -906,7 +941,7 @@ document.querySelectorAll('.reveal').forEach(function(el){obsRev.observe(el);});
 })();
 
 /* ── MODAL ── */
-function openModal(){document.getElementById('modalOverlay').classList.add('open');document.body.style.overflow='hidden';}
+function openModal(){document.getElementById('modalOverlay').classList.add('open');lockScroll();}
 function openModalWithTarif(type){
   var sel=document.getElementById('chambre');
   var earlyBird=window._earlyBird;
@@ -916,9 +951,9 @@ function openModalWithTarif(type){
   if(sel){for(var i=0;i<sel.options.length;i++){if(sel.options[i].value===val){sel.selectedIndex=i;break;}}}
   openModal();
 }
-function closeModal(){document.getElementById('modalOverlay').classList.remove('open');document.body.style.overflow='';}
+function closeModal(){document.getElementById('modalOverlay').classList.remove('open');unlockScroll();}
 document.getElementById('modalOverlay').addEventListener('click',function(e){if(e.target===this)closeModal();});
-document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&document.getElementById('modalOverlay').classList.contains('open'))closeModal();});
 
 /* ── FORM — EmailJS ── */
 async function submitForm(e){
@@ -958,7 +993,7 @@ async function submitForm(e){
       window.emailjs.init({publicKey:PUBLIC_KEY});
     }
     await window.emailjs.send(SERVICE_ID,TEMPLATE_ID,params);
-    await window.emailjs.send(SERVICE_ID,AUTO_TMPL_ID,params);
+    try{await window.emailjs.send(SERVICE_ID,AUTO_TMPL_ID,params);}catch(e){}
     sendEl.style.display='none';
     document.getElementById('formWrap').style.display='none';
     document.getElementById('formSuccess').style.display='block';
@@ -1031,6 +1066,11 @@ async function submitForm(e){
   var pedRoleEl=document.getElementById('plbPedRole');
   var pedBioEl=document.getElementById('plbPedBio');
 
+  document.getElementById('pratiqueLbClose').addEventListener('click',closePLb);
+  lb.addEventListener('click',function(e){if(e.target===lb)closePLb();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&lb.classList.contains('open'))closePLb();});
+  function closePLb(){lb.classList.remove('open');unlockScroll();}
+  // open sets lock
   document.querySelectorAll('.pratique-item').forEach(function(item){
     item.addEventListener('click',function(){
       var key=item.getAttribute('data-pratique');
@@ -1044,14 +1084,9 @@ async function submitForm(e){
       var pedBlock=document.querySelector('.pratique-lb-pedagogue');
       if(pedBlock)pedBlock.style.display=d.pedBio?'flex':'none';
       lb.classList.add('open');
-      document.body.style.overflow='hidden';
+      lockScroll();
     });
   });
-
-  document.getElementById('pratiqueLbClose').addEventListener('click',closePLb);
-  lb.addEventListener('click',function(e){if(e.target===lb)closePLb();});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&lb.classList.contains('open'))closePLb();});
-  function closePLb(){lb.classList.remove('open');document.body.style.overflow='';}
 })();
 
 /* ── FAQ ACCORDION ── */
