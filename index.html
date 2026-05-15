@@ -32,10 +32,10 @@
       --sp:clamp(60px,9vw,120px);
     }
     html{scroll-behavior:smooth;scroll-padding-top:80px}
-    body{background:var(--cream);color:var(--dark);font-family:'Jost',sans-serif;font-weight:300;line-height:1.8;overflow-x:hidden}
+    body{background:var(--cream);color:var(--dark);font-family:'Jost',sans-serif;font-weight:300;line-height:1.8;overflow-x:hidden;-webkit-overflow-scrolling:touch}
 
     /* NAV */
-    nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;flex-direction:row;align-items:center;padding:22px 48px;background:rgba(248,244,237,0.96);backdrop-filter:blur(10px);border-bottom:1px solid rgba(111,62,20,0.12);transition:padding .3s}
+    nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;flex-direction:row;align-items:center;padding:22px 48px;background:rgba(248,244,237,0.98);border-bottom:1px solid rgba(111,62,20,0.12);transition:padding .3s;-webkit-transform:translateZ(0);transform:translateZ(0);-webkit-backface-visibility:hidden}
     .nav-brand{font-family:'Cormorant Garamond',serif;font-size:18px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);text-decoration:none;margin-right:auto;transition:font-size .35s ease,letter-spacing .35s ease}
     .nav-links{list-style:none;display:flex;gap:32px;order:3}
     .nav-links a{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--grey);text-decoration:none;transition:color .2s}
