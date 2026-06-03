@@ -405,7 +405,25 @@
     .equipe-role{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);line-height:1.6;display:block;margin-bottom:14px}
     .equipe-hint{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-pale);display:block}
     @media(max-width:899px){.equipe-grid{grid-template-columns:repeat(2,1fr);gap:24px}}
-    @media(max-width:540px){.equipe-grid{grid-template-columns:1fr;max-width:380px}.equipe-name{font-size:25px}}
+    @media(max-width:640px){
+      .equipe-grid{
+        display:flex;grid-template-columns:none;max-width:none;margin:0;
+        gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;
+        -webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;
+        padding-bottom:4px;scrollbar-width:none;
+      }
+      .equipe-grid::-webkit-scrollbar{display:none}
+      .equipe-card{flex:0 0 80%;max-width:330px;scroll-snap-align:start}
+      .equipe-name{font-size:25px}
+    }
+
+    /* ÉQUIPE — points de navigation (mobile) */
+    .equipe-dots{display:none}
+    @media(max-width:640px){
+      .equipe-dots{display:flex;justify-content:center;gap:9px;margin-top:26px}
+      .equipe-dots button{width:7px;height:7px;border-radius:50%;border:none;padding:0;-webkit-appearance:none;appearance:none;background:rgba(111,62,20,.22);cursor:pointer;transition:transform .3s ease,background .3s ease}
+      .equipe-dots button.active{background:var(--gold-pale);transform:scale(1.4)}
+    }
 
     /* ÉQUIPE — bio dans le lightbox */
     .elb-bio p{font-size:15px;color:rgba(248,244,237,.65);line-height:1.9;max-width:none}
@@ -607,6 +625,7 @@
       </div>
     </div>
   </div>
+  <div class="equipe-dots" id="equipeDots"></div>
 </section>
 
 <!-- ÉQUIPE LIGHTBOX -->
@@ -1388,6 +1407,38 @@ async function submitForm(e){
       lockScroll();
     });
   });
+})();
+
+/* ── ÉQUIPE SLIDER DOTS (mobile) ── */
+(function(){
+  var grid=document.querySelector('#equipe .equipe-grid');
+  var wrap=document.getElementById('equipeDots');
+  if(!grid||!wrap)return;
+  var cards=Array.prototype.slice.call(grid.querySelectorAll('.equipe-card'));
+  if(!cards.length)return;
+  cards.forEach(function(c,i){
+    var b=document.createElement('button');
+    b.type='button';
+    b.setAttribute('aria-label','Voir le membre '+(i+1));
+    b.addEventListener('click',function(){
+      var delta=c.getBoundingClientRect().left-grid.getBoundingClientRect().left;
+      grid.scrollBy({left:delta,behavior:'smooth'});
+    });
+    wrap.appendChild(b);
+  });
+  var dots=Array.prototype.slice.call(wrap.querySelectorAll('button'));
+  function update(){
+    var gl=grid.getBoundingClientRect().left;
+    var best=0,bestD=Infinity;
+    cards.forEach(function(c,i){
+      var d=Math.abs(c.getBoundingClientRect().left-gl);
+      if(d<bestD){bestD=d;best=i;}
+    });
+    dots.forEach(function(d,i){d.classList.toggle('active',i===best);});
+  }
+  grid.addEventListener('scroll',function(){window.requestAnimationFrame(update);},{passive:true});
+  window.addEventListener('resize',function(){window.requestAnimationFrame(update);});
+  update();
 })();
 
 /* ── FAQ ACCORDION ── */
