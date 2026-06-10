@@ -52,7 +52,7 @@
     nav.shrunk{padding:14px 48px}
     .nav-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
     .nav-burger span{width:24px;height:1px;background:var(--gold);display:block}
-    .nav-mobile{display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;height:-webkit-fill-available;height:100dvh;background:var(--cream);z-index:210;flex-direction:column;align-items:center;justify-content:center;gap:22px;
+    .nav-mobile{display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;height:-webkit-fill-available;background:var(--cream);z-index:210;flex-direction:column;align-items:center;justify-content:center;gap:22px;
       padding-top:max(64px,env(safe-area-inset-top,0px) + 56px);
       padding-bottom:max(24px,env(safe-area-inset-bottom,0px) + 16px);
       box-sizing:border-box}
@@ -387,6 +387,48 @@
       .bal-text p,
       .heb-text p{max-width:520px}
     }
+
+    /* ÉQUIPE */
+    #equipe{background:var(--warm);padding:var(--sp) clamp(20px,6vw,80px)}
+    .equipe-header{max-width:680px;margin:0 auto clamp(40px,5vw,60px);text-align:center}
+    .equipe-header h2{margin:0 auto 18px}
+    .equipe-header .line{margin:0 auto 24px}
+    .equipe-header p{margin:0 auto;text-align:center;font-size:17px}
+    .equipe-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,2.6vw,36px);max-width:1080px;margin:0 auto}
+    .equipe-card{background:var(--cream);display:flex;flex-direction:column;overflow:hidden;box-shadow:0 6px 30px rgba(42,26,8,.07);cursor:pointer;transition:transform .25s ease,box-shadow .25s ease}
+    @media(hover:hover){.equipe-card:hover{transform:translateY(-4px);box-shadow:0 14px 40px rgba(42,26,8,.13)}}
+    .equipe-photo{width:100%;aspect-ratio:4/5;overflow:hidden;background:var(--warm2)}
+    .equipe-photo img{width:100%;height:100%;object-fit:cover;object-position:center 20%;filter:grayscale(12%);display:block;transition:transform .45s ease}
+    @media(hover:hover){.equipe-card:hover .equipe-photo img{transform:scale(1.04)}}
+    .equipe-body{padding:clamp(20px,2vw,28px)}
+    .equipe-name{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:400;color:var(--dark);margin-bottom:5px;line-height:1.15;display:block}
+    .equipe-role{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);line-height:1.6;display:block;margin-bottom:14px}
+    .equipe-hint{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-pale);display:block}
+    @media(max-width:899px){.equipe-grid{grid-template-columns:repeat(2,1fr);gap:24px}}
+    @media(max-width:640px){
+      .equipe-grid{
+        display:flex;grid-template-columns:none;max-width:none;margin:0;
+        gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;
+        -webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;
+        padding-bottom:4px;scrollbar-width:none;
+      }
+      .equipe-grid::-webkit-scrollbar{display:none}
+      .equipe-card{flex:0 0 80%;max-width:330px;scroll-snap-align:start}
+      .equipe-name{font-size:25px}
+    }
+
+    /* ÉQUIPE — points de navigation (mobile) */
+    .equipe-dots{display:none}
+    @media(max-width:640px){
+      .equipe-dots{display:flex;justify-content:center;gap:9px;margin-top:26px}
+      .equipe-dots button{width:7px;height:7px;border-radius:50%;border:none;padding:0;-webkit-appearance:none;appearance:none;background:rgba(111,62,20,.22);cursor:pointer;transition:transform .3s ease,background .3s ease}
+      .equipe-dots button.active{background:var(--gold-pale);transform:scale(1.4)}
+    }
+
+    /* ÉQUIPE — bio dans le lightbox */
+    .elb-bio p{font-size:15px;color:rgba(248,244,237,.65);line-height:1.9;max-width:none}
+    .elb-bio p+p{margin-top:14px}
+    @media(min-width:1200px){.elb-bio p{font-size:16px}}
   </style>
 </head>
 <body>
@@ -398,6 +440,7 @@
     <li><a href="#concept">Le séjour</a></li>
     <li><a href="#pratiques">Programme</a></li>
     <li><a href="#fondateurs">Marina & Oleg</a></li>
+    <li><a href="#equipe">L'équipe</a></li>
     <li><a href="#galerie">Galerie</a></li>
     <li><a href="#tarifs">Tarifs</a></li>
     <li><a href="#faq">FAQ</a></li>
@@ -415,6 +458,7 @@
   <a href="#concept" class="mobile-link">Le séjour</a>
   <a href="#pratiques" class="mobile-link">Programme</a>
   <a href="#fondateurs" class="mobile-link">Marina & Oleg</a>
+  <a href="#equipe" class="mobile-link">L'équipe</a>
   <a href="#galerie" class="mobile-link">Galerie</a>
   <a href="#tarifs" class="mobile-link">Tarifs</a>
   <a href="#faq" class="mobile-link">FAQ</a>
@@ -530,6 +574,70 @@
     </div>
   </div>
 </section>
+
+<!-- ÉQUIPE -->
+<section id="equipe">
+  <div class="equipe-header reveal">
+    <span class="section-label">L'équipe</span>
+    <h2>Ceux qui vous <em>accompagnent</em></h2>
+    <div class="line"></div>
+    <p>Une équipe réunie pour ce séjour — danse, mouvement et soin du corps, chacun dans sa discipline.</p>
+  </div>
+  <div class="equipe-grid">
+    <div class="equipe-card reveal" data-membre="marina">
+      <div class="equipe-photo"><img src="marina-kudryashova-danseuse-pedagogue.jpg" alt="Marina Kudryashova — danseuse de l'Opéra National de Bordeaux, pédagogue" loading="lazy"/></div>
+      <div class="equipe-body">
+        <span class="equipe-name">Marina Kudryashova</span>
+        <span class="equipe-role">Danse Classique &amp; Posture · Danse Historique</span>
+        <span class="equipe-hint">Biographie →</span>
+      </div>
+    </div>
+    <div class="equipe-card reveal" data-membre="oleg">
+      <div class="equipe-photo"><img src="oleg-rogachev-premier-danseur.jpg" alt="Oleg Rogachev — Premier Danseur à l'Opéra National de Bordeaux, pédagogue" loading="lazy"/></div>
+      <div class="equipe-body">
+        <span class="equipe-name">Oleg Rogachev</span>
+        <span class="equipe-role">Danse Contemporaine · Danse Historique</span>
+        <span class="equipe-hint">Biographie →</span>
+      </div>
+    </div>
+    <div class="equipe-card reveal" data-membre="virginie">
+      <div class="equipe-photo"><img src="virginie-lescouet-munz-floor.jpg" alt="Virginie Lescouet — coach Münz Floor®" loading="lazy"/></div>
+      <div class="equipe-body">
+        <span class="equipe-name">Virginie Lescouet</span>
+        <span class="equipe-role">MÜNZ FLOOR<sup style="font-size:9px;vertical-align:super">®</sup></span>
+        <span class="equipe-hint">Biographie →</span>
+      </div>
+    </div>
+    <div class="equipe-card reveal" data-membre="lucile">
+      <div class="equipe-photo"><img src="lucile-kocken-kinesitherapeute.jpg" alt="Lucile Kocken — masseur-kinésithérapeute et ostéopathe D.O." loading="lazy"/></div>
+      <div class="equipe-body">
+        <span class="equipe-name">Lucile Kocken</span>
+        <span class="equipe-role">Kinésithérapeute · Ostéopathe — Gymnastique de Santé</span>
+        <span class="equipe-hint">Biographie →</span>
+      </div>
+    </div>
+    <div class="equipe-card reveal" data-membre="alexandre">
+      <div class="equipe-photo"><img src="alexandre-renoux-osteopathe.jpg" alt="Alexandre Renoux — masseur-kinésithérapeute et ostéopathe D.O." loading="lazy"/></div>
+      <div class="equipe-body">
+        <span class="equipe-name">Alexandre Renoux</span>
+        <span class="equipe-role">Kinésithérapeute · Ostéopathe — Gymnastique de Santé</span>
+        <span class="equipe-hint">Biographie →</span>
+      </div>
+    </div>
+  </div>
+  <div class="equipe-dots" id="equipeDots"></div>
+</section>
+
+<!-- ÉQUIPE LIGHTBOX -->
+<div class="pratique-lb" id="equipeLb">
+  <div class="pratique-lb-box">
+    <button class="pratique-lb-close" id="equipeLbClose" aria-label="Fermer">✕</button>
+    <span class="pratique-lb-tag" id="elbRole"></span>
+    <h3 class="pratique-lb-title" id="elbName"></h3>
+    <div class="pratique-lb-line"></div>
+    <div class="elb-bio" id="elbBio"></div>
+  </div>
+</div>
 
 <!-- BAL MASQUÉ -->
 <section id="bal">
@@ -856,7 +964,13 @@ function unlockScroll(){
     document.body.style.right='';
     document.body.style.overflow='';
     document.body.style.paddingRight='';
+    /* désactiver le smooth-scroll le temps de restaurer la position,
+       sinon la page défile depuis le haut jusqu'à la position d'origine */
+    var _html=document.documentElement;
+    var _prev=_html.style.scrollBehavior;
+    _html.style.scrollBehavior='auto';
     window.scrollTo(0,_savedScrollY);
+    _html.style.scrollBehavior=_prev;
   }
 }
 
@@ -1153,38 +1267,38 @@ async function submitForm(e){
   var data={
     gym:{
       title:"Gymnastique de Santé",
-      desc:"Un programme de renforcement musculaire et de rééducation posturale conçu individuellement pour chaque participant. Avant le séjour, chaque personne bénéficie d'un bilan complet avec notre kinésithérapeute pour identifier ses besoins spécifiques — douleurs chroniques, posture, mobilité — et adapter les exercices en conséquence.",
-      pedName:"Marina Kudryashova & Oleg Rogachev",
-      pedRole:"Kinésithérapeute · Spécialiste mouvement et posture",
-      pedBio:""
+      desc:"Un programme de renforcement musculaire et de rééducation posturale conçu individuellement pour chaque participant. Dès le premier jour, chacun bénéficie d'un bilan complet avec nos kinésithérapeutes pour identifier ses besoins spécifiques — douleurs chroniques, posture, mobilité — et adapter les exercices en conséquence.",
+      pedName:"Lucile Kocken & Alexandre Renoux",
+      pedRole:"Kinésithérapeutes · Ostéopathes D.O.",
+      pedBio:"Ils exercent en duo à Bordeaux et suivent les danseurs du Ballet de l'Opéra de Bordeaux. Ensemble, ils conçoivent pour chacun un programme sur mesure, à partir d'un bilan individuel."
     },
     barre:{
       title:"Travail Postural & Danse Classique",
       desc:"Inspirée de la technique du ballet classique, cette pratique travaille la verticalité, l'alignement du corps et la qualité de présence. Aucune expérience préalable n'est nécessaire : les exercices sont adaptés à chaque niveau. On y développe un maintien harmonieux et une présence corporelle raffinée.",
       pedName:"Marina Kudryashova",
       pedRole:"Danseuse · Pédagogue · Académie du Bolchoï",
-      pedBio:""
+      pedBio:"Passée par le Bolchoï et l'Opéra de Bordeaux, elle transmet l'élégance du ballet classique — une présence qui rayonne avant même le premier mouvement."
     },
     munz:{
       title:"MÜNZ FLOOR®",
       desc:"Le Münz Floor® est une pratique somatique douce travaillant au sol. Cette méthode mobilise les fascias pour libérer les tensions profondes. Elle permet de retrouver la fluidité articulaire et de développer une mobilité plus consciente et habitée. Idéale pour les personnes souffrant de tensions chroniques.",
-      pedName:"Marina Kudryashova & Oleg Rogachev",
-      pedRole:"Certifié Münz Floor®",
-      pedBio:""
+      pedName:"Virginie Lescouet",
+      pedRole:"Certifiée Münz Floor®",
+      pedBio:"Formée auprès de Maurice Béjart, puis directement par Alexandre Münz, elle guide le corps dans un travail lent et profond sur les fascias."
     },
     contemporaine:{
       title:"Danse Contemporaine",
       desc:"La danse contemporaine est un espace de liberté totale. Les séances alternent improvisation guidée, travail sur les qualités de mouvement et partage en groupe. Un espace rare pour relâcher les tensions et reconnecter avec le plaisir du mouvement.",
-      pedName:"Marina Kudryashova",
-      pedRole:"Danseuse · Chorégraphe · Opéra National de Bordeaux",
-      pedBio:""
+      pedName:"Oleg Rogachev",
+      pedRole:"Premier Danseur · Opéra National de Bordeaux",
+      pedBio:"Formé au Bolchoï, il a dansé le répertoire contemporain de Kylián, Naharin et Béjart. C'est cette liberté du mouvement qu'il partage ici."
     },
     historique:{
       title:"Danse Historique",
       desc:"Valse, menuet — les danses de cour des XVIIe et XVIIIe siècles. Ces formes élégantes développent la grâce naturelle des gestes, la conscience de l'espace et une présence cérémonieuse. Une expérience unique qui culmine lors du Bal Masqué de clôture.",
       pedName:"Marina Kudryashova & Oleg Rogachev",
-      pedRole:"Danseurs · Pédagogues · Spécialistes danse historique",
-      pedBio:""
+      pedRole:"Danseurs · Spécialistes danse historique",
+      pedBio:"Marina a signé la valse des Bals de l'Opéra de Bordeaux. Ensemble, ils préparent chacun aux danses d'époque du Bal Masqué."
     }
   };
 
@@ -1220,6 +1334,111 @@ async function submitForm(e){
       lockScroll();
     });
   });
+})();
+
+/* ── ÉQUIPE LIGHTBOX (biographies complètes) ── */
+(function(){
+  var membres={
+    marina:{
+      name:"Marina Kudryashova",
+      role:"Danse Classique & Posture · Danse Historique",
+      bio:["Danseuse à l'Opéra National de Bordeaux, Marina Kudryashova est diplômée de l'Académie du Ballet du Bolchoï à Moscou. Soliste au Théâtre Stanislavski de Moscou, elle a également été invitée par l'Opéra de Paris pour la Soirée Balanchine.",
+        "Sur scène, elle a interprété les grands rôles du répertoire classique — Odette-Odile, Marie de Casse-Noisette, Mercédès de Don Quichotte — comme les œuvres contemporaines de Naharin, Ekman, Preljocaj et Robbins. Mais c'est la danse classique et historique qu'elle transmet ici : le port de bras, l'aplomb — une tenue qui rayonne avant même de bouger, et qui se garde bien au-delà du studio.",
+        "Diplômée de l'Académie du Bolchoï comme professeure et répétitrice, Marina enseigne en France comme à l'étranger : masterclasses dans les écoles de danse, ateliers réguliers à l'Opéra National de Bordeaux, une année comme professeure consultante en danse historique au sein de l'association Artécole. Chorégraphe, elle a signé la valse de la première édition des Bals de l'Opéra de Bordeaux. Au château, c'est elle qui prépare chacun à son propre bal — elle accompagne, guide chacun à son rythme, et l'amène vers ce moment où le geste devient grâce."]
+    },
+    oleg:{
+      name:"Oleg Rogachev",
+      role:"Danse Contemporaine · Danse Historique",
+      bio:["Premier Danseur à l'Opéra National de Bordeaux, Oleg Rogachev est diplômé avec mention de l'Académie du Ballet du Bolchoï à Moscou. Il s'est formé également à la Royal Ballet School de Londres et au NDT Summer Intensive de La Haye.",
+        "Sur scène, il a dansé les grands rôles classiques — Siegfried, Albrecht, Roméo, Basilio — mais aussi le répertoire contemporain de Kylián, Naharin, Duato, Béjart et Ekman. C'est ce langage-là, celui du mouvement libre et de l'expression, qu'il partage ici.",
+        "Diplômé de l'Académie du Bolchoï comme professeur et répétiteur, Oleg enseigne depuis des années — en master-classes, en France comme à l'étranger. Il guide le groupe et chacun en particulier. Il ne corrige pas, il n'impose pas une technique — il met en mouvement. Par la musique, par sa présence, il amène chacun là où le geste devient naturel, où le corps se met à parler de lui-même."]
+    },
+    virginie:{
+      name:"Virginie Lescouet",
+      role:"Certifiée Münz Floor®",
+      bio:["Danseuse formée sous le regard de Maurice Béjart à Lausanne, Virginie a ensuite dansé pour plusieurs compagnies en Allemagne et en Italie.",
+        "Une blessure l'a amenée vers l'enseignement — et c'est devenu sa vocation. Depuis 25 ans, elle accompagne ses élèves en danse classique et contemporaine.",
+        "En mars 2020, elle découvre le Münz Floor®, un vrai coup de foudre. Elle se forme quelques mois plus tard directement auprès d'Alexandre Münz, le fondateur de cette méthode primée à l'échelle internationale. Travaillant en profondeur sur le système fascial, elle guide le corps à travers des mouvements lents, fluides et segmentés de rotation et contre-rotation au sol — un véritable « massage de l'intérieur » qui libère les articulations et les tensions myofasciales. Elle devient ainsi la première coach à transmettre la méthode en Italie.",
+        "Depuis six ans, Virginie fait découvrir cette approche à des personnes de tous horizons, au sein de plusieurs associations en Italie et lors de stages internationaux de danse. Prendre soin des corps par la voix la remplit de joie."]
+    },
+    lucile:{
+      name:"Lucile Kocken",
+      role:"Kinésithérapeute · Ostéopathe D.O — Gymnastique de Santé",
+      bio:["Masseur-kinésithérapeute depuis 2009 et ostéopathe D.O depuis 2016, Lucile exerce à Bordeaux Bastide.",
+        "Spécialisée dans la rééducation de l'équilibre et des vertiges depuis 2010, elle est titulaire d'un D.I.U de la faculté Paris-Sorbonne et membre du comité administratif de l'IREV (Institut de Recherche, Équilibre et Vertiges). Elle est chargée de cours à l'école d'ostéopathie Eurosteo depuis 2021.",
+        "Avec Alexandre — duo à la ville comme dans la vie professionnelle — elle met sa connaissance globale du corps au service de chacun, pour mieux comprendre ses sensations et ses besoins."]
+    },
+    alexandre:{
+      name:"Alexandre Renoux",
+      role:"Kinésithérapeute · Ostéopathe D.O — Gymnastique de Santé",
+      bio:["Masseur-kinésithérapeute depuis 2003, titulaire d'un D.U de kinésithérapie du sport (2005) et ostéopathe D.O depuis 2010, Alexandre exerce à Bordeaux Bastide.",
+        "Il a travaillé quinze ans dans le football de haut niveau aux Girondins de Bordeaux et intervient auprès des danseurs du Ballet de l'Opéra de Bordeaux depuis 2011. Il est chargé de cours à l'école d'ostéopathie Eurosteo depuis 2021.",
+        "Avec Lucile — duo à la ville comme dans la vie professionnelle — il accompagne chaque participant dans une prise en charge globale, à partir d'un bilan individuel."]
+    }
+  };
+
+  var elb=document.getElementById('equipeLb');
+  var elbName=document.getElementById('elbName');
+  var elbRole=document.getElementById('elbRole');
+  var elbBio=document.getElementById('elbBio');
+
+  function closeElb(){elb.classList.remove('open');unlockScroll();}
+  document.getElementById('equipeLbClose').addEventListener('click',closeElb);
+  elb.addEventListener('click',function(e){if(e.target===elb)closeElb();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&elb.classList.contains('open'))closeElb();});
+  elb.addEventListener('touchmove',function(e){
+    if(!e.target.closest('.pratique-lb-box')){e.preventDefault();}
+  },{passive:false});
+
+  document.querySelectorAll('.equipe-card').forEach(function(card){
+    card.addEventListener('click',function(){
+      var m=membres[card.getAttribute('data-membre')];
+      if(!m)return;
+      elbName.textContent=m.name;
+      elbRole.textContent=m.role;
+      elbBio.innerHTML='';
+      m.bio.forEach(function(par){
+        var p=document.createElement('p');
+        p.textContent=par;
+        elbBio.appendChild(p);
+      });
+      elb.querySelector('.pratique-lb-box').scrollTop=0;
+      elb.classList.add('open');
+      lockScroll();
+    });
+  });
+})();
+
+/* ── ÉQUIPE SLIDER DOTS (mobile) ── */
+(function(){
+  var grid=document.querySelector('#equipe .equipe-grid');
+  var wrap=document.getElementById('equipeDots');
+  if(!grid||!wrap)return;
+  var cards=Array.prototype.slice.call(grid.querySelectorAll('.equipe-card'));
+  if(!cards.length)return;
+  cards.forEach(function(c,i){
+    var b=document.createElement('button');
+    b.type='button';
+    b.setAttribute('aria-label','Voir le membre '+(i+1));
+    b.addEventListener('click',function(){
+      var delta=c.getBoundingClientRect().left-grid.getBoundingClientRect().left;
+      grid.scrollBy({left:delta,behavior:'smooth'});
+    });
+    wrap.appendChild(b);
+  });
+  var dots=Array.prototype.slice.call(wrap.querySelectorAll('button'));
+  function update(){
+    var gl=grid.getBoundingClientRect().left;
+    var best=0,bestD=Infinity;
+    cards.forEach(function(c,i){
+      var d=Math.abs(c.getBoundingClientRect().left-gl);
+      if(d<bestD){bestD=d;best=i;}
+    });
+    dots.forEach(function(d,i){d.classList.toggle('active',i===best);});
+  }
+  grid.addEventListener('scroll',function(){window.requestAnimationFrame(update);},{passive:true});
+  window.addEventListener('resize',function(){window.requestAnimationFrame(update);});
+  update();
 })();
 
 /* ── FAQ ACCORDION ── */
