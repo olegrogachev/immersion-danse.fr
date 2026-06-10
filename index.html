@@ -52,7 +52,7 @@
     nav.shrunk{padding:14px 48px}
     .nav-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
     .nav-burger span{width:24px;height:1px;background:var(--gold);display:block}
-    .nav-mobile{display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;height:-webkit-fill-available;background:var(--cream);z-index:210;flex-direction:column;align-items:center;justify-content:center;gap:22px;
+    .nav-mobile{display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;height:-webkit-fill-available;height:100dvh;background:var(--cream);z-index:210;flex-direction:column;align-items:center;justify-content:center;gap:22px;
       padding-top:max(64px,env(safe-area-inset-top,0px) + 56px);
       padding-bottom:max(24px,env(safe-area-inset-bottom,0px) + 16px);
       box-sizing:border-box}
@@ -416,15 +416,13 @@
       .equipe-card{flex:0 0 80%;max-width:330px;scroll-snap-align:start}
       .equipe-name{font-size:25px}
     }
-
-    /* ÉQUIPE — points de navigation (mobile) */
+    /* ÉQUIPE — dots navigation (mobile) */
     .equipe-dots{display:none}
     @media(max-width:640px){
       .equipe-dots{display:flex;justify-content:center;gap:9px;margin-top:26px}
       .equipe-dots button{width:7px;height:7px;border-radius:50%;border:none;padding:0;-webkit-appearance:none;appearance:none;background:rgba(111,62,20,.22);cursor:pointer;transition:transform .3s ease,background .3s ease}
       .equipe-dots button.active{background:var(--gold-pale);transform:scale(1.4)}
     }
-
     /* ÉQUIPE — bio dans le lightbox */
     .elb-bio p{font-size:15px;color:rgba(248,244,237,.65);line-height:1.9;max-width:none}
     .elb-bio p+p{margin-top:14px}
@@ -1336,6 +1334,22 @@ async function submitForm(e){
   });
 })();
 
+/* ── FAQ ACCORDION ── */
+document.querySelectorAll('.faq-item').forEach(function(item){
+  var btn=item.querySelector('.faq-q');
+  btn.addEventListener('click',function(){
+    var isOpen=item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(function(el){
+      el.classList.remove('open');
+      el.querySelector('.faq-q').setAttribute('aria-expanded','false');
+    });
+    if(!isOpen){
+      item.classList.add('open');
+      btn.setAttribute('aria-expanded','true');
+    }
+  });
+});
+
 /* ── ÉQUIPE LIGHTBOX (biographies complètes) ── */
 (function(){
   var membres={
@@ -1373,89 +1387,58 @@ async function submitForm(e){
       role:"Kinésithérapeute · Ostéopathe D.O — Gymnastique de Santé",
       bio:["Masseur-kinésithérapeute depuis 2003, titulaire d'un D.U de kinésithérapie du sport (2005) et ostéopathe D.O depuis 2010, Alexandre exerce à Bordeaux Bastide.",
         "Il a travaillé quinze ans dans le football de haut niveau aux Girondins de Bordeaux et intervient auprès des danseurs du Ballet de l'Opéra de Bordeaux depuis 2011. Il est chargé de cours à l'école d'ostéopathie Eurosteo depuis 2021.",
-        "Avec Lucile — duo à la ville comme dans la vie professionnelle — il accompagne chaque participant dans une prise en charge globale, à partir d'un bilan individuel."]
+        "Avec Lucile — duo à la ville comme dans la vie professionnelle — il met son expertise du sport et de la danse au service de chacun pour construire un programme individuel qui tient compte de l'ensemble du corps."]
     }
   };
 
-  var elb=document.getElementById('equipeLb');
-  var elbName=document.getElementById('elbName');
-  var elbRole=document.getElementById('elbRole');
-  var elbBio=document.getElementById('elbBio');
+  var lb=document.getElementById('equipeLb');
+  var nameEl=document.getElementById('elbName');
+  var roleEl=document.getElementById('elbRole');
+  var bioEl=document.getElementById('elbBio');
 
-  function closeElb(){elb.classList.remove('open');unlockScroll();}
-  document.getElementById('equipeLbClose').addEventListener('click',closeElb);
-  elb.addEventListener('click',function(e){if(e.target===elb)closeElb();});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&elb.classList.contains('open'))closeElb();});
-  elb.addEventListener('touchmove',function(e){
-    if(!e.target.closest('.pratique-lb-box')){e.preventDefault();}
-  },{passive:false});
+  function openELb(key){
+    var d=membres[key];
+    if(!d)return;
+    nameEl.textContent=d.name;
+    roleEl.textContent=d.role;
+    bioEl.innerHTML=d.bio.map(function(p){return'<p>'+p+'</p>';}).join('');
+    lb.classList.add('open');
+    lockScroll();
+  }
+  function closeELb(){lb.classList.remove('open');unlockScroll();}
 
   document.querySelectorAll('.equipe-card').forEach(function(card){
-    card.addEventListener('click',function(){
-      var m=membres[card.getAttribute('data-membre')];
-      if(!m)return;
-      elbName.textContent=m.name;
-      elbRole.textContent=m.role;
-      elbBio.innerHTML='';
-      m.bio.forEach(function(par){
-        var p=document.createElement('p');
-        p.textContent=par;
-        elbBio.appendChild(p);
+    card.addEventListener('click',function(){openELb(card.getAttribute('data-membre'));});
+  });
+  document.getElementById('equipeLbClose').addEventListener('click',closeELb);
+  lb.addEventListener('click',function(e){if(e.target===lb)closeELb();});
+  lb.addEventListener('touchmove',function(e){
+    if(!e.target.closest('.pratique-lb-box')){e.preventDefault();}
+  },{passive:false});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&lb.classList.contains('open'))closeELb();});
+
+  /* ── ÉQUIPE DOTS (mobile scroll indicator) ── */
+  var grid=document.querySelector('.equipe-grid');
+  var dotsContainer=document.getElementById('equipeDots');
+  if(grid&&dotsContainer&&window.getComputedStyle(dotsContainer).display!=='none'){
+    var cards=grid.querySelectorAll('.equipe-card');
+    cards.forEach(function(_,i){
+      var btn=document.createElement('button');
+      btn.setAttribute('aria-label','Membre '+(i+1));
+      if(i===0)btn.classList.add('active');
+      btn.addEventListener('click',function(){
+        cards[i].scrollIntoView({behavior:'smooth',block:'nearest',inline:'start'});
       });
-      elb.querySelector('.pratique-lb-box').scrollTop=0;
-      elb.classList.add('open');
-      lockScroll();
+      dotsContainer.appendChild(btn);
     });
-  });
-})();
-
-/* ── ÉQUIPE SLIDER DOTS (mobile) ── */
-(function(){
-  var grid=document.querySelector('#equipe .equipe-grid');
-  var wrap=document.getElementById('equipeDots');
-  if(!grid||!wrap)return;
-  var cards=Array.prototype.slice.call(grid.querySelectorAll('.equipe-card'));
-  if(!cards.length)return;
-  cards.forEach(function(c,i){
-    var b=document.createElement('button');
-    b.type='button';
-    b.setAttribute('aria-label','Voir le membre '+(i+1));
-    b.addEventListener('click',function(){
-      var delta=c.getBoundingClientRect().left-grid.getBoundingClientRect().left;
-      grid.scrollBy({left:delta,behavior:'smooth'});
-    });
-    wrap.appendChild(b);
-  });
-  var dots=Array.prototype.slice.call(wrap.querySelectorAll('button'));
-  function update(){
-    var gl=grid.getBoundingClientRect().left;
-    var best=0,bestD=Infinity;
-    cards.forEach(function(c,i){
-      var d=Math.abs(c.getBoundingClientRect().left-gl);
-      if(d<bestD){bestD=d;best=i;}
-    });
-    dots.forEach(function(d,i){d.classList.toggle('active',i===best);});
+    grid.addEventListener('scroll',function(){
+      var idx=Math.round(grid.scrollLeft/(grid.scrollWidth/cards.length));
+      dotsContainer.querySelectorAll('button').forEach(function(b,i){
+        b.classList.toggle('active',i===idx);
+      });
+    },{passive:true});
   }
-  grid.addEventListener('scroll',function(){window.requestAnimationFrame(update);},{passive:true});
-  window.addEventListener('resize',function(){window.requestAnimationFrame(update);});
-  update();
 })();
-
-/* ── FAQ ACCORDION ── */
-document.querySelectorAll('.faq-item').forEach(function(item){
-  var btn=item.querySelector('.faq-q');
-  btn.addEventListener('click',function(){
-    var isOpen=item.classList.contains('open');
-    document.querySelectorAll('.faq-item.open').forEach(function(el){
-      el.classList.remove('open');
-      el.querySelector('.faq-q').setAttribute('aria-expanded','false');
-    });
-    if(!isOpen){
-      item.classList.add('open');
-      btn.setAttribute('aria-expanded','true');
-    }
-  });
-});
 </script>
 </body>
 </html>
