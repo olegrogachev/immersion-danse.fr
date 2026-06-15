@@ -280,15 +280,42 @@
     /* TARIFS */
     #tarifs{background:var(--cream);text-align:center}
     #tarifs h2{margin:0 auto 20px}
-    .tarifs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;max-width:700px;margin:0 auto 36px}
-    .tarif-card{border:1px solid rgba(111,62,20,.16);padding:40px 28px;background:var(--warm);transition:border-color .25s,box-shadow .25s,transform .2s;cursor:pointer}
+    .tarifs-apartir{text-align:center;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin:0 auto 26px}
+    .tarifs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(248px,1fr));gap:18px;max-width:880px;margin:0 auto 36px}
+    .tarif-card{position:relative;border:1px solid rgba(111,62,20,.16);padding:36px 26px 32px;background:var(--warm);transition:border-color .25s,box-shadow .25s,transform .2s;cursor:pointer;display:flex;flex-direction:column;text-align:center}
     .tarif-card:hover{border-color:var(--gold);box-shadow:0 8px 36px rgba(111,62,20,.1);transform:translateY(-2px)}
-    .tarif-select-hint{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-pale);margin-top:18px;display:block;opacity:.6;transition:opacity .2s}
+    .tarif-card--feature{border-color:var(--gold-pale);background:var(--warm2)}
+    .tarif-card--feature .tarif-flag{position:absolute;top:-1px;left:50%;transform:translateX(-50%) translateY(-50%);background:var(--gold);color:var(--cream);font-size:9px;letter-spacing:.2em;text-transform:uppercase;padding:5px 14px;white-space:nowrap}
+    .tarif-select-hint{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-pale);margin-top:20px;display:block;opacity:.6;transition:opacity .2s}
     .tarif-card:hover .tarif-select-hint{opacity:1}
-    .tarif-type{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:block}
-    .tarif-price{font-family:'Cormorant Garamond',serif;font-size:50px;font-weight:300;color:var(--dark);line-height:1}
-    .tarif-price sup{font-size:22px;vertical-align:super}
-    .tarif-per{font-size:13px;color:var(--grey);margin-top:8px;display:block}
+    .tarif-type{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:4px;display:block}
+    .tarif-name{font-family:'Cormorant Garamond',serif;font-size:27px;font-weight:300;font-style:italic;color:var(--dark);line-height:1.1;margin-bottom:6px}
+    .tarif-dates{font-size:11.5px;letter-spacing:.1em;color:var(--grey);margin-bottom:18px;display:block}
+    .tarif-desc{font-size:12.5px;line-height:1.7;color:var(--grey);margin:0 auto 22px;max-width:240px;min-height:64px}
+    .tarif-price{font-family:'Cormorant Garamond',serif;font-size:46px;font-weight:300;color:var(--dark);line-height:1;margin-top:auto}
+    .tarif-price sup{font-size:20px;vertical-align:super}
+    .tarif-per{font-size:12px;color:var(--grey);margin-top:6px;display:block}
+    .tarif-duo{font-size:12px;color:var(--gold-lt);margin-top:8px;display:block}
+    /* DÉTAIL FORMULE (modal) */
+    .fd-type{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:4px}
+    .fd-name{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:300;font-style:italic;color:var(--dark);line-height:1.05;margin-bottom:6px}
+    .fd-dates{font-size:12.5px;letter-spacing:.08em;color:var(--grey);display:block;margin-bottom:18px}
+    .fd-prices{display:flex;gap:26px;align-items:baseline;padding:16px 0;border-top:1px solid rgba(111,62,20,.14);border-bottom:1px solid rgba(111,62,20,.14);margin-bottom:22px}
+    .fd-price-main{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:var(--dark);line-height:1}
+    .fd-price-main span{font-size:11px;letter-spacing:.06em;color:var(--grey);display:block;margin-top:3px;font-family:'Jost',sans-serif}
+    .fd-price-duo{font-size:14px;color:var(--gold-lt)}
+    .fd-price-duo span{font-size:11px;color:var(--grey);display:block;margin-top:3px}
+    .fd-section-label{font-family:'Cormorant Garamond',serif;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin:0 0 14px}
+    .fd-days{list-style:none;margin:0 0 26px;padding:0}
+    .fd-days li{display:flex;gap:14px;padding:11px 0;border-bottom:1px solid rgba(111,62,20,.08);align-items:baseline}
+    .fd-days li:last-child{border-bottom:none}
+    .fd-day-label{flex:0 0 64px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-lt);padding-top:2px}
+    .fd-day-content{font-size:13.5px;line-height:1.6;color:var(--dark)}
+    .fd-options{margin:0 0 30px}
+    .fd-options-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+    .fd-chip{font-size:12px;color:var(--grey);border:1px solid rgba(111,62,20,.18);padding:6px 12px;border-radius:2px;background:var(--warm)}
+    .fd-note{font-size:12px;color:var(--grey);margin:-16px 0 26px;font-style:italic}
+    .fd-cta{width:100%}
     .tarif-early{background:transparent;border:none;border-left:3px solid var(--gold);padding:16px 24px;max-width:460px;margin:0 auto 36px;text-align:left}
     .tarif-early p{color:var(--dark);font-size:14px;max-width:none;text-align:left;margin:0;line-height:1.9}
     .tarif-early strong{color:var(--gold);font-weight:400;font-family:'Cormorant Garamond',serif;font-size:18px}
@@ -696,30 +723,46 @@
   <span class="section-label reveal">Tarifs &amp; Réservation</span>
   <h2 class="reveal">Rejoindre <em>l'expérience</em></h2>
   <p class="reveal" style="text-align:center;margin:0 auto 12px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)">· Tout inclus ·</p>
-  <div style="text-align:center;margin-bottom:32px" class="reveal">
+  <div style="text-align:center;margin-bottom:30px" class="reveal">
     <p style="font-size:13px;color:var(--grey);line-height:1;max-width:none;text-align:center">
-      <span style="display:block;padding:7px 0">10 jours &nbsp;·&nbsp; Séjour en résidence au château, repas inclus</span>
-      <span style="display:block;padding:7px 0">Bilan kinésithérapeute &nbsp;·&nbsp; 13 pratiques &nbsp;·&nbsp; 6 ateliers</span>
+      <span style="display:block;padding:7px 0">Séjour en résidence au château, repas inclus</span>
       <span style="display:block;padding:7px 0">Accompagnement personnalisé &nbsp;·&nbsp; Petit groupe</span>
-      <span style="display:block;padding:7px 0">Bal Masqué &nbsp;·&nbsp; Artistes de l'Opéra de Bordeaux</span>
+      <span style="display:block;padding:7px 0">Artistes de l'Opéra de Bordeaux</span>
     </p>
   </div>
+  <p class="tarifs-apartir reveal">À partir de 1 350 € · 4 jours</p>
   <div class="tarifs-grid reveal">
-    <div class="tarif-card" onclick="openModalWithTarif('solo')">
-      <span class="tarif-type">En Solo</span>
+    <div class="tarif-card" onclick="openFormule('prelude')">
+      <span class="tarif-type">Bloc 1</span>
+      <div class="tarif-name">Le Prélude</div>
+      <span class="tarif-dates">10 → 14 août · 4 jours</span>
+      <p class="tarif-desc">Le temps le plus personnel. Bilan kinésithérapeute à l'arrivée, travail postural et classique — on réveille le corps, on retrouve la terre sous ses pieds.</p>
+      <div class="tarif-price"><sup>€</sup>1 350</div>
+      <span class="tarif-per">en solo</span>
+      <span class="tarif-duo">1 200 € / pers. en duo</span>
+      <span class="tarif-select-hint">Voir le détail →</span>
+    </div>
+    <div class="tarif-card tarif-card--feature" onclick="openFormule('experience')">
+      <span class="tarif-flag">Le parcours entier</span>
+      <span class="tarif-type">Séjour complet</span>
+      <div class="tarif-name">L'Expérience</div>
+      <span class="tarif-dates">10 → 19 août · 10 jours</span>
+      <p class="tarif-desc">Les deux temps, sans rupture. Le séjour pensé dans son entier — du premier bilan jusqu'au Bal Masqué, au rythme des vacances.</p>
       <div class="tarif-price"><sup>€</sup>3 000</div>
-      <span class="tarif-per">par personne</span>
-      <span class="tarif-select-hint">Choisir →</span>
+      <span class="tarif-per">en solo</span>
+      <span class="tarif-duo">2 650 € / pers. en duo</span>
+      <span class="tarif-select-hint">Voir le détail →</span>
     </div>
-    <div class="tarif-card" onclick="openModalWithTarif('duo')">
-      <span class="tarif-type">En Duo</span>
-      <div class="tarif-price"><sup>€</sup>2 650</div>
-      <span class="tarif-per">par personne</span>
-      <span class="tarif-select-hint">Choisir →</span>
+    <div class="tarif-card" onclick="openFormule('reverence')">
+      <span class="tarif-type">Bloc 2</span>
+      <div class="tarif-name">La Révérence</div>
+      <span class="tarif-dates">14 → 19 août · 5 jours</span>
+      <p class="tarif-desc">Plus doux pour le corps, avec le Münz Floor® et les fascias. Et le Bal Masqué pour clôture — du sol vers la légèreté.</p>
+      <div class="tarif-price"><sup>€</sup>1 670</div>
+      <span class="tarif-per">en solo</span>
+      <span class="tarif-duo">1 475 € / pers. en duo</span>
+      <span class="tarif-select-hint">Voir le détail →</span>
     </div>
-  </div>
-  <div class="tarif-early reveal">
-    <p><strong>Tarif préférentiel</strong> — <span class="nodates">réservation avant le 1er juin 2026</span><br><span class="nodates">2 700 € en solo</span> &nbsp;·&nbsp; <span class="nodates">2 400 € en duo</span></p>
   </div>
   <div class="tarif-early reveal">
     <p><strong>Annulation sans risque</strong> — Remboursement complet jusqu'à 45 jours avant le départ, sans justification.</p>
@@ -778,7 +821,15 @@
 
   <div class="faq-item reveal">
     <button class="faq-q" aria-expanded="false">Que comprend exactement le tarif&nbsp;?<span class="faq-icon">+</span></button>
-    <div class="faq-a"><p>Le tarif inclus 10 jours/9 nuits séjour en résidence au château (repas inclus), bilan kinésithérapeute, 13 pratiques, 6 ateliers, accompagnement personnalisé, petit groupe, la soirée de clôture Bal Masqué. Les soins individuels (massage, ostéopathie, Kobido) et cours privés sont en option et facturés séparément.</p></div>
+    <div class="faq-a"><p>Chaque formule comprend l'hébergement en résidence au château (repas inclus), les pratiques et ateliers de la période choisie, l'accompagnement personnalisé en petit groupe et les artistes de l'Opéra de Bordeaux.</p><p style="margin-top:10px">Le <strong>séjour complet</strong> (10 jours) réunit les deux temps, du bilan kinésithérapeute jusqu'au Bal Masqué. Le <strong>Bloc 1 · Le Prélude</strong> inclut le bilan kinésithérapeute à l'arrivée ; le <strong>Bloc 2 · La Révérence</strong> se clôt par le Bal Masqué. Les soins individuels (massage, ostéopathie, Kobido) et cours privés sont en option et facturés séparément.</p></div>
+  </div>
+
+  <div class="faq-item reveal">
+    <button class="faq-q" aria-expanded="false">Peut-on venir seulement quelques jours&nbsp;?<span class="faq-icon">+</span></button>
+    <div class="faq-a"><p>Oui. Le séjour se vit idéalement dans son entier, mais il s'ouvre en deux temps que l'on peut rejoindre séparément.</p>
+    <p style="margin-top:10px"><strong>Bloc 1 · Le Prélude</strong> (10 → 14 août). Le temps le plus personnel et le plus physique : bilan kinésithérapeute à l'arrivée, Gymnastique de Santé, Travail Postural &amp; Danse Classique, Danse Contemporaine, Danse Historique, et les ateliers nutrition, composition florale et pique-nique rose.</p>
+    <p style="margin-top:10px"><strong>Bloc 2 · La Révérence</strong> (14 → 19 août). Plus doux pour le corps : Münz Floor®, Travail Postural &amp; Danse Classique, Danse Contemporaine, Danse Historique, les ateliers fascias, posture &amp; réussite, Kobido, une soirée cinéma-danse — et le Bal Masqué en clôture.</p>
+    <p style="margin-top:10px">Les trois premiers jours, votre corps arrive encore de Paris. C'est pourquoi le séjour complet reste la plus belle façon de vivre l'expérience — mais chaque bloc se suffit à lui-même.</p></div>
   </div>
 
   <div class="faq-item reveal">
@@ -906,6 +957,14 @@
     <div class="form-success" id="formSuccess">
       <p>Merci !<br>Votre demande a bien été envoyée.<br>Nous vous recontacterons très bientôt.</p>
     </div>
+  </div>
+</div>
+
+<!-- MODAL DÉTAIL FORMULE -->
+<div class="modal-overlay" id="detailOverlay" role="dialog" aria-modal="true">
+  <div class="modal">
+    <button class="modal-close" onclick="closeFormule()" aria-label="Fermer">✕</button>
+    <div id="detailBody"></div>
   </div>
 </div>
 
@@ -1168,37 +1227,126 @@ document.querySelectorAll('.reveal').forEach(function(el){obsRev.observe(el);});
   window.addEventListener('resize',loadVideo);
 })();
 
-/* ── TARIFS DYNAMIQUES ── */
-(function(){
-  var earlyBird = new Date('2026-06-01T00:00:00') > new Date();
-  var sel = document.getElementById('chambre');
-  if(earlyBird){
-    sel.innerHTML = '<option value="">— Choisir —</option>'
-      + '<option value="En Solo — 2 700 € (early bird)">En Solo — 2 700 € (au lieu de 3 000 €)</option>'
-      + '<option value="En Duo — 2 400 € / pers. (early bird)">En Duo — 2 400 € / pers. (au lieu de 2 650 €)</option>';
-  } else {
-    sel.innerHTML = '<option value="">— Choisir —</option>'
-      + '<option value="En Solo — 3 000 €">En Solo — 3 000 €</option>'
-      + '<option value="En Duo — 2 650 € / pers.">En Duo — 2 650 € / pers.</option>';
+/* ── TARIFS — FORMULES ── */
+var FORMULES = {
+  experience:{
+    key:'experience', type:'Séjour complet', name:"L'Expérience",
+    dates:'10 → 19 août · 10 jours / 9 nuits',
+    intro:"Les deux temps réunis, sans rupture — du premier bilan jusqu'au Bal Masqué, au rythme des vacances.",
+    solo:'3 000 €', duo:'2 650 €',
+    valSolo:'Séjour complet — Solo — 3 000 €', valDuo:'Séjour complet — Duo — 2 650 € / pers.',
+    days:[
+      ['10 août','Arrivée, bilan kinésithérapeute, soirée de rencontre'],
+      ['11 août','Gymnastique de Santé · Travail Postural & Danse Classique · Atelier nutrition'],
+      ['12 août','Gymnastique de Santé · Danse Contemporaine · Atelier composition florale'],
+      ['13 août','Danse Historique · Atelier pique-nique rose'],
+      ['14 août','Journée libre, au rythme de chacun'],
+      ['15 août','Münz Floor® · Travail Postural & Danse Classique · Atelier le pouvoir des fascias en mouvement'],
+      ['16 août','Münz Floor® · Danse Contemporaine · Atelier Posture & réussite personnelle'],
+      ['17 août','Danse Historique · Atelier Kobido · Soirée cinéma-danse'],
+      ['18 août','Danse Historique · Bal Masqué'],
+      ['19 août','Brunch & départ']
+    ],
+    options:['Massages','Ostéopathie','Kobido','Méditation individuelle','Cours particuliers']
+  },
+  prelude:{
+    key:'prelude', type:'Bloc 1', name:'Le Prélude',
+    dates:'10 → 14 août · 4 jours / 3 nuits',
+    intro:"Le temps le plus personnel et le plus physique. On réveille le corps, on retrouve la terre sous ses pieds.",
+    solo:'1 350 €', duo:'1 200 €',
+    valSolo:"Bloc 1 Le Prélude — Solo — 1 350 €", valDuo:"Bloc 1 Le Prélude — Duo — 1 200 € / pers.",
+    days:[
+      ['10 août','Arrivée, bilan kinésithérapeute, soirée de rencontre'],
+      ['11 août','Gymnastique de Santé · Travail Postural & Danse Classique · Atelier nutrition'],
+      ['12 août','Gymnastique de Santé · Danse Contemporaine · Atelier composition florale'],
+      ['13 août','Danse Historique · Atelier pique-nique rose'],
+      ['14 août','Départ']
+    ],
+    options:['Massages','Ostéopathie','Méditation individuelle','Cours particuliers']
+  },
+  reverence:{
+    key:'reverence', type:'Bloc 2', name:'La Révérence',
+    dates:'14 → 19 août · 5 jours / 4 nuits',
+    intro:"Plus doux pour le corps, avec le Münz Floor® et les fascias. Et le Bal Masqué pour clôture — du sol vers la légèreté.",
+    solo:'1 670 €', duo:'1 475 €',
+    valSolo:"Bloc 2 La Révérence — Solo — 1 670 €", valDuo:"Bloc 2 La Révérence — Duo — 1 475 € / pers.",
+    days:[
+      ['14 août','Arrivée'],
+      ['15 août','Münz Floor® · Travail Postural & Danse Classique · Atelier le pouvoir des fascias en mouvement'],
+      ['16 août','Münz Floor® · Danse Contemporaine · Atelier Posture & réussite personnelle'],
+      ['17 août','Danse Historique · Atelier Kobido · Soirée cinéma-danse'],
+      ['18 août','Danse Historique · Bal Masqué'],
+      ['19 août','Départ']
+    ],
+    options:['Kobido','Méditation individuelle','Cours particuliers']
   }
+};
 
-  window._earlyBird = earlyBird;
+(function(){
+  var sel = document.getElementById('chambre');
+  if(!sel) return;
+  var order=['experience','prelude','reverence'];
+  var html='<option value="">— Choisir —</option>';
+  order.forEach(function(k){
+    var f=FORMULES[k];
+    html += '<optgroup label="'+f.type+' · '+f.name+'">'
+         +    '<option value="'+f.valSolo+'">'+f.name+' · Solo — '+f.solo+'</option>'
+         +    '<option value="'+f.valDuo+'">'+f.name+' · Duo — '+f.duo+' / pers.</option>'
+         +  '</optgroup>';
+  });
+  sel.innerHTML=html;
 })();
 
-/* ── MODAL ── */
+/* ── MODAL DÉTAIL FORMULE ── */
+function openFormule(key){
+  var f=FORMULES[key]; if(!f) return;
+  var days=f.days.map(function(d){
+    return '<li><span class="fd-day-label">'+d[0]+'</span><span class="fd-day-content">'+d[1]+'</span></li>';
+  }).join('');
+  var chips=f.options.map(function(o){return '<span class="fd-chip">'+o+'</span>';}).join('');
+  document.getElementById('detailBody').innerHTML =
+      '<span class="fd-type">'+f.type+'</span>'
+    + '<div class="fd-name">'+f.name+'</div>'
+    + '<span class="fd-dates">'+f.dates+'</span>'
+    + '<p class="modal-sub" style="margin-bottom:0">'+f.intro+'</p>'
+    + '<div class="fd-prices">'
+    +   '<div class="fd-price-main">'+f.solo+'<span>en solo</span></div>'
+    +   '<div class="fd-price-duo">'+f.duo+'<span>par personne en duo</span></div>'
+    + '</div>'
+    + '<p class="fd-section-label">Le déroulé</p>'
+    + '<ul class="fd-days">'+days+'</ul>'
+    + '<div class="fd-options"><p class="fd-section-label">Expériences complémentaires</p>'
+    +   '<p class="fd-note" style="margin:-8px 0 12px">En option, sur place — soins et cours privés facturés séparément.</p>'
+    +   '<div class="fd-options-list">'+chips+'</div></div>'
+    + '<button class="btn fd-cta" onclick="reserveFormule(\''+f.key+'\')">Réserver cette formule →</button>';
+  document.getElementById('detailOverlay').classList.add('open');
+  document.querySelector('#detailOverlay .modal').scrollTop=0;
+  lockScroll();
+}
+function closeFormule(){document.getElementById('detailOverlay').classList.remove('open');unlockScroll();}
+function reserveFormule(key){
+  document.getElementById('detailOverlay').classList.remove('open');
+  openModalWithTarif(key);
+}
+document.getElementById('detailOverlay').addEventListener('click',function(e){if(e.target===this)closeFormule();});
+document.getElementById('detailOverlay').addEventListener('touchmove',function(e){if(!e.target.closest('.modal')){e.preventDefault();}},{passive:false});
+
+/* ── MODAL RÉSERVATION ── */
 function openModal(){document.getElementById('modalOverlay').classList.add('open');lockScroll();}
-function openModalWithTarif(type){
+function openModalWithTarif(key){
   var sel=document.getElementById('chambre');
-  var earlyBird=window._earlyBird;
-  var val='';
-  if(type==='solo') val=earlyBird?'En Solo — 2 700 € (early bird)':'En Solo — 3 000 €';
-  if(type==='duo')  val=earlyBird?'En Duo — 2 400 € / pers. (early bird)':'En Duo — 2 650 € / pers.';
-  if(sel){for(var i=0;i<sel.options.length;i++){if(sel.options[i].value===val){sel.selectedIndex=i;break;}}}
+  var f=FORMULES[key];
+  var val=f?f.valSolo:'';
+  if(sel&&val){for(var i=0;i<sel.options.length;i++){if(sel.options[i].value===val){sel.selectedIndex=i;break;}}}
   openModal();
 }
 function closeModal(){document.getElementById('modalOverlay').classList.remove('open');unlockScroll();}
 document.getElementById('modalOverlay').addEventListener('click',function(e){if(e.target===this)closeModal();});
-document.addEventListener('keydown',function(e){if(e.key==='Escape'&&document.getElementById('modalOverlay').classList.contains('open'))closeModal();});
+document.addEventListener('keydown',function(e){
+  if(e.key!=='Escape')return;
+  if(document.getElementById('detailOverlay').classList.contains('open')){closeFormule();return;}
+  if(document.getElementById('modalOverlay').classList.contains('open'))closeModal();
+});
 /* block touch scroll on backdrop, allow on inner modal */
 document.getElementById('modalOverlay').addEventListener('touchmove',function(e){
   if(!e.target.closest('.modal')){e.preventDefault();}
